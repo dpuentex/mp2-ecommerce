@@ -1,0 +1,47 @@
+* {outline: black solid 1px}
+
+
+header{
+    padding: 1em;
+}
+
+.navbar{
+    
+    max-width: 800px;
+    min-width: 50%;
+    margin: auto;
+}
+
+ul {
+    background-color: green;
+    padding: 0;
+    display:flex;
+    justify-content: space-between;
+}
+
+.nav-links{
+    list-style: none;
+    display: flex;
+}
+
+a {
+    text-decoration: none;
+}
+
+li{
+    display:flex;
+    justify-content: center;
+    padding: 1em;
+    background-color: transparent;
+    /* flex-grow: 1; */
+}
+
+a{
+    color: white;
+    background-color: transparent   
+}
+
+li:hover{
+    color: red;
+    background-color: gray;
+}

@@ -1,3 +1,16 @@
+# Editor directories and files - from vite
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+
+
 # Logs
 logs
 *.log
