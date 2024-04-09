@@ -20,6 +20,9 @@ Collaborators: \
 [Jeffery Grigsby](https://github.com/JefferyG00) \
 A beautiful ecommerce website with basic functionality.
 
+<!-- design -->
+![Prototype Home](./_design/Home.png)
+
 Ultra priority:
 -
 Models (linked here on line 12)
