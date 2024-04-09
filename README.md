@@ -21,33 +21,42 @@ Collaborators: \
 A beautiful ecommerce website with basic functionality.
 
 Ultra priority:
+-
+Models (linked here on line 12)
 
 
 High priority:
 -
-**all pages**
-
+**all pages** \
+nav bar 
 
 **main page**
 
+search component (with submit) \
+hot items component 
 
-**store page**
-adding stuff to cart
-avg rate for each item
-image for item
-
-
-**item page**
-ratings
-avg ratings
-image collection
+**store page** \
+adding stuff to cart \
+avg rate for each item \
+image for item 
 
 
-**cart page**
+**item page** \
+ratings \
+avg ratings \
+image collection 
+
+
+**cart page** \
+display items in cart 
+
+
+
 
 Low priority: 
 -
-make animation for navbar
-Make favicon.ico
-optional navbar items
+**nav bar** \
+make animation for navbar \
+Make favicon.ico \
+optional navbar items 
 
