@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Home from './components/Home'
 import Browse from './components/Browse'
 import AboutUs from './components/AboutUs'
@@ -8,11 +8,10 @@ import './assets/css/navigationbar.css'
 
 function App() {
   const [count, setCount] = useState(0)
-//  Condition ? do this if true : do this if false
   return (
     <>
       
-      <Router>
+      
         <header>
           <nav className='navbar'>
               <ul className='nav-links'>
@@ -43,7 +42,7 @@ function App() {
                 <Route path='/admin' element={<div>Admin Page... no component for page yet..</div>} />
             </Routes>
         
-        </Router>
+       
       
       <main>
 
