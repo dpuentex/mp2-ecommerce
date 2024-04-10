@@ -36,7 +36,7 @@ function App() {
           </header>
             <Routes>
                 <Route path='/' element={<Home/>} /> 
-                <Route path='/categories' element={<Browse/>} />
+                <Route path='/browse' element={<Browse/>} />
                 <Route path='/best-sellers' element={<div>may or may not use best seller. there is no component here yet. Sincerely, app.jsx /best-sellers Route</div>} />
                 <Route path='/about-us' element={<AboutUs/>} />
                 <Route path='/cart' element={<div>Cart.. no component for page yet</div>} />
