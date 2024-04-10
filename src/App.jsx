@@ -1,38 +1,61 @@
 import { useState } from 'react'
-import  NavigationBar  from './components/common/NavigationBar'
+import Home from './components/Home'
+import Browse from './components/Browse'
+import AboutUs from './components/AboutUs'
+import { BrowserRouter as Router, Link, Routes, Route } from 'react-router-dom'
 import './assets/css/style1.css'
+import './assets/css/navigationbar.css'
 
 function App() {
   const [count, setCount] = useState(0)
 //  Condition ? do this if true : do this if false
   return (
     <>
-      <header>
-        <NavigationBar />
-      </header>
+      
+      <Router>
+        <header>
+          <nav className='navbar'>
+              <ul className='nav-links'>
+                  <li>
+                      <Link to='/'>HOME</Link>
+                  </li>
+                  <li>
+                      <Link to='/browse'>BROWSE</Link>
+                  </li>
+                  <li>
+                      <Link to='/best-sellers'>BEST SELLERS</Link>
+                  </li>
+                  <li>
+                      <Link to='/about-us'>ABOUT US</Link>
+                  </li>
+                  <li>
+                      <Link to='/cart'>CART🛒</Link>
+                  </li>
+              </ul> 
+            </nav>
+          </header>
+            <Routes>
+                <Route path='/' element={<Home/>} /> 
+                <Route path='/categories' element={<Browse/>} />
+                <Route path='/best-sellers' element={<div>may or may not use best seller. there is no component here yet. Sincerely, app.jsx /best-sellers Route</div>} />
+                <Route path='/about-us' element={<AboutUs/>} />
+                <Route path='/cart' element={<div>Cart.. no component for page yet</div>} />
+                <Route path='/admin' element={<div>Admin Page... no component for page yet..</div>} />
+            </Routes>
+        
+        </Router>
+      
       <main>
 
       </main>
       <footer>
-        {/* <FooterSection/> */}
-      </footer>
-      {(count < 10) 
+        <button onClick={() => setCount((count) => count + 1)}>Don't click this... {count}</button>
+        {(count < 10) 
         ? null : <div>
         <p>you've exceeded 10 boy</p>
-      </div>
-      }
-      <h1>mp2-ecommerce</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      </div>}
+      </footer>
+      
     </>
   )
 }   

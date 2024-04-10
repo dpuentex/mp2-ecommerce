@@ -7,10 +7,7 @@ for a proper preview
 https://marketplace.visualstudio.com/items?itemName=ms-vscode.live-server
 -->
 
-<!-- 
-MODEL SPREADSHEET
-https://docs.google.com/spreadsheets/d/1QfpH7j5gNQoXloyshFjNvAq97LzJzVPM_XfwJFtSe18/edit#gid=0
- -->
+
 
 # mp2-ecommerce
 Collaborators: \
@@ -21,45 +18,48 @@ Collaborators: \
 A beautiful ecommerce website with basic functionality.
 
 <!-- design -->
+## Prototypes
 ![Prototype Home](./_design/Home.png)
 
-Ultra priority:
+## Dev Notes
+- config folder containing sequelize config has not been inccluded in git ignore purposely for now.
+## Ultra priority:
+
+### [Models](https://docs.google.com/spreadsheets/d/1QfpH7j5gNQoXloyshFjNvAq97LzJzVPM_XfwJFtSe18/edit#gid=0) for SQL database
+- spreadsheet
+- migrations
+- models
+
+
+## High priority:
 -
-Models (linked here on line 12)
+### All Pages
+- nav bar 
 
+### home page
 
-High priority:
--
-**all pages** \
-nav bar 
+- search component (with submit) 
+- hot items component 
 
-**main page**
+### store page
+- adding stuff to cart 
+- avg rate for each item 
+- image for item 
 
-search component (with submit) \
-hot items component 
+### cart page
+- display items in cart
 
-**store page** \
-adding stuff to cart \
-avg rate for each item \
-image for item 
-
-
-**item page** \
-ratings \
-avg ratings \
-image collection 
-
-
-**cart page** \
-display items in cart 
+### item page
+- ratings 
+- avg ratings 
+- image collection 
 
 
 
+## Low priority: 
 
-Low priority: 
--
-**nav bar** \
-make animation for navbar \
-Make favicon.ico \
-optional navbar items 
+#### nav bar
+- make animation for navbar
+- Make favicon.ico
+- optional navbar items 
 
