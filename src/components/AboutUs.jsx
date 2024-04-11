@@ -1,17 +1,41 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 
-export default async function AboutUs(){
+export default function AboutUs(){
     //use state
-    const [data, setData] = React.useState({})
-    await fetch(`127.0.0.1:3001/about-us-data`)
-    .then(response => response.json())
-    .then(responseData => setData(responseData))
-    .then(console.log(data))
+    let [data, setData] = React.useState({})
+
+
+
+    
+
+    async function workingButtonEvent() {
+        
+        const response = await fetch(
+            'http://127.0.0.1:3001/about-us-data'
+        )
+        let data = await response.json()
+        setData(data[0])
+        console.log(data)
+    }
+       
+
+    async function testButtonEvent() {
+        await fetch(
+            'http://127.0.0.1:3001/about-us-data'
+        ).then((response) => response.json()
+        ).then((responseData) => setData(responseData[1]))
+        console.log(data)
+    }
+
     return (
         <>
-            <h1>{data.data}</h1>
+        
+            <h1>{data?.store_name ? data.store_name : 'no data'}</h1>
             <div>About Us Page Here .... hello from AboutUs.jsx component</div>
+            <button onClick={workingButtonEvent}>Working version. Check console for response</button>
+            
+            <button onClick={testButtonEvent}>Test version. Check console for response</button>
         </>
     )
 }
