@@ -12,7 +12,7 @@ export default function AboutUs(){
     async function workingButtonEvent() {
         
         const response = await fetch(
-            'http://127.0.0.1:3001/about-us-data'
+            'http://127.0.0.1:3001/store-data'
         )
         let data = await response.json()
         setData(data[0])
@@ -22,7 +22,7 @@ export default function AboutUs(){
 
     async function testButtonEvent() {
         await fetch(
-            'http://127.0.0.1:3001/about-us-data'
+            'http://127.0.0.1:3001/store-data'
         ).then((response) => response.json()
         ).then((responseData) => setData(responseData[1]))
         console.log(data)

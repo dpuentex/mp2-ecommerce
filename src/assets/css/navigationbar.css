@@ -15,6 +15,7 @@ header{
 }
 
 ul {
+    max-height: 40px;
     background-color: green;
     padding: 0;
     display:flex;
@@ -48,3 +49,9 @@ li:hover{
     color: red;
     background-color: gray;
 }
+
+.dropdown-menu{
+    display: flex;
+   flex-direction: column; 
+}
+
