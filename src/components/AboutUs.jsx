@@ -9,10 +9,10 @@ export default function AboutUs(){
 
     
 
-    async function workingButtonEvent() {
+    async function fetchFirst() {
         
         const response = await fetch(
-            'http://127.0.0.1:3001/store-data'
+            `http://127.0.0.1:${3000}/store-data`
         )
         let data = await response.json()
         setData(data[0])
@@ -20,9 +20,9 @@ export default function AboutUs(){
     }
        
 
-    async function testButtonEvent() {
+    async function fetchSecond() {
         await fetch(
-            'http://127.0.0.1:3001/store-data'
+            `http://127.0.0.1:${3000}/store-data`
         ).then((response) => response.json()
         ).then((responseData) => setData(responseData[1]))
         console.log(data)
@@ -34,9 +34,9 @@ export default function AboutUs(){
             <h1>{data?.store_name ? data.store_name : 'no data'}</h1>
             <h2>{data?.about_us ? data.about_us : 'no data'}</h2>
             <div>About Us Page Here .... hello from AboutUs.jsx component</div>
-            <button onClick={workingButtonEvent}>Working version. Check console for response</button>
+            <button onClick={fetchFirst}>fetch store 0</button>
             
-            <button onClick={testButtonEvent}>Test version. Check console for response</button>
+            <button onClick={fetchSecond}>fetch store 1</button>
         </>
     )
 }

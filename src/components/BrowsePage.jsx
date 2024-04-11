@@ -1,12 +1,16 @@
 import React from 'react'
 import '../assets/css/browsepage.css'
+import ProductCard from './ProductCard';
+import { configDotenv } from 'dotenv';
+
 
 export default function BrowsePage() {
 
     let [data, setData] = React.useState({})
 
     async function fetchProducts() {
-      const response = await fetch("http://127.0.0.1:3001/products/products-data");
+        // fetch using dot env or 3000
+      const response = await fetch(`http://127.0.0.1:${3000}/products/products-data`);
       let data = await response.json();
       setData(data);
       console.log(data);
@@ -45,31 +49,7 @@ export default function BrowsePage() {
                     <div className='product-container'>{
                         data.map((product, index) => {
                             return (
-                                <div key={index} className='product-card'>
-                                    {product.product_name ? <h1>{product.product_name}</h1> : null}
-                                    {product.price ? <h2>{product.price}</h2> : null}
-                                    {product.description ? <h3>{product.description}</h3> : null}
-                                    {product.images ? <p>IMAGES.. There would be a map function here or something..</p> : null}
-                                    {product.details_array
-                                        ? 
-                                            <div>
-                                                {
-                                                    Object.keys(product.details_array)
-                                                    .map((key, index) => {
-                                                        return (
-                                                            <div className='product-details' key={index}>
-                                                                <p>{key}{product.details_array[key] ? <span>{product.details_array[key]}</span> : null}</p>
-                                                                
-                                                            </div>
-                                                                )
-                                                        
-                                                        }
-                                                    )    
-                                                }
-                                            </div>
-                                        : null
-                                    }
-                                </div>
+                                <ProductCard key={index} product={product}/>
                             )
                         })
                         }</div>
