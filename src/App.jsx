@@ -8,6 +8,7 @@ import './assets/css/navigationbar.css'
 
 function App() {
   const [count, setCount] = useState(0)
+  const [cartPanelActive, setCartPanelActive] = useState(false)
   return (
     <>
       
@@ -42,7 +43,7 @@ function App() {
                 <Route path='/admin' element={<div>Admin Page... no component for page yet..</div>} />
             </Routes>
         
-       
+        {cartPanelActive ? <CartPanel /> : null}
       
       <main>
 
