@@ -32,7 +32,7 @@ A beautiful ecommerce website with basic functionality.
 
 
 ## High priority:
-- Jeffery, please on hover I want cart panel to appear, and when clicked, there is navigation to the cart page itself
+- Jeffery, Diego please on hover I want cart panel to appear, and when clicked, there is navigation to the cart page itself
 ### All Pages
 - nav bar 
 
