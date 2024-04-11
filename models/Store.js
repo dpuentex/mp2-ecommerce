@@ -24,7 +24,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER
     },
     icon: {
-      type: DataTypes.BLOB('medium')
+      type: DataTypes.BLOB
     },
     about_us: {
       type: DataTypes.TEXT

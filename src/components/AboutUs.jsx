@@ -32,6 +32,7 @@ export default function AboutUs(){
         <>
         
             <h1>{data?.store_name ? data.store_name : 'no data'}</h1>
+            <h2>{data?.about_us ? data.about_us : 'no data'}</h2>
             <div>About Us Page Here .... hello from AboutUs.jsx component</div>
             <button onClick={workingButtonEvent}>Working version. Check console for response</button>
             
