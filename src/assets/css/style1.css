@@ -1,8 +1,92 @@
-* {
-  background-color: darkgray
-  
+
+@property --deg1 {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
 }
 
-button {
-  background-color: green;
+@property --deg2 {
+  syntax: '<angle>';
+  initial-value: 120deg;
+  inherits: false;
 }
+
+@property --deg3 {
+  syntax: '<angle>';
+  initial-value: 240deg;
+  inherits: false;
+}
+
+
+
+html {
+  background: linear-gradient(var(--deg1), rgba(255,150,150,.8), rgba(255,0,0,0) 70.71%),
+            linear-gradient(var(--deg2), rgba(150,255,150,.8), rgba(0,255,0,0) 70.71%),
+            linear-gradient(var(--deg3), rgba(150,150,255,.8), rgba(0,0,255,0) 70.71%);
+            animation: background-anim 5s linear infinite;
+            background-attachment: fixed;
+}
+
+
+@keyframes background-anim {
+  from {    
+  --deg1: 0deg;
+  --deg2: 120deg;
+  --deg3: 240deg;    
+  }
+  to {    
+  --deg1: 360deg;
+  --deg2: 480deg;
+  --deg3: 600deg;    
+  }
+}
+
+
+/* @property --deg1 {
+  syntax: '<number>';
+  initial-value: 255;
+  inherits: false;
+}
+
+@property --deg2 {
+  syntax: '<number>';
+  initial-value: 150;
+  inherits: false;
+}
+
+@property --deg3 {
+  syntax: '<number>';
+  initial-value: 150;
+  inherits: false;
+}
+
+
+
+html {
+  background: linear-gradient(0deg, rgba(var(--col1),var(--col2),var(--col3),.8), rgba(255,0,0,0) 70.71%),
+            linear-gradient(120deg, rgba(var(--col2),var(--col3),var(--col1),.8), rgba(0,255,0,0) 70.71%),
+            linear-gradient(240deg, rgba(var(--col3),var(--col1),var(--col2),.8), rgba(0,0,255,0) 70.71%);
+            animation: background-anim 5s linear infinite;
+            background-attachment: fixed;
+  transition: all 1s; 
+}
+
+
+@keyframes background-anim {
+  0% {    
+  --col1: 255;
+  --col2: 150;
+  --col3: 150;   
+  }
+  50% {    
+  --col1: 150;
+  --col2: 255;
+  --col3: 150;    
+  }
+  100% {    
+  --col1: 150;
+  --col2: 150;
+  --col3: 255;    
+  }
+  
+} */

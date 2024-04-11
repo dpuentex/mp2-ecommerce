@@ -42,7 +42,7 @@ export default function BrowsePage() {
             {
                 data.length > 0
                 ? 
-                    <div>{
+                    <div className='product-container'>{
                         data.map((product, index) => {
                             return (
                                 <div key={index} className='product-card'>

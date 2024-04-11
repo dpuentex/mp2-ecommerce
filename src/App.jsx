@@ -6,7 +6,6 @@ import NavigationBar from './components/NavigationBar'
 import Cart from './components/Cart'
 import { BrowserRouter as Router, Link, Routes, Route } from 'react-router-dom'
 import './assets/css/style1.css'
-import './assets/css/navigationbar.css'
 
 function App() {
   const [count, setCount] = useState(0)

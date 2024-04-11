@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { BrowserRouter as Router, Link, Routes, Route } from 'react-router-dom'
+import '../assets/css/navigationbar.css'
 
 export default function NavigationBar() {
     const [isOpen, setIsOpen] = useState(false);
