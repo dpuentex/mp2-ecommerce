@@ -1,10 +1,10 @@
-//sequelize model:generate --name carts --attributes "cart_id:integer, contents_array:integer" --force true
+//sequelize model:generate --name users --attributes "cart_id:integer, contents_array:integer" --force true
 
 'use strict';
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('carts', {
+    await queryInterface.createTable('users', {
       cart_id: {
         allowNull: false,
         autoIncrement: true,
@@ -17,6 +17,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('carts');
+    await queryInterface.dropTable('users');
   }
 };

@@ -16,21 +16,13 @@ export default function BrowsePage() {
       console.log(data);
     }
 
+    function clearLocalStorage() {
+        localStorage.clear();
+    }
 
-    let dummyData = [
-        {
-            "product_id": 1,
-            "product_name": "door handle",
-            "images": null,
-            "price": "69.00",
-            "description": "Best door handle you'll ever use",
-            "stock": "47",
-            "details_array": {
-                "color": "black",
-                "material": "steel"
-            }
-        }
-    ]
+    function consoleLocalStorage() {
+        console.log(localStorage);
+    }   
 
     // array[x].product_id
     // array[x].product_name
@@ -43,6 +35,10 @@ export default function BrowsePage() {
         <>
             <div>Browse Page Here.... hello from BrowsePage.jsx component!</div>
             <button onClick={fetchProducts}>Fetch Products</button>
+            <br />
+            <button onClick={consoleLocalStorage}>console log local storage</button>
+            <br />
+            <button onClick={clearLocalStorage}>clear local storage</button>
             {
                 data.length > 0
                 ? 

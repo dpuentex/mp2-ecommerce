@@ -3,12 +3,17 @@ const db = require('../models')
 const { Cart } = db
 const { Op } = require('sequelize')
 
-//backend response get all and serve json on /carts/data
-carts.get('/data', async (req,res) =>{
-    let cartsData = await Cart.findAll()
-    res.send(JSON.stringify(cartsData))
-})
+// All these routes begin with /carts.. you don't have to type that though
+// You may use /carts/data... maybe. but if you do you'd only type /data
 
+// if you want read this with me https://developers.google.com/identity/sign-in/web/server-side-flow
+
+
+//post
+carts.post
+//get
+//put
+//delete
 
 //to do list 
 // CRUD lol.

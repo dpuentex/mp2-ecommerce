@@ -1,29 +1,36 @@
-import React, { useState } from 'react'
-import { BrowserRouter as Router, Link, Routes, Route } from 'react-router-dom'
-import '../assets/css/navigationbar.css'
+import React, { useState } from "react";
+import { BrowserRouter as Router, Link, Routes, Route } from "react-router-dom";
+import CartPanel from "./CartPanel";
+import "../assets/css/navigationbar.css";
 
 export default function NavigationBar() {
-    const [isOpen, setIsOpen] = useState(false);
-  const toggleDropdown = () => {
-    setIsOpen(!isOpen);
-  }; 
-    return (
-        <nav className='navbar'>
-              <ul className='nav-links'>
-                  <li>
-                      <Link to='/'>HOME</Link>
-                  </li>
-                  <li>
-                      <Link to='/products'>BROWSE</Link>
-                  </li>
-                  <li>
-                      <Link to='/best-sellers'>BEST SELLERS</Link>
-                  </li>
-                  <li className="aboutUs">
-          <Link to='/about-us/'  >
-            ABOUT US
-          </Link>
-          {isOpen && (
+  const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isAboutUsOpen, setIsAboutUsOpen] = useState(false);
+
+  let toggleDropdown;
+  const toggleAboutUsDropdown = () => {
+    setIsAboutUsOpen(!isAboutUsOpen);
+  };
+
+  const toggleCartDropdown = () => {
+    setIsCartOpen(!isCartOpen);
+  };
+
+  return (
+    <nav className="navbar">
+      <ul className="nav-links">
+        <li>
+          <Link to="/">HOME</Link>
+        </li>
+        <li>
+          <Link to="/products">BROWSE</Link>
+        </li>
+        <li>
+          <Link to="/best-sellers">BEST SELLERS</Link>
+        </li>
+        <li className="aboutUs">
+          <Link to="/about-us/">ABOUT US</Link>
+          {isAboutUsOpen && (
             <ul className="dropdown-menu">
               <li>
                 <a href="#">Mission</a>
@@ -37,19 +44,17 @@ export default function NavigationBar() {
             </ul>
           )}
         </li>
-    <li>
-<Link to='/cart' className='cart-btn' onMouseEnter={toggleDropdown} onMouseLeave={toggleDropdown}>CART🛒</Link>
-        {isOpen && (
-         <ul className="dropdown-menu">
-              <li>
-                ITEM 1
-             </li>
-           
-            </ul>
-          )}
-          </li>
-        </ul> 
-   </nav>
-    )
+        <li
+          className="cart"
+          onMouseEnter={toggleCartDropdown}
+          onMouseLeave={toggleCartDropdown}
+        >
+          <Link to="/cart" className="cart-btn">
+            CART🛒
+          </Link>
+          {isCartOpen && <CartPanel />}
+        </li>
+      </ul>
+    </nav>
+  );
 }
-

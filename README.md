@@ -62,7 +62,8 @@ A beautiful ecommerce website with basic functionality.
 
 
 ## Low priority: 
-
+- glow in the back following mouse
+- implement bcrypt
 #### nav bar
 - make animation for navbar
 - Make favicon.ico

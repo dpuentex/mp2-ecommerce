@@ -1,3 +1,5 @@
+/*
+
 import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
     cartItems: [],
@@ -5,7 +7,7 @@ const initialState = {
     total: 0,
 };
 
-const CartPanel = createSlice({
+const CartPanelSlice = createSlice({
 name: "cart",
 initialState,
 reducers: {
@@ -19,11 +21,35 @@ reducers: {
          : state.cartItems.push({...action.payload,amount: 
          1 })
     },
- },
+    increase: (state,action) => {
+        state.amount = state.amount + 1;
+        const itemIndex = state.cartItems.findIndex(
+            (cartItem) => (cartItem.id = action.payload.id)
+    );
+    state.cartItems[itemIndex].amount += 1
+    let total = 0
+    total = state.cartItems[itemIndex].amount * state
+    cartItems.price;
+    },
+    decrease : (state,action) =>{
+        const itemIndex = state.cartItems.findIndex(
+            (cartItem) => (cartItem.id = action.payload.id)
+        );
+        state.cartItems[itemIndex].amount > 0 &&
+        state.cartItems [itemIndex].amount-- && 
+        state.amount++;
+    },
+  },
 });
+
+*/
+
+import "../assets/css/cartpanel.css"
 export default function CartPanel() {
+
+
     return (
-        <div>Cart Page Here.... hello from CartPanel.jsx component!</div>
+        <div className="cart-panel">Cart Page Here.... hello from CartPanel.jsx component!</div>
     
     )
 }
