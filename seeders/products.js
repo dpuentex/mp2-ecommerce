@@ -4,7 +4,7 @@ const fs = require('fs')
 const path = require('path')
 
 // Change for how many sets of 3 are seeded. 4 setsresults in 12 products
-const howManySets = 300
+const howManySets = 30
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {

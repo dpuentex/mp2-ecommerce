@@ -19,7 +19,7 @@ header{
 
 ul {
     max-height: 50px;
-    background-color: rgba(120,100,255,0.5);
+    background-color: rgba(120,100,255,0.6);
     padding: 0;
     display:flex;
     justify-content: space-around;
@@ -57,11 +57,14 @@ li:hover{
 
 .dropdown-menu{
     display: flex;
+    
+    position: absolute;
+    top: 40px;
    flex-direction: column; 
 }
 
 
-.about-us{
+ #about-us{
     display: flex;
     flex-direction: column;
 }

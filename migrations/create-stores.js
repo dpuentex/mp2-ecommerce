@@ -19,6 +19,9 @@ module.exports = {
       },
       about_us: {
         type: Sequelize.TEXT
+      },
+      best_selling_categories: {
+        type: Sequelize.ARRAY(Sequelize.STRING)
       }
     });
   },

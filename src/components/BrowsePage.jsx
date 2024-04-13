@@ -22,6 +22,10 @@ export default function BrowsePage() {
 
     function consoleLocalStorage() {
         console.log(localStorage);
+        console.log(localStorage.getItem("CartLocalStorage"));
+        console.log(localStorage.getItem("CartLocalStorage").split(","));
+        
+        console.log(localStorage.getItem("CartLocalStorage"));
     }   
 
     // array[x].product_id
@@ -33,12 +37,14 @@ export default function BrowsePage() {
     // array[x].details_array
     return (
         <>
-            <div>Browse Page Here.... hello from BrowsePage.jsx component!</div>
-            <button onClick={fetchProducts}>Fetch Products</button>
-            <br />
-            <button onClick={consoleLocalStorage}>console log local storage</button>
-            <br />
-            <button onClick={clearLocalStorage}>clear local storage</button>
+            <div className='button-test-div'>
+                <button onClick={fetchProducts}>Fetch Products</button>
+                <br />
+                <button onClick={consoleLocalStorage}>console log local storage</button>
+                <br />
+                <button onClick={clearLocalStorage}>clear local storage</button>
+            </div>
+            
             {
                 data.length > 0
                 ? 

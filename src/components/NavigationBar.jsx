@@ -6,11 +6,16 @@ import "../assets/css/navigationbar.css";
 export default function NavigationBar() {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isAboutUsOpen, setIsAboutUsOpen] = useState(false);
+  const [isBrowseOpen, setIsBrowseOpen] = useState(false)
 
-  let toggleDropdown;
   const toggleAboutUsDropdown = () => {
     setIsAboutUsOpen(!isAboutUsOpen);
   };
+
+  const toggleBrowseDropDown = ()=>{
+    setIsBrowseOpen(!isBrowseOpen)
+ };
+
 
   const toggleCartDropdown = () => {
     setIsCartOpen(!isCartOpen);
@@ -22,13 +27,32 @@ export default function NavigationBar() {
         <li>
           <Link to="/">HOME</Link>
         </li>
-        <li>
-          <Link to="/products">BROWSE</Link>
+        <li id="about-us"  
+          onMouseEnter={toggleBrowseDropDown} 
+          onMouseLeave={toggleBrowseDropDown}
+          >
+               <Link to="/products/">BROWSE</Link>
+          {isBrowseOpen && (
+            <ul className="dropdown-menu">
+              <li>
+                <a href="#">SHIRTS</a>
+              </li>
+              <li>
+                <a href="#">PANTS</a>
+              </li>
+              <li>
+                <a href="#">HATS</a>
+              </li>
+            </ul>
+          )}
         </li>
         <li>
           <Link to="/best-sellers">BEST SELLERS</Link>
         </li>
-        <li className="aboutUs">
+        <li id="about-us"  
+          onMouseEnter={toggleAboutUsDropdown} 
+          onMouseLeave={toggleAboutUsDropdown}
+        >
           <Link to="/about-us/">ABOUT US</Link>
           {isAboutUsOpen && (
             <ul className="dropdown-menu">
@@ -50,7 +74,7 @@ export default function NavigationBar() {
           onMouseLeave={toggleCartDropdown}
         >
           <Link to="/cart" className="cart-btn">
-            CART🛒
+            CART🛒 
           </Link>
           {isCartOpen && <CartPanel />}
         </li>

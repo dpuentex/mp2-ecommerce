@@ -8,7 +8,6 @@ import { BrowserRouter as Router, Link, Routes, Route } from 'react-router-dom'
 import './assets/css/style1.css'
 
 function App() {
-  const [count, setCount] = useState(0)
   const [cartPanelActive, setCartPanelActive] = useState(false)
   //BrowserRouter/ hiding in main.jsx.. encases app.jsx
   return (
@@ -33,11 +32,7 @@ function App() {
 
       </main>
       <footer>
-        <button onClick={() => setCount((count) => count + 1)}>Don't click this... {count}</button>
-        {(count < 10) 
-        ? null : <div>
-        <p>you've exceeded 10 boy</p>
-      </div>}
+      
       </footer>
       
     </>

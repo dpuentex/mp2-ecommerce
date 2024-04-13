@@ -49,7 +49,7 @@ export default function CartPanel() {
 
 
     return (
-        <div className="cart-panel">Cart Page Here.... hello from CartPanel.jsx component!</div>
+        <div id="cart-panel">Cart Page Here.... hello from CartPanel.jsx component!</div>
     
     )
 }

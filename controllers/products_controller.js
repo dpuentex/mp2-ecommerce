@@ -11,6 +11,33 @@ products.get('/data', async (req,res) =>{
     res.send(JSON.stringify(productsData))
 })
 
+//backend response to GET all and serve json on /products/data/category/:category
+// products.get('/data/category/:category', async (req,res) =>{
+    
+//     let productsData = await Product.findAll({
+//         where: {
+//             details_array: {
+//                 [Op.in]: req.params.array
+//             }
+//         }
+//     })
+//     res.send(JSON.stringify(productsData))
+// })
+
+//backend response to get all that match array of ids and serve on /products/retrievecartbyarray/:array
+
+products.get('/retrievecartbyarray/:array', async (req,res) =>{
+
+    productIdArray = req.params.array.split(",")
+    let productsData = await Product.findAll({
+        where: {
+            product_id: {
+                [Op.in]: productIdArray
+            }
+        }
+    })
+    res.send(JSON.stringify(productsData))
+})
 
 //backend response to GET single and serve json on /products/:product_id
 products.get('/:id', async (req,res) =>{
