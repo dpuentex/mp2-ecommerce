@@ -20,7 +20,7 @@ export default function NavigationBar() {
                       <Link to='/best-sellers'>BEST SELLERS</Link>
                   </li>
                   <li className="aboutUs">
-          <Link to='/about-us/'  onClick={toggleDropdown} >
+          <Link to='/about-us/'  >
             ABOUT US
           </Link>
           {isOpen && (

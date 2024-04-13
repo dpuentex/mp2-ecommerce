@@ -10,6 +10,7 @@ import './assets/css/style1.css'
 function App() {
   const [count, setCount] = useState(0)
   const [cartPanelActive, setCartPanelActive] = useState(false)
+  //BrowserRouter/ hiding in main.jsx.. encases app.jsx
   return (
     <>
       

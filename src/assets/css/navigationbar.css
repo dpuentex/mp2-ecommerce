@@ -46,6 +46,8 @@ a{
 }
 
 li:hover{
+    display: flex;
+    flex-direction: column;
     color: red;
     background-color: gray;
 }

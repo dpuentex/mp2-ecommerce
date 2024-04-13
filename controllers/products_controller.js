@@ -5,21 +5,21 @@ const { Op } = require('sequelize')
 
 // the '/' route is already used for main page.. automatically served through react router dom
 
-//backend response to GET all and serve json
+//backend response to GET all and serve json on /products/data
 products.get('/data', async (req,res) =>{
     let productsData = await Product.findAll()
     res.send(JSON.stringify(productsData))
 })
 
 
-//backend response to GET single and serve json
+//backend response to GET single and serve json on /products/:product_id
 products.get('/:id', async (req,res) =>{
     let productData = await Product.findByPk(req.params.id)
     res.send(JSON.stringify(productData))
 })
 
 
-//backend response to GET to search and serve json
+//backend response to GET to search and serve json on /products/search/:product_nameQuery
 products.get('/search/:query', async (req,res) =>{
     console.log(req.query.length)
     let searchData = await Product.findAll({
@@ -34,8 +34,43 @@ products.get('/search/:query', async (req,res) =>{
 
 
 
-//backend response to POST 
-products.post('/data')
+//backend response to POST on /products/data
+products.post('/data', async (req,res) =>{
+    try {
+        let productData = await Product.create(req.body)
+        res.send(JSON.stringify(productData))
+    } catch (error) {
+        res.status(500).json("failed to post /products/data " + error)
+    }
+})
+
+//backend response to PUT on /products/data/product_id
+products.put('/data/:id', async (req,res) =>{
+    try {
+        let productData = await Product.update(req.body, {
+            where: {
+                product_id: req.params.id
+            }
+        })
+        res.send(JSON.stringify(productData))
+    } catch (error) {
+        res.status(500).json("failed to put /products/data " + error)
+    }
+})
+
+//backend response to DELETE on /products/data/product_id
+products.delete('/data/:id', async (req,res) =>{
+    try {
+        let deletedProduct = await Product.destroy({
+            where: {
+                product_id: req.params.id
+            }
+        })
+        res.send(JSON.stringify(deletedProduct))
+    } catch (error) {
+        res.status(500).json("failed to delete /products/data " + error)
+    }
+})
 
 
 module.exports = products

@@ -3,6 +3,9 @@
 
 
 'use strict';
+
+const { sequelize } = require('../models');
+
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
@@ -29,7 +32,7 @@ module.exports = {
         type: Sequelize.DECIMAL(10,0)
       },
       details_array: {
-        type: Sequelize.JSON
+        type: Sequelize.ARRAY(Sequelize.JSON)
       }
     });
   },

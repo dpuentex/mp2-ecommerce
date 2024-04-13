@@ -1,4 +1,5 @@
-//sequelize model:generate --name store_table --attributes "store_id:integer, store_name:string, icon:blob, about_us:string" --force true
+//sequelize model:generate --name stores --attributes "store_id:integer, store_name:string, icon:blob, about_us:string" --force true
+
 'use strict';
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {

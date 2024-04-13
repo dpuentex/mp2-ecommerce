@@ -14,6 +14,8 @@ const { Store, Product } = db
 app.use(cors())
 app.use(express.static(path.join(__dirname, "dist")));
 
+
+// products controller / path
 const productsController = require('./controllers/products_controller')
 app.use('/products', productsController)
 
@@ -23,7 +25,7 @@ app.get('/store-data', async (req,res) =>{
   res.send(JSON.stringify(storeData))
 })
 
-// products controller / path
+
 
 
 // Handle all other requests and return 

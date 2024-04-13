@@ -28,6 +28,7 @@ A beautiful ecommerce website with basic functionality.
 - Hosting
 - cart controller
 - better search api
+- read binary image from db
 
 ### [Models](https://docs.google.com/spreadsheets/d/1QfpH7j5gNQoXloyshFjNvAq97LzJzVPM_XfwJFtSe18/edit#gid=0) for SQL database
 - spreadsheet
