@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 
 
+
 export default function AboutUs(){
     //use state
     let [data, setData] = React.useState({})
@@ -15,7 +16,7 @@ export default function AboutUs(){
             `http://127.0.0.1:${3000}/store-data`
         )
         let data = await response.json()
-        setData(data[0])
+        setData(data[0]) 
         console.log(data)
     }
        

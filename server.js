@@ -17,6 +17,7 @@ app.use(express.static(path.join(__dirname, "dist")));
 const productsController = require('./controllers/products_controller')
 app.use('/products', productsController)
 
+
 app.get('/store-data', async (req,res) =>{
   let storeData = await Store.findAll()
   res.send(JSON.stringify(storeData))

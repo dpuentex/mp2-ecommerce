@@ -24,6 +24,10 @@ A beautiful ecommerce website with basic functionality.
 ## Dev Notes
 - config folder containing sequelize config has not been inccluded in git ignore purposely for now.
 ## Ultra priority:
+- Cart model
+- Hosting
+- cart controller
+- better search api
 
 ### [Models](https://docs.google.com/spreadsheets/d/1QfpH7j5gNQoXloyshFjNvAq97LzJzVPM_XfwJFtSe18/edit#gid=0) for SQL database
 - spreadsheet

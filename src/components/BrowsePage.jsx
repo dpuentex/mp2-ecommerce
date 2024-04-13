@@ -10,7 +10,7 @@ export default function BrowsePage() {
 
     async function fetchProducts() {
         // fetch using dot env or 3000
-      const response = await fetch(`http://127.0.0.1:${3000}/products/products-data`);
+      const response = await fetch(`http://127.0.0.1:${3000}/products/data`);
       let data = await response.json();
       setData(data);
       console.log(data);
