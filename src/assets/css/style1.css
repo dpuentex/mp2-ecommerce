@@ -19,14 +19,14 @@
 
 @font-face {
   font-family: 'Noto Sans';
-  src: url('NotoSans-Italic.eot');
-  src: url('NotoSans-Italic.eot?#iefix') format('embedded-opentype'),
-      url('NotoSans-Italic.woff2') format('woff2'),
-      url('NotoSans-Italic.woff') format('woff'),
-      url('NotoSans-Italic.ttf') format('truetype'),
-      url('NotoSans-Italic.svg#NotoSans-Italic') format('svg');
+  src: url('../fonts/exportNoto/NotoSans-Regular.eot');
+  src: url('../fonts/exportNoto/NotoSans-Regular.eot?#iefix') format('embedded-opentype'),
+      url('../fonts/exportNoto/NotoSans-Regular.woff2') format('woff2'),
+      url('../fonts/exportNoto/NotoSans-Regular.woff') format('woff'),
+      url('../fonts/exportNoto/NotoSans-Regular.ttf') format('truetype'),
+      url('../fonts/exportNoto/NotoSans-Regular.svg#NotoSans-Regular') format('svg');
   font-weight: normal;
-  font-style: italic;
+  font-style: normal;
   font-display: swap;
 }
 
@@ -42,6 +42,7 @@ html {
   font-weight: normal;
   font-style: normal;
   font-display: swap;
+  font-family: Noto Sans;
           
 }
 
