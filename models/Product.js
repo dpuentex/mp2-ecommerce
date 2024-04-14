@@ -35,8 +35,8 @@ module.exports = (sequelize, DataTypes) => {
     stock: {
       type: DataTypes.DECIMAL(10,0)
     },
-    details_array: {
-      type: DataTypes.ARRAY(DataTypes.JSON)
+    details_object: {
+      type: DataTypes.JSON
     }
   }, {
     sequelize,

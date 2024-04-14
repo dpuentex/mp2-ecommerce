@@ -25,17 +25,29 @@ products.get('/data', async (req,res) =>{
 // })
 
 //backend response to get all that match array of ids and serve on /products/retrievecartbyarray/:array
+//accepts string of numbers seperated by ,
 
-products.get('/retrievecartbyarray/:array', async (req,res) =>{
+products.get('/productbyarray/:array', async (req,res) =>{
+    console.log(req.params.array)
+    if (req.params.array == null) {
+        return res.status(400).send('Missing array')
+    }
 
-    productIdArray = req.params.array.split(",")
+    array = req.params.array.split(",")
+    console.log(array)
+
+    let arrayWithNoRepeats = array.filter((id, index) => array.indexOf(id) === index)
+
+
     let productsData = await Product.findAll({
         where: {
             product_id: {
-                [Op.in]: productIdArray
+                [Op.in]: arrayWithNoRepeats
+
             }
         }
     })
+    console.log(productsData)
     res.send(JSON.stringify(productsData))
 })
 

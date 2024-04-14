@@ -3,6 +3,13 @@
 }
 
 
+.cart-item-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
 
 .item-card{
     background-color: aqua;

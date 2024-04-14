@@ -14,7 +14,7 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.BIGINT
       },
       product_name: {
         type: Sequelize.STRING
@@ -31,8 +31,8 @@ module.exports = {
       stock: {
         type: Sequelize.DECIMAL(10,0)
       },
-      details_array: {
-        type: Sequelize.ARRAY(Sequelize.JSON)
+      details_object: {
+        type: Sequelize.JSONB
       }
     });
   },

@@ -12,7 +12,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       contents_array: {
-        type: Sequelize.ARRAY(INTEGER)
+        type: Sequelize.ARRAY(Sequelize.INTEGER)
       }
     });
   },

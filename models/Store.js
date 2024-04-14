@@ -29,7 +29,7 @@ module.exports = (sequelize, DataTypes) => {
     about_us: {
       type: DataTypes.TEXT
     },
-    best_selling_categories: {
+    primary_categories: {
       type: DataTypes.ARRAY(DataTypes.STRING)
     }
   }, {

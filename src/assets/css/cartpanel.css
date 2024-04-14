@@ -1,13 +1,19 @@
 #cart-panel {
     position: fixed;
     z-index: -1;
-    top: 0px;
+    top: 38px;
     right: 0;
     width: 200px;
     height: 600px;
     max-height: 100%;
     background-color: rgba(120,100,255,0.6);
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.4);
+    /* box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.4); */
     border-radius: 0 0 0px 40px;
     padding: 20px;
+    font-size: x-small;
+}
+
+#cart-panel .product-card {
+height: fit-content;
+width: 80%;
 }

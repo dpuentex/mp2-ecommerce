@@ -45,11 +45,42 @@ reducers: {
 */
 
 import "../assets/css/cartpanel.css"
+import CartItemCard from "./CartItemCard";
+import { useContext, useEffect } from "react";
+import React from "react";
+import { CartContext } from "../contexts/CartContext";
 export default function CartPanel() {
-
-
-    return (
-        <div id="cart-panel">Cart Page Here.... hello from CartPanel.jsx component!</div>
+    const useCartContext = useContext(CartContext)
+  
+    let [data, setData] = React.useState({});
     
+    let items = localStorage.getItem("CartLocalStorage");
+  
+    useEffect(() => {
+      fetchProducts();
+    }, []);
+  
+    async function fetchProducts() {
+        const response = await fetch(
+          `http://127.0.0.1:${3000}/products/productbyarray/${items}`
+        );
+        let responsedata = await response.json();
+        setData(responsedata);
+    }
+  
+    return (
+        <div id="cart-panel" className="cart-panel-container">
+            {data.length > 0 ? data.map((product, index) => {
+                    return <div className="product-card" key={index}>
+                    {product.product_name ? <h1><span>{localStorage.getItem('CartLocalStorage').split(",").filter(x => x==product.product_id).length}x </span>{product.product_name}</h1> : null}
+                    {product.price ? <h2>{product.price}</h2> : null}
+                    {product.images ? (
+                      <p>IMAGES.. There would be a map function here or something..</p>
+                    ) : null} 
+                    </div>
+                    })
+                
+             : null}
+        </div>
     )
 }

@@ -23,25 +23,25 @@ export default function NavigationBar() {
 
   return (
     <nav className="navbar">
-      <ul className="nav-links">
+      <ul >
         <li>
           <Link to="/">HOME</Link>
         </li>
-        <li id="about-us"  
+        <li id="nav-about-us"  
           onMouseEnter={toggleBrowseDropDown} 
           onMouseLeave={toggleBrowseDropDown}
           >
                <Link to="/products/">BROWSE</Link>
           {isBrowseOpen && (
-            <ul className="dropdown-menu">
+            <ul className="nav-dropdown-menu">
               <li>
-                <a href="#">SHIRTS</a>
+                <a href="/products/categories/">SHIRTS</a>
               </li>
               <li>
-                <a href="#">PANTS</a>
+                <a href="/products/categories/">PANTS</a>
               </li>
               <li>
-                <a href="#">HATS</a>
+                <a href="/products/categories/">HATS</a>
               </li>
             </ul>
           )}
@@ -55,7 +55,7 @@ export default function NavigationBar() {
         >
           <Link to="/about-us/">ABOUT US</Link>
           {isAboutUsOpen && (
-            <ul className="dropdown-menu">
+            <ul className="nav-dropdown-menu">
               <li>
                 <a href="#">Mission</a>
               </li>
@@ -69,11 +69,11 @@ export default function NavigationBar() {
           )}
         </li>
         <li
-          className="cart"
+          className="nav-cart"
           onMouseEnter={toggleCartDropdown}
           onMouseLeave={toggleCartDropdown}
         >
-          <Link to="/cart" className="cart-btn">
+          <Link to="/cart" className="nav-cart-link">
             CART🛒 
           </Link>
           {isCartOpen && <CartPanel />}

@@ -1,12 +1,17 @@
 import React from 'react'
 import '../assets/css/browsepage.css'
 import ProductCard from './ProductCard';
-import { configDotenv } from 'dotenv';
+import { useEffect } from 'react';
+import { useState } from 'react';
+import { useContext } from 'react';
+import { CartContext } from '../contexts/CartContext';
+import { createContext } from 'react';
 
 
 export default function BrowsePage() {
 
     let [data, setData] = React.useState({})
+    const useCartContext = useContext(CartContext)
 
     async function fetchProducts() {
         // fetch using dot env or 3000
@@ -16,6 +21,13 @@ export default function BrowsePage() {
       console.log(data);
     }
 
+    useEffect(() => {
+        fetchProducts();
+    }, []);
+
+    function consoleUseEffect() {
+        console.log(useCartContext);
+    }
     function clearLocalStorage() {
         localStorage.clear();
     }
@@ -43,6 +55,8 @@ export default function BrowsePage() {
                 <button onClick={consoleLocalStorage}>console log local storage</button>
                 <br />
                 <button onClick={clearLocalStorage}>clear local storage</button>
+                <br />
+                <button onClick={consoleUseEffect}>console log cart contents from useeffect</button>
             </div>
             
             {

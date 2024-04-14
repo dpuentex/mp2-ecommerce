@@ -1,17 +1,20 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, createContext, useContext } from 'react'
 import Home from './components/Home'
 import BrowsePage from './components/BrowsePage'
 import AboutUs from './components/AboutUs'
 import NavigationBar from './components/NavigationBar'
 import Cart from './components/Cart'
+import { CartContext } from './contexts/CartContext'
 import { BrowserRouter as Router, Link, Routes, Route } from 'react-router-dom'
 import './assets/css/style1.css'
 
 function App() {
-  const [cartPanelActive, setCartPanelActive] = useState(false)
-  //BrowserRouter/ hiding in main.jsx.. encases app.jsx
+  const [cartContents, setCartContents] = useState([])
+
+  // <BrowserRouter/> hiding in main.jsx.. encases app.jsx Remember that.
+  // <NavigationBar/> has <CartPanel/> in it.
   return (
-    <>
+    <CartContext.Provider value={[cartContents, setCartContents]}>
       
       
         <header>
@@ -26,7 +29,6 @@ function App() {
                 <Route path='/admin' element={<div>Admin Page... no component for page yet..</div>} />
             </Routes>
         
-        {cartPanelActive ? <CartPanel /> : null}
       
       <main>
 
@@ -35,7 +37,7 @@ function App() {
       
       </footer>
       
-    </>
+    </CartContext.Provider>
   )
 }   
 

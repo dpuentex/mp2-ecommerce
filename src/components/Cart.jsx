@@ -1,31 +1,35 @@
 import React from "react";
 import "../assets/css/cart.css";
 import CartItemCard from "./CartItemCard";
+import { CartContext } from "../contexts/CartContext";
+import { useContext, useEffect } from "react";
 // updated to be .. instead of .
 
 // made export within this line below
-export default function Cart() {
+export default  function Cart() {
+  const useCartContext = useContext(CartContext)
+  
   let [data, setData] = React.useState({});
-  //get localstorage
+  
   let items = localStorage.getItem("CartLocalStorage");
-  if (!items) {items = []; }
 
-  console.log(items) 
-    async function fetchProducts() {
-      // fetch using dot env or 3000
-      const response = await fetch(
-        `http://127.0.0.1:${3000}/products/retrievecartbyarray/${items}`
-      );
-      let data = await response.json();
-      setData(data);
-      console.log(data);
-    };
-
+  useEffect(() => {
     fetchProducts();
+  }, []);
+
+  async function fetchProducts() {
+      const response = await fetch(
+        `http://127.0.0.1:${3000}/products/productbyarray/${items}`
+      );
+      let responsedata = await response.json();
+      setData(responsedata);
+  }
+
+
   return (
     <div className="cart-item-div">
       {data.length > 0 ? (
-        <div className="CartItemContainer">
+        <div className="cart-item-container">
           {data.map((product, index) => {
             return <CartItemCard key={index} product={product} />;
           })}
