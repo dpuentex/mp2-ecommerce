@@ -1,0 +1,17 @@
+.home-page-container {
+    text-align: center;
+    position: relative;
+    top: 50px;
+    color: white;
+}
+.home-page-container h1 {
+    font-size: 3em;
+}
+.home-page-container h1:hover {
+    color: lightblue;
+    cursor: pointer;
+}
+.home-page-container h1:active {
+    color: darkblue;
+    text-shadow: 0 0 10px white;
+}

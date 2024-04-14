@@ -1,15 +1,12 @@
-// dependencies
 import React, { useState, useEffect, useContext } from "react";
+import { StoreContext } from "../ContextList";
 
-// import components and assets
-import ListStoresPage from "./ListStoresPage";
-import DetailedPage from "./DetailedPage";
-import { StoreContext, CartContext } from "../ContextList";
 import "../assets/css/homepage.css";
-export default function Home() {
+import { Link } from "react-router-dom";
+
+export default function ListStoresPage() {
   const [storeData, setStoreData] = useContext(StoreContext);
-  
-  // fetching store data and storing in state
+
   useEffect( () => {
     // if store selected in storeData[0] then fetch that store
      fetch(`http://127.0.0.1:${3000}/store/${storeData[0] != -1 ? storeData[0] : ""}`)
@@ -22,11 +19,20 @@ export default function Home() {
     console.log(storeData);
   }, [storeData[0]]);
 
-  return (<div className="home-page-container">
-    {storeData[0] === -1 ? ( // check if store not yet selected
-    <ListStoresPage />): 
-    <DetailedPage />}
-  </div>)
-  
-  
+  return (
+    <div className="list-stores-container">
+      {storeData[1]?.map ? storeData[1].map((store, index) => {
+        // map through stores
+        return (
+          <h1
+            key={index}
+            store={store}
+            onClick={() => setStoreData([store.store_id, storeData[1]])}
+          ><Link to="/about-us">{store.store_name}</Link>
+            
+          </h1>
+        );
+      }) : null}
+    </div>
+  );
 }

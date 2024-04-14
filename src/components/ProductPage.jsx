@@ -4,14 +4,14 @@ import ProductCard from './ProductCard';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { useContext } from 'react';
-import { CartContext } from '../contexts/CartContext';
+import { CartContext } from '../ContextList';
 import { createContext } from 'react';
 
 
 export default function BrowsePage() {
 
     let [data, setData] = React.useState({})
-    const useCartContext = useContext(CartContext)
+    const [useCartContext, setUseCartContext] = useContext(CartContext)
 
     async function fetchProducts() {
         // fetch using dot env or 3000
@@ -25,11 +25,12 @@ export default function BrowsePage() {
         fetchProducts();
     }, []);
 
-    function consoleUseEffect() {
+    function consoleUseContext() {
         console.log(useCartContext);
     }
     function clearLocalStorage() {
         localStorage.clear();
+        setUseCartContext([]);
     }
 
     function consoleLocalStorage() {
@@ -50,13 +51,13 @@ export default function BrowsePage() {
     return (
         <>
             <div className='button-test-div'>
-                <button onClick={fetchProducts}>Fetch Products</button>
+                <button className="glow-squish-button dev-button" onClick={fetchProducts}>Fetch Products</button>
                 <br />
-                <button onClick={consoleLocalStorage}>console log local storage</button>
+                <button className="glow-squish-button dev-button" onClick={consoleLocalStorage}>console log local storage</button>
                 <br />
-                <button onClick={clearLocalStorage}>clear local storage</button>
+                <button className="glow-squish-button dev-button" onClick={clearLocalStorage}>clear local storage</button>
                 <br />
-                <button onClick={consoleUseEffect}>console log cart contents from useeffect</button>
+                <button className="glow-squish-button dev-button" onClick={consoleUseContext}>console log cart contents from useeffect</button>
             </div>
             
             {

@@ -1,7 +1,7 @@
 import React from "react";
 import "../assets/css/cart.css";
-import CartItemCard from "./CartItemCard";
-import { CartContext } from "../contexts/CartContext";
+import CartItemCard from "./ProductCardMini";
+import { CartContext } from "../ContextList";
 import { useContext, useEffect } from "react";
 // updated to be .. instead of .
 

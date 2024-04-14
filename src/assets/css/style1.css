@@ -73,6 +73,26 @@ html {
   box-shadow: 0 0 10px 6px rgba(255, 0, 255, 0.7);
 }
 
+.glow-squish-button.how-many-of-product-in-cart:active {
+  transition: .1s;
+  border-radius: 20px;
+  background-color: rgb(100,200,200);
+  box-shadow: 0 0 10px 1px rgba(50, 50, 50, 0.7);
+}
+
+.button-test-div {
+  display: flex;
+  position:fixed;
+  top : 40px;
+}
+.glow-squish-button.dev-button {
+  font-size: x-small;
+  width: fit-content;
+  margin:0;
+  float: none;
+
+}
+
 @keyframes background-anim {
   from {    
   --deg1: 0deg;

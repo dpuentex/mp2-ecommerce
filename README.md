@@ -66,6 +66,24 @@ A beautiful ecommerce website with basic functionality.
 - implement bcrypt
 #### nav bar
 - make animation for navbar
-- Make favicon.ico
+- improve favicon.ico
 - optional navbar items 
 
+# Changelog / Completed
+- added add remove buttons on product page to add and remove items from cart
+- added in stock / out of stock on product cards
+- added the most incredible seeder
+- added dynamic category list dropdown from browse depending on store
+- nav bar changes depending on status of application
+- added count of items in cart
+- improved home button functionality
+- added best seller array
+- added conditional homepage where if a store is selected you will see some more detailed info about it otherwise you'll see options for the stores
+- added images column to stores in model and migration and some null placeholders in seeders
+- added more data to storeData array to keep track of active store
+- dynamic rendering of store selection on homepage
+- updated title
+- made favicon and placed in public
+- Added primary categories to store data
+- moved CartContext to ContextList and added StoreContext
+- started changelog 4/14/2024

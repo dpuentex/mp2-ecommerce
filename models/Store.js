@@ -26,11 +26,18 @@ module.exports = (sequelize, DataTypes) => {
     icon: {
       type: DataTypes.BLOB
     },
+    images: {
+      type: DataTypes.ARRAY(DataTypes.BLOB)
+    },
+    
     about_us: {
       type: DataTypes.TEXT
     },
     primary_categories: {
       type: DataTypes.ARRAY(DataTypes.STRING)
+    },
+    best_sellers: {
+      type: DataTypes.ARRAY(DataTypes.INTEGER)
     }
   }, {
     sequelize,

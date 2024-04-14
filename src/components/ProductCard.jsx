@@ -1,6 +1,6 @@
 import { useContext, useState } from "react"
 
-import { CartContext } from "../contexts/CartContext"
+import { CartContext } from "../ContextList"
 
 export default function ProductCard({ product }) {
     const useCartContext = useContext(CartContext)
@@ -18,7 +18,32 @@ export default function ProductCard({ product }) {
         console.log(useCartContext[0])
         console.log(localStorage.getItem('CartLocalStorage').split(","))
     }
+    function removeFromCart(event) {
+        if (localStorage.getItem('CartLocalStorage') != null) {
+            if (localStorage.getItem('CartLocalStorage').split(",").includes(event.target.getAttribute('product_id'))) {
+                let oldcart = localStorage.getItem('CartLocalStorage').split(",")
+                oldcart.splice(localStorage.getItem('CartLocalStorage').split(",").indexOf(event.target.getAttribute('product_id')), 1)
+                localStorage.setItem('CartLocalStorage', oldcart)
+                useCartContext[1](localStorage.getItem('CartLocalStorage').split(","))
+            }
+            
+            console.log(localStorage.getItem('CartLocalStorage').split(","))
+        }
+    }
 
+
+    function checkHowManyInCart(product) {
+        if (localStorage.getItem('CartLocalStorage') != null) {
+            return localStorage.getItem('CartLocalStorage').split(",").filter(x => x==product.product_id).length
+        }
+    }
+    function checkProductStockLeft(product) {
+        if (localStorage.getItem('CartLocalStorage') != null) {
+            return (product.stock - localStorage.getItem('CartLocalStorage').split(",").filter(x => x==product.product_id).length) 
+        } else {
+            return product.stock
+        }
+    }
     //useCartContext[1](localStorage.getItem('CartLocalStorage').split(","))
     return (
         <div className='product-card'>
@@ -46,9 +71,16 @@ export default function ProductCard({ product }) {
                     </ul>
                 : null
             }
-            <button onClick={addToCart} className="glow-squish-button" product_id={Number(product.product_id)}>{
-                localStorage.getItem('CartLocalStorage').split(",")?.includes(product.product_id) ? "✅" + localStorage.getItem('CartLocalStorage').split(",").filter(x => x==product.product_id).length : "🛒➕"
-            }</button>
+            <span className="stock-indicator">
+             {(checkProductStockLeft(product) > 0) 
+                    ? `In Stock (${checkProductStockLeft(product)})` 
+                    : "Out of Stock"} 
+            </span>
+            {checkHowManyInCart(product) > 0 && <button onClick={removeFromCart} className="glow-squish-button" product_id={Number(product.product_id)}>➖</button>}
+            {checkHowManyInCart(product) > 0 && <button className="how-many-of-product-in-cart glow-squish-button">{checkHowManyInCart(product)}</button>}
+            {checkProductStockLeft(product) > 0 && <button onClick={addToCart} className="glow-squish-button" product_id={Number(product.product_id)}>{localStorage.getItem('CartLocalStorage') != null  ?   (   
+                localStorage.getItem('CartLocalStorage').split(",")?.includes(product.product_id) ? "✅" : "🛒➕"
+            ): "🛒➕"}</button>}
         </div>
     )
 }

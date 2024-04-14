@@ -1,44 +1,48 @@
-import { useState, useEffect, createContext, useContext } from 'react'
-import Home from './components/Home'
-import BrowsePage from './components/BrowsePage'
-import AboutUs from './components/AboutUs'
-import NavigationBar from './components/NavigationBar'
-import Cart from './components/Cart'
-import { CartContext } from './contexts/CartContext'
-import { BrowserRouter as Router, Link, Routes, Route } from 'react-router-dom'
-import './assets/css/style1.css'
+// dependencies
+import { useState, useEffect, createContext, useContext } from "react";
+import { BrowserRouter as Router, Link, Routes, Route } from "react-router-dom";
+
+//components and assets
+import Home from "./components/Home";
+import BrowsePage from "./components/ProductPage";
+import AboutUs from "./components/AboutUs";
+import NavigationBar from "./components/NavigationBar";
+import Cart from "./components/Cart";
+import { CartContext, StoreContext } from "./ContextList";
+import "./assets/css/style1.css";
 
 function App() {
-  const [cartContents, setCartContents] = useState([])
+  // cartContents stores an array of product_ids
+  // storeData stores an array of store information
+  // [store_id, store_table] -1 for none selected
+  const [cartContents, setCartContents] = useState([]);
+  const [storeData, setStoreData] = useState([-1, []]);
+
+  
 
   // <BrowserRouter/> hiding in main.jsx.. encases app.jsx Remember that.
   // <NavigationBar/> has <CartPanel/> in it.
+  // Assigning values to Contexts and wrapping everything in them.
+  // This means store data and cart contents can be accessed anywhere in the app
   return (
     <CartContext.Provider value={[cartContents, setCartContents]}>
-      
-      
+      <StoreContext.Provider value={[storeData, setStoreData]}>
         <header>
-            <NavigationBar/>
+          <NavigationBar />
         </header>
-            <Routes>
-                <Route path='/' element={<Home/>} /> 
-                <Route path='/products' element={<BrowsePage/>} />
-                <Route path='/best-sellers' element={<div>may or may not use best seller. there is no component here yet. Sincerely, app.jsx /best-sellers Route</div>} />
-                <Route path='/about-us' element={<AboutUs/>} />
-                <Route path='/cart' element={<Cart />} />
-                <Route path='/admin' element={<div>Admin Page... no component for page yet..</div>} />
-            </Routes>
-        
-      
-      <main>
-
-      </main>
-      <footer>
-      
-      </footer>
-      
+        <main>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/products" element={<BrowsePage />} />
+            <Route path="/best-sellers" element={null} />
+            <Route path="/about-us" element={<AboutUs />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/admin" element={null} />
+          </Routes>
+        </main>
+      </StoreContext.Provider>
     </CartContext.Provider>
-  )
-}   
+  );
+}
 
-export default App
+export default App;

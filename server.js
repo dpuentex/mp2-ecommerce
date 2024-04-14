@@ -16,14 +16,10 @@ app.use(express.static(path.join(__dirname, "dist")));
 
 
 // products controller / path
-const productsController = require('./controllers/products_controller')
-app.use('/products', productsController)
+app.use('/products', require('./controllers/products_controller'))
 
-
-app.get('/store-data', async (req,res) =>{
-  let storeData = await Store.findAll()
-  res.send(JSON.stringify(storeData))
-})
+// store controller / path
+app.use('/store', require('./controllers/store_controller'))
 
 
 

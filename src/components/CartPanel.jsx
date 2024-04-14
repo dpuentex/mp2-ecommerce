@@ -45,10 +45,10 @@ reducers: {
 */
 
 import "../assets/css/cartpanel.css"
-import CartItemCard from "./CartItemCard";
+import CartItemCard from "./ProductCardMini";
 import { useContext, useEffect } from "react";
 import React from "react";
-import { CartContext } from "../contexts/CartContext";
+import { CartContext } from "../ContextList";
 export default function CartPanel() {
     const useCartContext = useContext(CartContext)
   

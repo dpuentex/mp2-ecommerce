@@ -33,7 +33,10 @@ module.exports = {
       },
       details_object: {
         type: Sequelize.JSONB
-      }
+      },
+      category: {
+        type: Sequelize.STRING
+      },
     });
   },
   async down(queryInterface, Sequelize) {
