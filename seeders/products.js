@@ -15,19 +15,19 @@ const randomPriceWithDollarsString = () => `${Math.floor(Math.random() * 100) + 
 // categories
 const categories = {
   electronics: [
-    "Chargers",
-    "Wires",
-    "Tools",
+    "New",
+    "Used",
+    "Refurbished",
   ],
   clothing: [
-    "Hoodies",
-    "Shoes",
-    "Pants",
+    "American",
+    "African",
+    "Alien",
   ],
   knobs: [
-    "Locks",
-    "Knobs",
-    "Fasteners",
+    "Straight",
+    "Crooked",
+    "Curved",
   ]
 }
 // product names
@@ -103,8 +103,8 @@ const descriptions = {
     "Technology these days!",
   ],
   clothing: [
-    "This is such a high quality product",
-    "Incredible workmanship",
+    "Sewing like this has never been seen",
+    "Incredible sewmanship",
     "The best ever",
     "Sewn by experts",
     "Stiching like this is art.",

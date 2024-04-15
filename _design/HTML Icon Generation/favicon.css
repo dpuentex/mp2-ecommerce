@@ -1,0 +1,44 @@
+html {
+    background: black;
+}
+
+div{
+margin:0;
+padding:0;
+width: 600px;
+height: 600px;
+background-color:transparent;
+/* outline: black dashed 1px; */
+display:flex;
+justify-content: space-between;
+align-items: center;
+color:darkblue;
+}
+
+bracket {
+    font-size: 440px;
+    height: auto;
+}
+
+letter{
+    font-size: 160px;
+    text-align: center;
+    font-weight: 700;
+    font-family: sans-serif;
+}
+container{
+    display:grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    
+    background-color: transparent;
+    
+}
+
+
+bracket, letter{
+    text-shadow: 0 0 15px rgba(255,255,255,1);
+
+    /* outline: black dashed 1px; */
+
+}
