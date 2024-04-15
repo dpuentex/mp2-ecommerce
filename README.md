@@ -35,9 +35,6 @@ A beautiful ecommerce website with basic functionality.
 - migrations
 - models
 
-
-## High priority:
-- Jeffery, Diego please on hover I want cart panel to appear, and when clicked, there is navigation to the cart page itself
 ### All Pages
 - nav bar 
 
@@ -47,7 +44,6 @@ A beautiful ecommerce website with basic functionality.
 - hot items component 
 
 ### store page
-- adding stuff to cart 
 - avg rate for each item 
 - image for item 
 
@@ -70,7 +66,9 @@ A beautiful ecommerce website with basic functionality.
 - optional navbar items 
 
 # Changelog / Completed
-- 
+- category context
+- added functionality and formatting to category
+- added item totals in cart
 - formatting on add remove buttons on product cards
 - added add remove buttons on product cards to add and remove items from cart
 - added in stock / out of stock on product cards
