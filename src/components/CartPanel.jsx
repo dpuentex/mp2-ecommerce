@@ -61,6 +61,7 @@ export default function CartPanel() {
     }, []);
   
     async function fetchProducts() {
+        if (!items) return
         const response = await fetch(
           `http://127.0.0.1:${3000}/products/productbyarray/${items}`
         );

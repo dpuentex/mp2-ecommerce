@@ -4,22 +4,6 @@ const fs = require('fs')
 const path = require('path')
 
 /** @type {import('sequelize-cli').Migration} */
-
-/**   electronics: [
-  "New",
-  "Used",
-  "Refurbished",
-],
-clothing: [
-  "American",
-  "African",
-  "Alien",
-],
-knobs: [
-  "Straight",
-  "Crooked",
-  "Curved",
-]*/
 module.exports = {
   async up (queryInterface, Sequelize) {
     await queryInterface.bulkInsert('stores', [

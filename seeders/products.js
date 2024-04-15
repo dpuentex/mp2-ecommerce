@@ -170,7 +170,7 @@ module.exports = {
           images: null,
           price:  randomPriceWithDollarsString(),
           description: selectRandom(descriptions.knobs),
-          stock: 47,
+          stock: generateStock(),
           details_object: JSON.stringify(generateDetailsObject()),
           category: selectRandom(categories.knobs),
 

@@ -66,6 +66,7 @@ A beautiful ecommerce website with basic functionality.
 - optional navbar items 
 
 # Changelog / Completed
+- fixed error to retreive cart items
 - changed categories in seed
 - category context
 - added functionality and formatting to category
