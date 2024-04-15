@@ -1,6 +1,6 @@
 import React from "react";
 import "../assets/css/cart.css";
-import CartItemCard from "./ProductCardMini";
+import ProductCardMini from "./ProductCardMini";
 import { CartContext } from "../ContextList";
 import { useContext, useEffect } from "react";
 // updated to be .. instead of .
@@ -31,7 +31,7 @@ export default  function Cart() {
       {data.length > 0 ? (
         <div className="cart-item-container">
           {data.map((product, index) => {
-            return <CartItemCard key={index} product={product} />;
+            return <ProductCardMini key={index} product={product} />;
           })}
         </div>
       ) : null}

@@ -5,3 +5,4 @@ export const CartContext = createContext([])
 
 export const StoreContext = createContext([])
 
+export const CategoryContext = createContext([])

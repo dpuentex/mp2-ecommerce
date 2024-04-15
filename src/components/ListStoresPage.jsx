@@ -20,7 +20,7 @@ export default function ListStoresPage() {
   }, [storeData[0]]);
 
   return (
-    <div className="list-stores-container">
+    <div className="home-page-container">
       {storeData[1]?.map ? storeData[1].map((store, index) => {
         // map through stores
         return (

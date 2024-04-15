@@ -3,15 +3,22 @@
     position: relative;
     top: 50px;
     color: white;
+    opacity: 1
 }
-.home-page-container h1 {
-    font-size: 3em;
+.home-page-container h1 a {
+    font-size: 2.5rem;
+    margin: 20px;
+    transition: .8s
 }
-.home-page-container h1:hover {
+.home-page-container h1 a:hover {
     color: lightblue;
     cursor: pointer;
+    font-size: 3rem;
+    text-shadow: 0 0 10px rgba(255,255,255,.3);
+    transition: .3s
 }
-.home-page-container h1:active {
+.home-page-container h1 a:active {
     color: darkblue;
     text-shadow: 0 0 10px white;
+    transition: .2s
 }

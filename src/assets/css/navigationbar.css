@@ -40,16 +40,19 @@ a {
     justify-content: center;
     background-color: transparent;
     list-style-type: none;
-    /* flex-grow: 1; */
-}
-.navbar  li:hover{
-    color: red;
-    background-color: gray;
+    transition: .5s;
 }
 
+/* unfortunately color has to be listed seperately in a tag contained in li */
 a{
-    color: white;
+    color: rgb(220,220,255);
     background-color: transparent   
+}
+
+a:hover{
+    color: white;
+    text-shadow: 0 0 12px rgba(255,255,255,1);
+    transition: 0.2s;
 }
 
 

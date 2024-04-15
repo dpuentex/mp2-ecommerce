@@ -4,9 +4,10 @@ import { BrowserRouter as Router, Link, Routes, Route } from "react-router-dom";
 import CartPanel from "./CartPanel";
 import "../assets/css/navigationbar.css";
 
-import { CartContext, StoreContext } from "../ContextList";
+import { CartContext, StoreContext, CategoryContext } from "../ContextList";
 export default function NavigationBar() {
 
+  const [activeCategory, setActiveCategory] = useContext(CategoryContext)
   const [cartContents, setCartContents] = useContext(CartContext);
   const [storeData, setStoreData] = useContext(StoreContext);
 
@@ -41,7 +42,8 @@ export default function NavigationBar() {
             {isBrowseOpen && 
               <ul className="nav-dropdown-menu">
                 {storeData[1].primary_categories.map((category, index) => {
-                  return <li key={index}><Link to={`#`}>{category}</Link></li>
+                  console.log(category);
+                  return <li key={index} onClick={()=>setActiveCategory(category)}><Link to={'/products/'}>{category}</Link></li>
                 })}
                 
                 

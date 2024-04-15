@@ -11,18 +11,18 @@ products.get('/data', async (req,res) =>{
     res.send(JSON.stringify(productsData))
 })
 
-//backend response to GET all and serve json on /products/data/category/:category
-// products.get('/data/category/:category', async (req,res) =>{
-    
-//     let productsData = await Product.findAll({
-//         where: {
-//             details_array: {
-//                 [Op.in]: req.params.array
-//             }
-//         }
-//     })
-//     res.send(JSON.stringify(productsData))
-// })
+//backend response to GET all and serve json on /products/category/:category
+products.get('/category/:category', async (req,res) =>{
+    console.log(req.query.length)
+    let categoryData = await Product.findAll({
+        where: {
+            category: {
+                [Op.like]: '%' + req.params.category + '%'
+            }
+        }
+    })
+    res.status(200).json(categoryData)
+})
 
 //backend response to get all that match array of ids and serve on /products/retrievecartbyarray/:array
 //accepts string of numbers seperated by ,

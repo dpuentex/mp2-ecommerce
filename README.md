@@ -70,7 +70,9 @@ A beautiful ecommerce website with basic functionality.
 - optional navbar items 
 
 # Changelog / Completed
-- added add remove buttons on product page to add and remove items from cart
+- 
+- formatting on add remove buttons on product cards
+- added add remove buttons on product cards to add and remove items from cart
 - added in stock / out of stock on product cards
 - added the most incredible seeder
 - added dynamic category list dropdown from browse depending on store

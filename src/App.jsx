@@ -8,7 +8,7 @@ import BrowsePage from "./components/ProductPage";
 import AboutUs from "./components/AboutUs";
 import NavigationBar from "./components/NavigationBar";
 import Cart from "./components/Cart";
-import { CartContext, StoreContext } from "./ContextList";
+import { CartContext, StoreContext, CategoryContext } from "./ContextList";
 import "./assets/css/style1.css";
 
 function App() {
@@ -17,8 +17,7 @@ function App() {
   // [store_id, store_table] -1 for none selected
   const [cartContents, setCartContents] = useState([]);
   const [storeData, setStoreData] = useState([-1, []]);
-
-  
+  const [activeCategory, setActiveCategory] = useState("All");
 
   // <BrowserRouter/> hiding in main.jsx.. encases app.jsx Remember that.
   // <NavigationBar/> has <CartPanel/> in it.
@@ -27,19 +26,21 @@ function App() {
   return (
     <CartContext.Provider value={[cartContents, setCartContents]}>
       <StoreContext.Provider value={[storeData, setStoreData]}>
-        <header>
-          <NavigationBar />
-        </header>
-        <main>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/products" element={<BrowsePage />} />
-            <Route path="/best-sellers" element={null} />
-            <Route path="/about-us" element={<AboutUs />} />
-            <Route path="/cart" element={<Cart />} />
-            <Route path="/admin" element={null} />
-          </Routes>
-        </main>
+        <CategoryContext.Provider value={[activeCategory, setActiveCategory]}>
+          <header>
+            <NavigationBar />
+          </header>
+          <main>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/products" element={<BrowsePage />} />
+              <Route path="/best-sellers" element={null} />
+              <Route path="/about-us" element={<AboutUs />} />
+              <Route path="/cart" element={<Cart />} />
+              <Route path="/admin" element={null} />
+            </Routes>
+          </main>
+        </CategoryContext.Provider>
       </StoreContext.Provider>
     </CartContext.Provider>
   );

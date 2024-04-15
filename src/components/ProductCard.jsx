@@ -76,11 +76,13 @@ export default function ProductCard({ product }) {
                     ? `In Stock (${checkProductStockLeft(product)})` 
                     : "Out of Stock"} 
             </span>
-            {checkHowManyInCart(product) > 0 && <button onClick={removeFromCart} className="glow-squish-button" product_id={Number(product.product_id)}>➖</button>}
-            {checkHowManyInCart(product) > 0 && <button className="how-many-of-product-in-cart glow-squish-button">{checkHowManyInCart(product)}</button>}
-            {checkProductStockLeft(product) > 0 && <button onClick={addToCart} className="glow-squish-button" product_id={Number(product.product_id)}>{localStorage.getItem('CartLocalStorage') != null  ?   (   
-                localStorage.getItem('CartLocalStorage').split(",")?.includes(product.product_id) ? "✅" : "🛒➕"
+            <span className="add-to-cart-button-container">{checkProductStockLeft(product) > 0 && <button onClick={addToCart} className="glow-squish-button" product_id={Number(product.product_id)}>{localStorage.getItem('CartLocalStorage') != null  ?   (   
+                localStorage.getItem('CartLocalStorage').split(",")?.includes(product.product_id) ? "➕" : "🛒➕"
             ): "🛒➕"}</button>}
+            
+            {checkHowManyInCart(product) > 0 && <button className="how-many-of-product-in-cart glow-squish-button">🛒{checkHowManyInCart(product)}</button>}
+            {checkHowManyInCart(product) > 0 && <button onClick={removeFromCart} className="glow-squish-button" product_id={Number(product.product_id)}>➖</button>}
+            </span>
         </div>
     )
 }

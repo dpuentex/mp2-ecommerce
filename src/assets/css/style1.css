@@ -51,24 +51,26 @@ html {
   margin: 10px 0 0 0;
   float: right;
   align-self: flex-end;
-  width: 50%;
-  border-radius: 40px;
-  font-size: 2em;
+  width: 30%;
+  border-radius: 20px;
+  font-size: 1.5rem;
   padding : 5px 5px;
   color: blue;
   background-color: rgb(200,200,200);
   transition: .5s;
+  user-select: none;
+  cursor: pointer;
 }
 
 .glow-squish-button:hover {
   transition: .1s;
-  border-radius: 20px;
+  border-radius: 10px;
   background-color: rgb(100,200,200);
   box-shadow: 0 0 10px 1px rgba(50, 50, 50, 0.7);
 }
 
 .glow-squish-button:active {
-  border-radius: 10px;
+  border-radius: 5px;
   background-color: rgb(120,100,255);
   box-shadow: 0 0 10px 6px rgba(255, 0, 255, 0.7);
 }
@@ -78,6 +80,11 @@ html {
   border-radius: 20px;
   background-color: rgb(100,200,200);
   box-shadow: 0 0 10px 1px rgba(50, 50, 50, 0.7);
+  
+}
+
+.glow-squish-button.how-many-of-product-in-cart:hover{
+  cursor: default;
 }
 
 .button-test-div {

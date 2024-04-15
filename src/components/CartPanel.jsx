@@ -73,14 +73,15 @@ export default function CartPanel() {
             {data.length > 0 ? data.map((product, index) => {
                     return <div className="product-card" key={index}>
                     {product.product_name ? <h1><span>{localStorage.getItem('CartLocalStorage').split(",").filter(x => x==product.product_id).length}x </span>{product.product_name}</h1> : null}
-                    {product.price ? <h2>{product.price}</h2> : null}
+                    {product.price ? <span className="cart-panel-item-product-price-container"><h2>{product.price}</h2><h2>{(product.price * localStorage.getItem('CartLocalStorage').split(",").filter(x => x==product.product_id).length).toFixed(2)}</h2></span> : null}
                     {product.images ? (
-                      <p>IMAGES.. There would be a map function here or something..</p>
+                      <p className="cart-panel-item-product-images">IMAGES.. There would be a map function here or something..</p>
                     ) : null} 
                     </div>
                     })
                 
              : null}
+             
         </div>
     )
 }
