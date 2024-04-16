@@ -18,11 +18,14 @@ export default  function Cart() {
   }, []);
 
   async function fetchProducts() {
-      const response = await fetch(
-        `http://127.0.0.1:${3000}/products/productbyarray/${items}`
-      );
-      let responsedata = await response.json();
-      setData(responsedata);
+    console.log("fetching cart items")
+    if (!items) return
+    const response = await fetch(
+      `http://127.0.0.1:${3000}/products/productbyarray/${items}`
+    );
+    let responsedata = await response.json();
+    setData(responsedata);
+    setCartContents(items.split(","))
   }
 
 

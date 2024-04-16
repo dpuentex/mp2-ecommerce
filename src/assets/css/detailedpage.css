@@ -1,0 +1,12 @@
+.category-button-container {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.categories-button.glow-squish-button {
+    width: auto;
+    min-width: 150px;
+    height: auto;
+    margin: 10px;
+    float: none;
+}

@@ -18,25 +18,30 @@ export default function BrowsePage() {
     const navigate = useNavigate();
 
   async function fetchProducts() {
-    if(storeData[0] == -1){
+    if(storeData[0] == -1){ // if no store selected
       navigate("/");
+      return
     }
     console.log(useCategoryContext);
+
+    let data 
     if (useCategoryContext === "All") {
       const response = await fetch(`http://127.0.0.1:${3000}/products/store/${storeData[0]}`);
-      let data = await response.json();
-      setData(data);
-      console.log(data);
+      data = await response.json();
+      // setData(data);
+      // console.log(data);
     } else if (useCategoryContext !== "All") {
       const response = await fetch(
         `http://127.0.0.1:${3000}/products/category/${useCategoryContext}`
       );
-      let data = await response.json();
-      setData(data);
-      setDetails(calculateDetails(data));
-      console.log(details);
-      console.log(data);
+      data = await response.json();
+      // setData(data);
+      // setDetails(calculateDetails(data));
+      // console.log(details);
+      // console.log(data);
     }
+    setData(data);
+    setDetails(calculateDetails(data));
   }
 
   // returns object with keys as detail keys and values as an array of collected values

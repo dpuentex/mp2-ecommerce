@@ -67,6 +67,7 @@ A beautiful ecommerce website with basic functionality.
 - optional navbar items 
 
 # Changelog / Completed
+- repaired problem where selecting all categories would not show any filters
 - added about us for main page seperate from about us for each page
 - renamed browse to all categories and implemented option to display all categories
 - navigate to select store if none is selected
