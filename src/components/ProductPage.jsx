@@ -15,11 +15,15 @@ export default function BrowsePage() {
   const [useCartContext, setUseCartContext] = useContext(CartContext);
   const [useCategoryContext, setUseCategoryContext] =
     useContext(CategoryContext);
+    const navigate = useNavigate();
 
   async function fetchProducts() {
+    if(storeData[0] == -1){
+      navigate("/");
+    }
     console.log(useCategoryContext);
     if (useCategoryContext === "All") {
-      const response = await fetch(`http://127.0.0.1:${3000}/products/data`);
+      const response = await fetch(`http://127.0.0.1:${3000}/products/store/${storeData[0]}`);
       let data = await response.json();
       setData(data);
       console.log(data);

@@ -12,12 +12,9 @@ export default function NavigationBar() {
   const [storeData, setStoreData] = useContext(StoreContext);
 
   const [isCartOpen, setIsCartOpen] = useState(false);
-  const [isAboutUsOpen, setIsAboutUsOpen] = useState(false);
   const [isBrowseOpen, setIsBrowseOpen] = useState(false)
 
-  const toggleAboutUsDropdown = () => {
-    setIsAboutUsOpen(!isAboutUsOpen);
-  };
+
   const toggleBrowseDropDown = ()=>{
     setIsBrowseOpen(!isBrowseOpen)
  };
@@ -30,20 +27,21 @@ export default function NavigationBar() {
       <ul >
         <li onClick={() => setStoreData([-1, storeData[1]])}>
           { storeData[0] === -1
-          ? <Link to={"/"}>Pick a Store</Link>
+          ? <Link to={"/"}>PICK A STORE</Link>
         : <Link to = {"/"} >HOME</Link>}
         </li>
         { storeData[0] !== -1 &&
           <li id="nav-about-us"  
           onMouseEnter={toggleBrowseDropDown} 
           onMouseLeave={toggleBrowseDropDown}
-          > <Link to="/products/">BROWSE</Link>
+          onClick={(e)=>{setActiveCategory("All"); e.stopPropagation()}}
+          > <Link to="/products/">ALL CATEGORIES</Link>
            
             {isBrowseOpen && 
               <ul className="nav-dropdown-menu">
                 {storeData[1].primary_categories.map((category, index) => {
                   console.log(category);
-                  return <li key={index} onClick={()=>setActiveCategory(category)}><Link to={'/products/'}>{category}</Link></li>
+                  return <li key={index} onClick={(e)=>{setActiveCategory(category); e.stopPropagation()}}><Link to={'/products/'}>{category}</Link></li>
                 })}
                 
                 
@@ -56,25 +54,9 @@ export default function NavigationBar() {
         <li>
           <Link to="/best-sellers">BEST SELLERS</Link>
         </li>
-        {storeData[0] !== -1 && <li id="about-us"  
-          onMouseEnter={toggleAboutUsDropdown} 
-          onMouseLeave={toggleAboutUsDropdown}
-        >
+        <li id="about-us">
           <Link to="/about-us/">ABOUT US</Link>
-          {isAboutUsOpen && (
-            <ul className="nav-dropdown-menu">
-              <li>
-                <a href="#">Mission</a>
-              </li>
-              <li>
-                <a href="#">Vision</a>
-              </li>
-              <li>
-                <a href="#">Values</a>
-              </li>
-            </ul>
-          )}
-        </li>}
+        </li>
         <li
           className="nav-cart"
           onMouseEnter={toggleCartDropdown}

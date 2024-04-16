@@ -67,7 +67,8 @@ A beautiful ecommerce website with basic functionality.
 - optional navbar items 
 
 # Changelog / Completed
-- 
+- added about us for main page seperate from about us for each page
+- renamed browse to all categories and implemented option to display all categories
 - navigate to select store if none is selected
 - temporary rename of checkbox component
 - added dynamic generation of filter boxes on product page

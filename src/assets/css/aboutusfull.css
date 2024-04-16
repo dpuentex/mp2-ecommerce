@@ -1,0 +1,16 @@
+.part-of-speech {
+    
+    font-style: italic;
+    font-size: 1.5rem;
+}
+
+.syllables-phonetic-container {
+    width: 20%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.syllables {
+    font-style: italic;
+}

@@ -1,5 +1,4 @@
 import { useContext,useEffect } from "react"
-import { redirect } from "react-router-dom"
 import { StoreContext, FetchStoresContext } from "../ContextList"
 
 export default function DetailedPage() {

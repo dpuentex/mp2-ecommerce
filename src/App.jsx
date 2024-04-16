@@ -31,7 +31,7 @@ function App() {
           setStoreData([store_id, json]);
         } else {
           setStoreData([-1, json])
-          navigate("/");
+          // navigate("/");
         };
       });
     console.log(storeData);

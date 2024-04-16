@@ -11,7 +11,17 @@ products.get('/data', async (req,res) =>{
     res.send(JSON.stringify(productsData))
 })
 
-//backend response to GET all and serve json on /products/category/:category
+//backend response to GET products by store and serve json on /products/store/:store
+products.get('/store/:store', async (req,res) =>{
+    let storeData = await Product.findAll({
+        where: {
+            store_id: req.params.store
+        }
+    })
+    res.status(200).json(storeData)
+})
+
+//backend response to GET products by category and serve json on /products/category/:category
 products.get('/category/:category', async (req,res) =>{
     console.log(req.query.length)
     let categoryData = await Product.findAll({
