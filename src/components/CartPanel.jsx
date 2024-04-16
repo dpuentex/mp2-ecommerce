@@ -45,7 +45,6 @@ reducers: {
 */
 
 import "../assets/css/cartpanel.css"
-import CartItemCard from "./ProductCardMini";
 import { useContext, useEffect } from "react";
 import React from "react";
 import { CartContext } from "../ContextList";
