@@ -7,7 +7,7 @@ import { useContext, useEffect } from "react";
 
 // made export within this line below
 export default  function Cart() {
-  const useCartContext = useContext(CartContext)
+  const [cartContents, setCartContents] = useContext(CartContext)
   
   let [data, setData] = React.useState({});
   

@@ -67,6 +67,8 @@ A beautiful ecommerce website with basic functionality.
 - optional navbar items 
 
 # Changelog / Completed
+- added on click events for buttons in about-us for categories
+- added proper destructuring for cartcontext in cart.jsx
 - repaired get /products/productbyarray/:array in product controller.. arraywithnorepeats was having a problem.
 - repaired problem where selecting all categories would not show any filters
 - added about us for main page seperate from about us for each page
