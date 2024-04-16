@@ -40,6 +40,12 @@ module.exports = (sequelize, DataTypes) => {
     },
     category: {
       type: DataTypes.STRING
+    },
+    best_seller: {
+      type: DataTypes.BOOLEAN
+    },
+    store_id: {
+      type: DataTypes.INTEGER
     }
   }, {
     sequelize,

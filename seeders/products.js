@@ -121,6 +121,8 @@ const descriptions = {
   const generateStock = () => Math.floor(Math.random() * 100)
   //random true or false
   const generateBoolean = () => Math.random() >= 0.5
+  
+  const generateBooleanUnlikely = () => Math.random() >= 0.9
   //detail keys value pair generator
   const generateDetailsObject = () => {
     let details = {};
@@ -153,6 +155,8 @@ module.exports = {
           stock: generateStock(),
           details_object: JSON.stringify(generateDetailsObject()),
           category: selectRandom(categories.electronics),
+          store_id: 2,
+          best_seller: generateBooleanUnlikely()
         },
         {
           product_id: 2 + i * 3,
@@ -163,6 +167,8 @@ module.exports = {
           stock: generateStock(),
           details_object: JSON.stringify(generateDetailsObject()),
           category: selectRandom(categories.clothing),
+          store_id: 3,
+          best_seller: generateBooleanUnlikely()
         },
         {
           product_id: 3 + i * 3,
@@ -173,7 +179,8 @@ module.exports = {
           stock: generateStock(),
           details_object: JSON.stringify(generateDetailsObject()),
           category: selectRandom(categories.knobs),
-
+          store_id: 1,
+          best_seller: generateBooleanUnlikely()
         }
       );
     }

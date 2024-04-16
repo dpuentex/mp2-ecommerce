@@ -57,7 +57,8 @@ A beautiful ecommerce website with basic functionality.
 
 
 
-## Low priority: 
+## Low priority:
+- add style column to store and render different style from database depending on store 
 - glow in the back following mouse
 - implement bcrypt
 #### nav bar
@@ -66,6 +67,12 @@ A beautiful ecommerce website with basic functionality.
 - optional navbar items 
 
 # Changelog / Completed
+- 
+- navigate to select store if none is selected
+- temporary rename of checkbox component
+- added dynamic generation of filter boxes on product page
+- refactored fetch store into function in a usecontext
+- added redirect if manual navigation to about-us page without selecting store first
 - fixed error to retreive cart items
 - changed categories in seed
 - category context

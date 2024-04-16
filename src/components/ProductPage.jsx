@@ -1,16 +1,20 @@
 import React from "react";
 import "../assets/css/browsepage.css";
+import "../assets/css/checkbox.css";
+import Checkbox from "./Checkbox";
 import ProductCard from "./ProductCard";
-import { useEffect } from "react";
-import { useState } from "react";
-import { useContext } from "react";
+import { useEffect, useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { CartContext, StoreContext, CategoryContext } from "../ContextList";
 import { createContext } from "react";
 
 export default function BrowsePage() {
   let [data, setData] = React.useState({});
+  let [details, setDetails] = React.useState([]);
+  const [storeData, useStoreData] = useContext(StoreContext);
   const [useCartContext, setUseCartContext] = useContext(CartContext);
-  const [useCategoryContext, setUseCategoryContext] = useContext(CategoryContext)
+  const [useCategoryContext, setUseCategoryContext] =
+    useContext(CategoryContext);
 
   async function fetchProducts() {
     console.log(useCategoryContext);
@@ -25,8 +29,44 @@ export default function BrowsePage() {
       );
       let data = await response.json();
       setData(data);
+      setDetails(calculateDetails(data));
+      console.log(details);
       console.log(data);
     }
+  }
+
+  // returns object with keys as detail keys and values as an array of collected values
+  function calculateDetails(data) {
+    let details = [];
+    console.log(data.length);
+
+    for (let productCount = 0; productCount < data.length; productCount++) {
+      // for each product
+      let detailList = data[productCount].details_object;
+      let detailListKeys = Object.keys(detailList);
+      console.log(detailListKeys);
+
+      for (
+        let detailCount = 0;
+        detailCount < detailListKeys.length;
+        detailCount++
+      ) {
+        // for each detail
+        console.log(detailList);
+        console.log(detailListKeys[detailCount]);
+
+        let detailKey = detailListKeys[detailCount];
+        let detailValue = detailList[detailListKeys[detailCount]];
+
+        if (!details[detailKey]) {
+          details[detailKey] = [];
+        }
+        if (!details[detailKey].includes(detailValue)) {
+          details[detailKey].push(detailValue);
+        }
+      }
+    }
+    return details;
   }
 
   useEffect(() => {
@@ -86,6 +126,19 @@ export default function BrowsePage() {
         >
           console log cart contents from useeffect
         </button>
+      </div>
+      <div className="filter-container">
+        {Object.keys(details).length > 0 &&
+          Object.keys(details).map((detailKey, index) => {
+            return (
+              <div className="filter-checkboxes-collection" key={index}>
+                <p className="checkbox-collection-label">{detailKey}</p>
+                {details[detailKey].map((detailValue, index) => {
+                  return <Checkbox key={index} value={detailValue} />;
+                })}
+              </div>
+            );
+          })}
       </div>
 
       {data.length > 0 ? (

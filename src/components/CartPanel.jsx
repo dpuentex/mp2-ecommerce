@@ -50,8 +50,8 @@ import { useContext, useEffect } from "react";
 import React from "react";
 import { CartContext } from "../ContextList";
 export default function CartPanel() {
-    const useCartContext = useContext(CartContext)
-  
+    const [cartContents, setCartContents] = useContext(CartContext)
+    console.log(cartContents)
     let [data, setData] = React.useState({});
     
     let items = localStorage.getItem("CartLocalStorage");
@@ -61,12 +61,14 @@ export default function CartPanel() {
     }, []);
   
     async function fetchProducts() {
+        console.log("fetching cart items")
         if (!items) return
         const response = await fetch(
           `http://127.0.0.1:${3000}/products/productbyarray/${items}`
         );
         let responsedata = await response.json();
         setData(responsedata);
+        setCartContents(items.split(","))
     }
   
     return (

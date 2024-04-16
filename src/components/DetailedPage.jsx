@@ -1,9 +1,15 @@
 import { useContext,useEffect } from "react"
-import { StoreContext } from "../ContextList"
+import { redirect } from "react-router-dom"
+import { StoreContext, FetchStoresContext } from "../ContextList"
 
 export default function DetailedPage() {
     const [storeData, setStoreData] = useContext(StoreContext)
+    const fetchStores = useContext(FetchStoresContext)
 
+    // useEffect(() => {
+    //     fetchStores(storeData[0])
+    // }, [storeData[0]])
+    
     return (
         <div className="detailed-page-container">
 

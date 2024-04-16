@@ -4,8 +4,6 @@
 
 'use strict';
 
-const { sequelize } = require('../models');
-
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
@@ -23,13 +21,13 @@ module.exports = {
         type: Sequelize.ARRAY(Sequelize.BLOB)
       },
       price: {
-        type: Sequelize.DECIMAL(10,2)
+        type: Sequelize.DECIMAL(10, 2)
       },
       description: {
         type: Sequelize.STRING
       },
       stock: {
-        type: Sequelize.DECIMAL(10,0)
+        type: Sequelize.DECIMAL(10, 0)
       },
       details_object: {
         type: Sequelize.JSONB
@@ -37,9 +35,15 @@ module.exports = {
       category: {
         type: Sequelize.STRING
       },
+      best_seller: {
+        type: Sequelize.BOOLEAN
+      },
+      store_id: {
+        type: Sequelize.BIGINT
+      }
     });
   },
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable('products');
   }
-};
+}

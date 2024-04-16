@@ -24,6 +24,16 @@ products.get('/category/:category', async (req,res) =>{
     res.status(200).json(categoryData)
 })
 
+//backend response to GET best sellers and serve json on /products/bestsellers
+products.get('/bestsellers', async (req,res) =>{
+    let bestSellersData = await Product.findAll({
+        where: {
+            best_seller: true
+        }
+    })
+    res.send(JSON.stringify(bestSellersData))
+})
+
 //backend response to get all that match array of ids and serve on /products/retrievecartbyarray/:array
 //accepts string of numbers seperated by ,
 

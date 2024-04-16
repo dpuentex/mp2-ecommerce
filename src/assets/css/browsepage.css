@@ -43,13 +43,24 @@
     }
 } */
 
+.filter-container{
+    position:absolute;
+    top:60px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: stretch;
+    justify-content: flex-start;
+}
+
+
 
 
 .product-container{
     width: 1500px;
     margin: auto;
     position:absolute;
-    top:60px;
+    top:150px;
     left: 50%;
     transform: translate(-50%, 0);
 
