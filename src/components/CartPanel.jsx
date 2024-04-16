@@ -54,13 +54,14 @@ export default function CartPanel() {
     console.log(cartContents)
     let [data, setData] = React.useState({});
     
-    let items = localStorage.getItem("CartLocalStorage");
+    
   
     useEffect(() => {
       fetchProducts();
     }, []);
   
     async function fetchProducts() {
+        let items = localStorage.getItem("CartLocalStorage");
         console.log("fetching cart items")
         if (!items || items.length == 0 || items == "") {return}
         const response = await fetch(
@@ -69,6 +70,7 @@ export default function CartPanel() {
         let responsedata = await response.json();
         setData(responsedata);
         setCartContents(items.split(","))
+        console.log(responsedata)
     }
   
     return (

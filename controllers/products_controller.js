@@ -37,7 +37,7 @@ products.get('/category/:category', async (req,res) =>{
     console.log(req.query.length)
     let categoryData = await Product.findAll({
         where: {
-            category: {
+            category: { // % is wildcard then the category and then the %
                 [Op.like]: '%' + req.params.category + '%' // utilize helper method to see for somewhat matches
             }
         }
@@ -58,11 +58,11 @@ products.get('/bestsellers/:storeid', async (req,res) =>{
     // res.send(bestSellersData)
 })
 
-//backend response to get all that match array of ids and serve on /products/retrievecartbyarray/:array
+//backend response to get all that match array of ids and serve on /products/productbyarray/:array
 //accepts string of numbers seperated by ,
 
 // ie
-// http://127.0.0.1:3000/products/retrievecartbyarray/1,2,3
+// http://127.0.0.1:3000/products/productbyarray/1,2,3
 products.get('/productbyarray/:array', async (req,res) =>{
     console.log(req.params.array)
     if (req.params.array == null) { // check if param null and then stop
@@ -74,7 +74,7 @@ products.get('/productbyarray/:array', async (req,res) =>{
     console.log(array)
 
   
-    // adds items to array if they aren't alrea
+    // adds items to array if they aren't already
     let arrayWithNoRepeats = []
     for(let i = 0; i < array.length; i++){
         if(!arrayWithNoRepeats.includes(array[i])){
