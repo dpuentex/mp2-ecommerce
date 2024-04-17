@@ -24,7 +24,7 @@ function App() {
   // setCartContents(localStorage.getItem('CartLocalStorage').split(","))
   async function getStores(store_id) {
     console.log("fetching stores with store id: ", store_id);
-    fetch(`http://127.0.0.1:${3000}/store/${store_id != -1 ? store_id : ""}`)
+    fetch(`https://7rwcnp46mg.execute-api.us-west-2.amazonaws.com/staging/store/${store_id != -1 ? store_id : ""}`)
       .then((res) => res.json())
       .then((json) => {
         if (store_id !== -1) {

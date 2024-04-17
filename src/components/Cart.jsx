@@ -21,7 +21,7 @@ export default  function Cart() {
     console.log("fetching cart items")
     if (!items || items.length == 0 || items == "") return
     const response = await fetch(
-      `http://127.0.0.1:${3000}/products/productbyarray/${items}`
+      `https://7rwcnp46mg.execute-api.us-west-2.amazonaws.com/staging/products/productbyarray/${items}`
     );
     let responsedata = await response.json();
     setData(responsedata);

@@ -26,13 +26,13 @@ export default function BrowsePage() {
 
     let data 
     if (useCategoryContext === "All") {
-      const response = await fetch(`http://127.0.0.1:${3000}/products/store/${storeData[0]}`);
+      const response = await fetch(`https://7rwcnp46mg.execute-api.us-west-2.amazonaws.com/staging/products/store/${storeData[0]}`);
       data = await response.json();
       // setData(data);
       // console.log(data);
     } else if (useCategoryContext !== "All") {
       const response = await fetch(
-        `http://127.0.0.1:${3000}/products/category/${useCategoryContext}`
+        `https://7rwcnp46mg.execute-api.us-west-2.amazonaws.com/staging/products/category/${useCategoryContext}`
       );
       data = await response.json();
       // setData(data);

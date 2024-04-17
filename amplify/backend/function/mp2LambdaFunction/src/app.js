@@ -82,8 +82,8 @@ app.delete('/backend/*', function(req, res) {
   res.json({success: 'delete call succeed!', url: req.url});
 });
 
-// app.use('/products', require('./controllers/products_controller'))
-// app.use('/store', require('./controllers/store_controller'))
+app.use('/products', require('./controllers/products_controller'))
+app.use('/store', require('./controllers/store_controller'))
 
 app.get('/', function(req, res) {
     res.json({success: 'get call succeed!', url: req.url});

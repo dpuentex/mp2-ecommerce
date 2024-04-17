@@ -1,8 +1,8 @@
 {
   "version": 1,
   "paths": {
-    "/backend": {
-      "name": "/backend",
+    "/": {
+      "name": "/",
       "lambdaFunction": "mp2LambdaFunction",
       "permissions": {
         "setting": "open"
