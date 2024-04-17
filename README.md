@@ -70,6 +70,7 @@ A beautiful ecommerce website with basic functionality.
 - optional navbar items 
 
 # Changelog / Completed
+- updated exposed password for db and gitignore
 - deployed frontend
 - deployed backend
 - deployed sql db
