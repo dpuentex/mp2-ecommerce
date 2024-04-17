@@ -1,6 +1,6 @@
 src/assets/fonts/ignoreFontStorage
-config/
-amplify/backend/function/mp2LambdaFunction/src/config/
+config/*
+amplify/backend/function/mp2LambdaFunction/src/config/*
 
 # Editor directories and files - from vite
 .vscode/*
