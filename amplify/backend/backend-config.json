@@ -1,0 +1,43 @@
+{
+  "api": {
+    "apiREST": {
+      "dependsOn": [
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "mp2LambdaFunction"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "API Gateway"
+    }
+  },
+  "function": {
+    "mp2LambdaFunction": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    }
+  },
+  "parameters": {
+    "AMPLIFY_function_mp2LambdaFunction_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "mp2LambdaFunction"
+        }
+      ]
+    },
+    "AMPLIFY_function_mp2LambdaFunction_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "mp2LambdaFunction"
+        }
+      ]
+    }
+  }
+}
