@@ -46,11 +46,10 @@ products.get('/category/:category', async (req,res) =>{
 })
 
 //backend response to GET best sellers and serve json on /products/bestsellers
-products.get('/bestsellers/:storeid', async (req,res) =>{ 
+products.get('/bestsellers/', async (req,res) =>{ 
     let bestSellersData = await Product.findAll({
         where: {
-            best_seller: true,
-            store_id: req.params.storeid
+            best_seller: true
         }
     })
     // res.send(JSON.stringify(bestSellersData))

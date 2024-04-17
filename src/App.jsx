@@ -8,6 +8,7 @@ import BrowsePage from "./components/ProductPage";
 import AboutUs from "./components/AboutUs";
 import NavigationBar from "./components/NavigationBar";
 import Cart from "./components/Cart";
+import BestSellers from "./components/BestSellers";
 import { CartContext, StoreContext, CategoryContext, FetchStoresContext } from "./ContextList";
 import "./assets/css/style1.css";
 
@@ -23,17 +24,17 @@ function App() {
 
   // setCartContents(localStorage.getItem('CartLocalStorage').split(","))
   async function getStores(store_id) {
-    console.log("fetching stores with store id: ", store_id);
-    fetch(`https://7rwcnp46mg.execute-api.us-west-2.amazonaws.com/staging/store/${store_id != -1 ? store_id : ""}`)
-      .then((res) => res.json())
-      .then((json) => {
+    console.log(`https://7rwcnp46mg.execute-api.us-west-2.amazonaws.com/staging/store/${store_id != -1 ? store_id : ""}`);
+    let res = await fetch(`https://7rwcnp46mg.execute-api.us-west-2.amazonaws.com/staging/store/${store_id != -1 ? store_id : ""}`)
+    let json = await res.json();
+    console.log(json)
         if (store_id !== -1) {
-          setStoreData([store_id, json]);
+          setStoreData([store_id, await json]);
         } else {
-          setStoreData([-1, json])
+          setStoreData([-1, await json])
           // navigate("/");
         };
-      });
+      ;
     console.log(storeData);
   }
 
@@ -53,7 +54,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/products" element={<BrowsePage />} />
-              <Route path="/best-sellers" element={null} />
+              <Route path="/best-sellers" element={<BestSellers />} />
               <Route path="/about-us" element={<AboutUs />} />
               <Route path="/cart" element={<Cart />} />
               <Route path="/admin" element={null} />

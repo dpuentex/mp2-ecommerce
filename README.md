@@ -32,6 +32,10 @@ A beautiful ecommerce website with basic functionality.
 - cart controller
 - better search api
 - read binary image from db
+- best seller page when loading with store selected does not show store names and doesnt set data properly see console app.jsx:38
+- selecting a store and going home too quickly causes error 
+- chunk-MCEUSTYS.js?v=5f44b943:9143 Uncaught TypeError: storeData[1].map is not a function
+    at NavigationBar (NavigationBar.jsx:39:31)
 
 ### [Models](https://docs.google.com/spreadsheets/d/1QfpH7j5gNQoXloyshFjNvAq97LzJzVPM_XfwJFtSe18/edit#gid=0) for SQL database
 - spreadsheet
@@ -70,6 +74,9 @@ A beautiful ecommerce website with basic functionality.
 - optional navbar items 
 
 # Changelog / Completed
+
+- begun work on best seller functionality
+- variable rename in fetchProducts function in product page for clarity 
 - updated exposed password for db and gitignore
 - deployed frontend
 - deployed backend

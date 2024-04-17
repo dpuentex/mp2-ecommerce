@@ -1,9 +1,11 @@
 import { useContext, useState } from "react"
 
-import { CartContext } from "../ContextList"
+import { CartContext, StoreContext, FetchStoresContext} from "../ContextList"
 
-export default function ProductCard({ product }) {
+export default function ProductCard({ product, bestseller}) {
     const useCartContext = useContext(CartContext)
+    const [storeData, setStoreData] = useContext(StoreContext)
+    const fetchStores = useContext(FetchStoresContext)
     function addToCart(event) {
         // console.log(event)
         // console.log(event.target)
@@ -44,9 +46,16 @@ export default function ProductCard({ product }) {
             return product.stock
         }
     }
-    //useCartContext[1](localStorage.getItem('CartLocalStorage').split(","))
+    function getStoreNameForStoreID(storeID) {
+        for (let i = 0; i < storeData[1].length; i++) {
+            if (storeData[1][i].store_id == storeID) {
+                return storeData[1][i].store_name
+            }
+        }
+    }
     return (
         <div className='product-card'>
+            {bestseller ? <p>{getStoreNameForStoreID(product.store_id)}</p> : null}
             {product.product_name ? <h1>{product.product_name}</h1> : null}
             {product.price ? <h2>{product.price}</h2> : null}
             {product.description ? <h3>{product.description}</h3> : null}

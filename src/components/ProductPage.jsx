@@ -24,24 +24,24 @@ export default function BrowsePage() {
     }
     console.log(useCategoryContext);
 
-    let data 
+    let fetchData 
     if (useCategoryContext === "All") {
       const response = await fetch(`https://7rwcnp46mg.execute-api.us-west-2.amazonaws.com/staging/products/store/${storeData[0]}`);
-      data = await response.json();
-      // setData(data);
-      // console.log(data);
+      fetchData = await response.json();
+      // setData(fetchData);
+      // console.log(fetchData);
     } else if (useCategoryContext !== "All") {
       const response = await fetch(
         `https://7rwcnp46mg.execute-api.us-west-2.amazonaws.com/staging/products/category/${useCategoryContext}`
       );
-      data = await response.json();
-      // setData(data);
-      // setDetails(calculateDetails(data));
+      fetchData = await response.json();
+      // setData(fetchData);
+      // setDetails(calculateDetails(fetchData));
       // console.log(details);
-      // console.log(data);
+      // console.log(fetchData);
     }
-    setData(data);
-    setDetails(calculateDetails(data));
+    setData(fetchData);
+    setDetails(calculateDetails(fetchData));
   }
 
   // returns object with keys as detail keys and values as an array of collected values

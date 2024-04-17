@@ -13,6 +13,7 @@ export default function NavigationBar() {
 
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isBrowseOpen, setIsBrowseOpen] = useState(false)
+  const [isPickStoresOpen, setIsPickStoresOpen] = useState(false)
 
 
   const toggleBrowseDropDown = ()=>{
@@ -22,14 +23,27 @@ export default function NavigationBar() {
     setIsCartOpen(!isCartOpen);
   };
 
+  const TogglePickStoreDropdown = () => {
+    setIsPickStoresOpen(!isPickStoresOpen);
+  };
+
   return (
     <nav className="navbar">
       <ul >
-        <li onClick={() => setStoreData([-1, storeData[1]])}>
+        <li onMouseEnter={TogglePickStoreDropdown} onMouseLeave={TogglePickStoreDropdown} onClick={() => setStoreData([-1, storeData[1]])}>
           { storeData[0] === -1
           ? <Link to={"/"}>PICK A STORE</Link>
-        : <Link to = {"/"} >HOME</Link>}
-        </li>
+        : <Link to = {"/"} >HOME</Link> }
+        {isPickStoresOpen && storeData[0] == -1 &&
+              <ul className="nav-dropdown-menu">
+                {storeData[1].map((store, index) => {
+                  console.log(store);
+                  return <li key={index} onClick={(e)=>{setStoreData([store.store_id, store]); e.stopPropagation()}}><Link to={'/about-us/'}>{store.store_name}</Link></li>
+                })}
+                
+                
+              </ul>
+              }</li>
         { storeData[0] !== -1 &&
           <li id="nav-about-us"  
           onMouseEnter={toggleBrowseDropDown} 
