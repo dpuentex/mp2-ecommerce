@@ -10,6 +10,9 @@ https://marketplace.visualstudio.com/items?itemName=ms-vscode.live-server
 
 
 # mp2-ecommerce
+
+[Visit Deployment](https://shepherd.d1d9yratg7bxyv.amplifyapp.com/)
+
 Collaborators: \
 [Mohammad Zuiter](https://github.com/moefingers) \
 [Diego Puente](https://github.com/dpuentex) \
@@ -67,6 +70,9 @@ A beautiful ecommerce website with basic functionality.
 - optional navbar items 
 
 # Changelog / Completed
+- deployed frontend
+- deployed backend
+- deployed sql db
 - added on click events for buttons in about-us for categories
 - added proper destructuring for cartcontext in cart.jsx
 - repaired get /products/productbyarray/:array in product controller.. arraywithnorepeats was having a problem.
