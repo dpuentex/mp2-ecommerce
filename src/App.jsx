@@ -20,6 +20,8 @@ import {
   StoreContext,
   CategoryContext,
   FetchStoresContext,
+  FetchProductsContext,
+  SelectStoreContext,
 } from "./ContextList";
 import "./assets/css/style1.css";
 
@@ -32,36 +34,46 @@ function App() {
   // storedata state is an array [selected store ID, store table]
   const [storeData, setStoreData] = useState([-1, [], -1]);
   const [activeCategory, setActiveCategory] = useState("All");
-  const [fetchStores, setFetchStores] = useState(() => getStores);
+  const [fetchStores, setFetchStores] = useState([]);
+  const [fetchProducts, setFetchProducts] = useState([]);
+  const [selectStore, setSelectStore] = useState([]);
   const navigate = useNavigate();
 
   // setCartContents(localStorage.getItem('CartLocalStorage').split(","))
-  async function getStores(store_id) {
-    console.log(
-      `https://7rwcnp46mg.execute-api.us-west-2.amazonaws.com/staging/store/`
-    );
+  async function getStores() {
     let res = await fetch(
       `https://7rwcnp46mg.execute-api.us-west-2.amazonaws.com/staging/store/`
     );
     let json = await res.json();
-    console.log(json);
+    // console.log(json);
 
-    let storeIndex
-    console.log(store_id)
+    // console.log(storeData);
+    setStoreData([storeData[0], json, storeData[2]]);
+    console.log(storeData);
+  }
+
+  async function getProducts() {
+    let res = await fetch(
+      `https://7rwcnp46mg.execute-api.us-west-2.amazonaws.com/staging/product/`
+    );
+    let json = await res.json();
+    console.log(json);
+    setFetchProducts(json);
+  }
+
+  async function setStore(store_id) {
+    let storeIndex;
     if (store_id !== -1) {
-      json.map((store, index) => {
+      storeData[1].map((store, index) => {
         if (store.store_id === store_id) {
           storeIndex = index;
-          console.log("the index of the store is: " + storeIndex);
         }
       });
     } else {
-      storeIndex = -1
+      storeIndex = -1;
     }
 
-    setStoreData([store_id, await json, storeIndex]);
-
-    console.log(storeData);
+    setStoreData([store_id, storeData[1], storeIndex]);
   }
 
   // <BrowserRouter/> hiding in main.jsx.. encases app.jsx Remember that.
@@ -72,20 +84,24 @@ function App() {
     <CartContext.Provider value={[cartContents, setCartContents]}>
       <StoreContext.Provider value={[storeData, setStoreData]}>
         <CategoryContext.Provider value={[activeCategory, setActiveCategory]}>
-          <FetchStoresContext.Provider value={fetchStores}>
-            <header>
-              <NavigationBar />
-            </header>
-            <main>
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/products" element={<BrowsePage />} />
-                <Route path="/best-sellers" element={<BestSellers />} />
-                <Route path="/about-us" element={<AboutUs />} />
-                <Route path="/cart" element={<Cart />} />
-                <Route path="/admin" element={null} />
-              </Routes>
-            </main>
+          <FetchStoresContext.Provider value={getStores}>
+            <FetchProductsContext.Provider value={getProducts}>
+              <SelectStoreContext.Provider value={setStore}>
+                <header>
+                  <NavigationBar />
+                </header>
+                <main>
+                  <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/products" element={<BrowsePage />} />
+                    <Route path="/best-sellers" element={<BestSellers />} />
+                    <Route path="/about-us" element={<AboutUs />} />
+                    <Route path="/cart" element={<Cart />} />
+                    <Route path="/admin" element={null} />
+                  </Routes>
+                </main>
+              </SelectStoreContext.Provider>
+            </FetchProductsContext.Provider>
           </FetchStoresContext.Provider>
         </CategoryContext.Provider>
       </StoreContext.Provider>

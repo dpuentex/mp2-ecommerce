@@ -33,10 +33,7 @@ A beautiful ecommerce website with basic functionality.
 - better search api
 - read binary image from db
 - best seller page when loading with store selected does not show store names and doesnt set data properly see console app.jsx:38
-- when navigating between stores, old data briefly displays... can see in console as well.
-- navigating from no store to a store or vice versa has issue
 
-- selecting multiple different stores in short period causes soft loop 
 
 ### [Models](https://docs.google.com/spreadsheets/d/1QfpH7j5gNQoXloyshFjNvAq97LzJzVPM_XfwJFtSe18/edit#gid=0) for SQL database
 - spreadsheet
@@ -68,6 +65,7 @@ A beautiful ecommerce website with basic functionality.
 
 
 ## Low priority:
+- Clicking quickly between pick a store and then a store produces the about us page for main site..
 - add style column to store and render different style from database depending on store 
 - glow in the back following mouse
 - implement bcrypt
@@ -78,6 +76,15 @@ A beautiful ecommerce website with basic functionality.
 - optional navbar items 
 
 # Changelog / Completed
+- 
+- updated about us in seeder for store 3 to be different than store 2
+- separated store selection logic out into previously mentioned other function stored in context
+- added fetch product and select store context
+- added little transitions on mouse overs on about us page for about us full
+- redid sizing on about us page for an individual store
+- stopped fetch on detailedpage, aboutus in favor of selectstore function retreived from context
+- added random loading message on home page fetch with cool pulsing effect
+- added separate function for selecting stores to avoid fetch on each navigation
 - updated and fromatted contexts in app.jsx as well as updated getStores function to be stored in FetchStoresContext all over the application
 - jeffery got cart page in a nice column for future iterations
 - going with previous changes on filters... diego organized them and did their css

@@ -1,16 +1,48 @@
+.about-us-full * {
+    text-shadow: 0 0 10px rgba(255,255,255,.3);
+    transition: .3s;
+    margin: 10px;
+}
+
 .part-of-speech {
     
     font-style: italic;
-    font-size: 1.5rem;
 }
 
 .syllables-phonetic-container {
-    width: 20%;
+    width: fit-content;
     margin: auto;
     display: flex;
     justify-content: space-between;
 }
+.syllables-phonetic-container * {
+    margin: 0 10px;
+}
 
 .syllables {
     font-style: italic;
+}
+
+
+
+.syllables, .phonetic, .part-of-speech, .definition {
+    
+    font-size: 1.2rem;
+}
+.syllables:hover, .phonetic:hover, .part-of-speech:hover, .definition:hover {
+    font-size: 1.4rem;
+    
+}
+
+.title{
+    font-size: 2rem;
+    
+}
+.title:hover{
+    font-size: 2.5rem;
+    
+}
+
+.title:hover, .syllables:hover, .phonetic:hover, .part-of-speech:hover, .definition:hover {
+    text-shadow: 0 0 10px rgba(255,255,255,1);
 }

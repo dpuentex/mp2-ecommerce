@@ -22,3 +22,20 @@
     text-shadow: 0 0 10px white;
     transition: .2s
 }
+/* pulse loading */
+.loading {
+    font-size: 1.5rem;
+    animation: pulse .2s ease infinite
+}
+
+@keyframes pulse {
+    0% {
+        text-shadow: 0 0 10px rgba(255,0,0,1);
+    }
+    50% {
+        text-shadow: 0 0 10px rgba(255,255,255,1);
+    }
+    100% {
+        text-shadow: 0 0 10px rgba(255,255,255,0);
+    }
+}

@@ -1,6 +1,6 @@
 import { useContext,useEffect } from "react"
 import { useNavigate } from "react-router-dom"
-import { StoreContext, FetchStoresContext, CategoryContext } from "../ContextList"
+import { StoreContext, FetchStoresContext, CategoryContext, FetchProductsContext } from "../ContextList"
 import "../assets/css/detailedpage.css"
 
 export default function DetailedPage() {
@@ -11,10 +11,9 @@ export default function DetailedPage() {
     let storeIndex = storeData[2]
     
     useEffect(() => {
-        
-        fetchStores(storeData[0])
+        // fetchStores(storeData[0])
     }, [])
-    console.log(storeData)
+    // console.log(storeData)
 
     function toBase64(arr) {
         //arr = new Uint8Array(arr) if it's an ArrayBuffer
@@ -22,7 +21,7 @@ export default function DetailedPage() {
            arr.reduce((data, byte) => data + String.fromCharCode(byte), '')
         );
      }
-     console.log(storeData[1][storeIndex].image["data"])
+    //  console.log(storeData[1][storeIndex].image["data"])
      //`data:image/png;base64,${toBase64( selected[0].image2.data)}` from stack overflow
     return (
         <div className="detailed-page-container">

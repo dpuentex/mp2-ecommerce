@@ -1,6 +1,8 @@
 .category-button-container {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
+    width: 60vw;
+    margin: auto;
 }
 
 .categories-button.glow-squish-button {
@@ -13,8 +15,9 @@
 
 .store-image-container {
     margin:auto;
-    height: 50vh;
-    width: 80vw;
+    height: fit-content;
+    width: fit-content;
+    max-width: 60vw;
     border-radius: 30px;
     overflow:hidden;
     /* filter */
@@ -27,14 +30,18 @@
 }
 
 .store-image {
-    height: 50vh;
-    object-fit: cover;
+    
     transition:.3s;
     /* center */
     display: block;
     margin-left: auto;
-    margin-right: auto
-     
+    margin-right: auto;
+    translate: -50% 0%;
+    position: relative;
+    left: 50%;
+    border-radius: 30px;
+    max-width: 100%;
+    height: auto;
 }
 
 .store-image:hover{

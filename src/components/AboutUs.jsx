@@ -15,7 +15,7 @@ const fetchData = useContext(FetchStoresContext);
     console.log(storeData)
     useEffect(() => {
         
-        fetchData(storeData[0])
+        // fetchData(storeData[0])
         
     }, []);
     

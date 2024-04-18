@@ -40,7 +40,7 @@ module.exports = {
         store_name: 'Clothing "B" Us',
         icon: null,
         image: null,
-        about_us: "If it's one thing we got it's another thing. Just kidding, it's electronics.",
+        about_us: "We sew for life. We make stuff. We sell stuff.",
         primary_categories: [
           "American",
           "African",

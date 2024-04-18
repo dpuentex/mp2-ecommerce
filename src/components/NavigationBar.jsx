@@ -4,13 +4,15 @@ import { BrowserRouter as Router, Link, Routes, Route } from "react-router-dom";
 import CartPanel from "./CartPanel";
 import "../assets/css/navigationbar.css";
 
-import { CartContext, StoreContext, CategoryContext, FetchStoresContext } from "../ContextList";
+import { CartContext, StoreContext, CategoryContext, FetchStoresContext, SelectStoreContext } from "../ContextList";
 export default function NavigationBar() {
 
   const fetchStores = useContext(FetchStoresContext)
   const [activeCategory, setActiveCategory] = useContext(CategoryContext)
   const [cartContents, setCartContents] = useContext(CartContext);
   const [storeData, setStoreData] = useContext(StoreContext);
+  const setStore = useContext(SelectStoreContext)
+
 
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isBrowseOpen, setIsBrowseOpen] = useState(false)
@@ -31,14 +33,14 @@ export default function NavigationBar() {
   return (
     <nav className="navbar">
       <ul >
-        <li onMouseEnter={TogglePickStoreDropdown} onMouseLeave={TogglePickStoreDropdown} onClick={() => fetchStores(-1)}>
+        <li onMouseEnter={TogglePickStoreDropdown} onMouseLeave={TogglePickStoreDropdown} onClick={(e) => {setStore(-1); e.stopPropagation()}}>
           <Link to={"/"}>PICK A STORE</Link>
         {isPickStoresOpen  &&
               <ul className="nav-dropdown-menu">
                 {storeData[1] &&
                 storeData[1].map((store, index) => {
-                  console.log(store);
-                  return <li key={index} onClick={(e)=>{fetchStores(store.store_id); e.stopPropagation()}}><Link to={'/about-us/'}>{store.store_name}</Link></li>
+                  // console.log(store);
+                  return <li key={index} onClick={(e)=>{setStore(store.store_id); e.stopPropagation()}}><Link to={'/about-us/'}>{store.store_name}</Link></li>
                 })
                 }
                 
