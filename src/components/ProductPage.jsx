@@ -5,14 +5,14 @@ import Checkbox from "./Checkbox";
 import ProductCard from "./ProductCard";
 import { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { CartContext, StoreContext, CategoryContext } from "../ContextList";
+import { CartItemDataContext, StoreContext, CategoryContext } from "../ContextList";
 import { createContext } from "react";
 
 export default function BrowsePage() {
   let [data, setData] = React.useState({});
   let [details, setDetails] = React.useState([]);
   const [storeData, useStoreData] = useContext(StoreContext);
-  const [useCartContext, setUseCartContext] = useContext(CartContext);
+  const [cartItemData, setCartItemData] = useContext(CartItemDataContext);
   const [useCategoryContext, setUseCategoryContext] =
     useContext(CategoryContext);
     const navigate = useNavigate();
@@ -47,13 +47,13 @@ export default function BrowsePage() {
   // returns object with keys as detail keys and values as an array of collected values
   function calculateDetails(data) {
     let details = [];
-    console.log(data.length);
+    // console.log(data.length);
 
     for (let productCount = 0; productCount < data.length; productCount++) {
       // for each product
       let detailList = data[productCount].details_object;
       let detailListKeys = Object.keys(detailList);
-      console.log(detailListKeys);
+      // console.log(detailListKeys);
 
       for (
         let detailCount = 0;
@@ -61,8 +61,8 @@ export default function BrowsePage() {
         detailCount++
       ) {
         // for each detail
-        console.log(detailList);
-        console.log(detailListKeys[detailCount]);
+        // console.log(detailList);
+        // console.log(detailListKeys[detailCount]);
 
         let detailKey = detailListKeys[detailCount];
         let detailValue = detailList[detailListKeys[detailCount]];
@@ -83,11 +83,11 @@ export default function BrowsePage() {
   }, [useCategoryContext]);
 
   function consoleUseContext() {
-    console.log(useCartContext);
+    console.log(cartItemData);
   }
   function clearLocalStorage() {
     localStorage.clear();
-    setUseCartContext([]);
+    setCartItemData([[], []]);
   }
 
   function consoleLocalStorage() {

@@ -6,7 +6,7 @@ import { CategoryContext } from "../ContextList";
 export default function Checkbox(props) {
     const [category, setCategory] = useContext(CategoryContext)
     const { value } = props
-    console.log(value)
+    // console.log(value)
 
     function handleCheckboxChange() {
         if (category === "All") {

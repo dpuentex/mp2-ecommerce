@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { StoreContext, FetchStoresContext } from "../ContextList";
+import { StoreContext, FetchStoresContext, SelectStoreContext } from "../ContextList";
 
 import "../assets/css/homepage.css";
 import { Link } from "react-router-dom";
@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 export default function ListStoresPage() {
   const [storeData, setStoreData] = useContext(StoreContext);
   const fetchStores = useContext(FetchStoresContext);
+  const setStore = useContext(SelectStoreContext);
 
   // useEffect( () => {
   //    fetchStores(storeData[0])
@@ -20,7 +21,7 @@ export default function ListStoresPage() {
           <h1
             key={index}
             store={store}
-            onClick={() => fetchStores(store.store_id)}
+            onClick={() => setStore(store.store_id)}
           ><Link to="/about-us">{store.store_name}</Link>
             
           </h1>

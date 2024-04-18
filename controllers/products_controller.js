@@ -14,7 +14,7 @@ const { Op } = require('sequelize')
 
 
 //backend response to GET all and serve json on /products/data
-products.get('/data', async (req,res) =>{
+products.get('/all', async (req,res) =>{
     let productsData = await Product.findAll() // Product is the sequelize model.. findAll is the method
     res.send(JSON.stringify(productsData)) // running a fetch here will get us our data back as json
 })
@@ -97,8 +97,8 @@ products.get('/productbyarray/:array', async (req,res) =>{
     res.send(JSON.stringify(productsData))
 })
 
-//backend response to GET single and serve json on /products/:product_id
-products.get('/:id', async (req,res) =>{
+//backend response to GET single and serve json on /products/id/:product_id
+products.get('/id/:id', async (req,res) =>{
     let productData = await Product.findByPk(req.params.id)
     res.send(JSON.stringify(productData))
 })

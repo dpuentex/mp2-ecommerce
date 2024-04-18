@@ -76,3 +76,15 @@ a:hover{
     display: flex;
     flex-direction: column;
 }
+
+
+.displayed {
+    opacity: 1;
+    transition: 0.5s ease;
+}
+
+.hidden {
+    opacity: 0;
+    height: 0;
+    transition: 0.5s ease;
+}

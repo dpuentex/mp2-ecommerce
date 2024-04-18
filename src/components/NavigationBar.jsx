@@ -4,12 +4,12 @@ import { BrowserRouter as Router, Link, Routes, Route } from "react-router-dom";
 import CartPanel from "./CartPanel";
 import "../assets/css/navigationbar.css";
 
-import { CartContext, StoreContext, CategoryContext, FetchStoresContext, SelectStoreContext } from "../ContextList";
+import { CartItemDataContext, StoreContext, CategoryContext, FetchStoresContext, SelectStoreContext } from "../ContextList";
 export default function NavigationBar() {
 
   const fetchStores = useContext(FetchStoresContext)
   const [activeCategory, setActiveCategory] = useContext(CategoryContext)
-  const [cartContents, setCartContents] = useContext(CartContext);
+  const [cartItemData, setCartItemData] = useContext(CartItemDataContext);
   const [storeData, setStoreData] = useContext(StoreContext);
   const setStore = useContext(SelectStoreContext)
 
@@ -22,9 +22,9 @@ export default function NavigationBar() {
   const toggleBrowseDropDown = ()=>{
     setIsBrowseOpen(!isBrowseOpen)
  };
-  const toggleCartDropdown = () => {
-    setIsCartOpen(!isCartOpen);
-  };
+  // const toggleCartDropdown = () => {
+  //   setIsCartOpen(!isCartOpen);
+  // };
 
   const TogglePickStoreDropdown = () => {
     setIsPickStoresOpen(!isPickStoresOpen);
@@ -76,13 +76,11 @@ export default function NavigationBar() {
         </li>
         <li
           className="nav-cart"
-          onMouseEnter={toggleCartDropdown}
-          onMouseLeave={toggleCartDropdown}
         >
           <Link to="/cart" className="nav-cart-link">
             CART🛒({localStorage.getItem('CartLocalStorage') ? localStorage.getItem('CartLocalStorage').split(",").length : 0})
           </Link>
-          {isCartOpen && <CartPanel />}
+           {<CartPanel />}
         </li>
       </ul>
     </nav>

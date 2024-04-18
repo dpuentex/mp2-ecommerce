@@ -76,7 +76,9 @@ A beautiful ecommerce website with basic functionality.
 - optional navbar items 
 
 # Changelog / Completed
-- 
+- updated all files to use CartItemDataContext instead of CartContext and addressed all the horrible consequences of that. Within this update, the cart and cart panel were updated to no longer make fetches on each render and instead base their data on the context which was set by a single initial fetch of products. Not dissimilar at all to fetching the store
+- updated backend to include /products/all route and updated front end to fetch on that path
+- changed width to fit content of aboutusfull.css children to fix odd mouse-over behavior
 - updated about us in seeder for store 3 to be different than store 2
 - separated store selection logic out into previously mentioned other function stored in context
 - added fetch product and select store context

@@ -1,23 +1,23 @@
 import { useContext, useState } from "react"
 
-import { CartContext, StoreContext, FetchStoresContext} from "../ContextList"
+import { CartItemDataContext, StoreContext, FetchStoresContext} from "../ContextList"
 
 export default function ProductCard({ product, bestseller}) {
-    const useCartContext = useContext(CartContext)
+    const [cartItemData, setCartItemData] = useContext(CartItemDataContext)
     const [storeData, setStoreData] = useContext(StoreContext)
     const fetchStores = useContext(FetchStoresContext)
     function addToCart(event) {
         // console.log(event)
         // console.log(event.target)
-        console.log("You clicked " + event.target.getAttribute('product_id'))
+        // console.log("You clicked " + event.target.getAttribute('product_id'))
         if (!localStorage.getItem('CartLocalStorage')) {
             localStorage.setItem('CartLocalStorage', [event.target.getAttribute('product_id')])
         } else if (localStorage.getItem('CartLocalStorage').length > 0) {
             localStorage.setItem('CartLocalStorage', [localStorage.getItem('CartLocalStorage'), event.target.getAttribute('product_id')])
         }
         
-        useCartContext[1](localStorage.getItem('CartLocalStorage').split(","))
-        console.log(useCartContext[0])
+        cartItemData[0](localStorage.getItem('CartLocalStorage').split(","))
+        // console.log(useCartContext[0])
         console.log(localStorage.getItem('CartLocalStorage').split(","))
     }
     function removeFromCart(event) {
@@ -26,7 +26,7 @@ export default function ProductCard({ product, bestseller}) {
                 let oldcart = localStorage.getItem('CartLocalStorage').split(",")
                 oldcart.splice(localStorage.getItem('CartLocalStorage').split(",").indexOf(event.target.getAttribute('product_id')), 1)
                 localStorage.setItem('CartLocalStorage', oldcart)
-                useCartContext[1](localStorage.getItem('CartLocalStorage').split(","))
+                cartItemData[0](localStorage.getItem('CartLocalStorage').split(","))
             }
             
             console.log(localStorage.getItem('CartLocalStorage').split(","))
