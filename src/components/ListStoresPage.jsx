@@ -20,7 +20,7 @@ export default function ListStoresPage() {
           <h1
             key={index}
             store={store}
-            onClick={() => setStoreData([store.store_id, storeData[1]])}
+            onClick={() => fetchStores(store.store_id)}
           ><Link to="/about-us">{store.store_name}</Link>
             
           </h1>

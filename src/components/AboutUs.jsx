@@ -17,7 +17,7 @@ const fetchData = useContext(FetchStoresContext);
         
         fetchData(storeData[0])
         
-    }, [storeData[0]]);
+    }, []);
     
     return (
         <div className="home-page-container">

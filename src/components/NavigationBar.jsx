@@ -4,9 +4,10 @@ import { BrowserRouter as Router, Link, Routes, Route } from "react-router-dom";
 import CartPanel from "./CartPanel";
 import "../assets/css/navigationbar.css";
 
-import { CartContext, StoreContext, CategoryContext } from "../ContextList";
+import { CartContext, StoreContext, CategoryContext, FetchStoresContext } from "../ContextList";
 export default function NavigationBar() {
 
+  const fetchStores = useContext(FetchStoresContext)
   const [activeCategory, setActiveCategory] = useContext(CategoryContext)
   const [cartContents, setCartContents] = useContext(CartContext);
   const [storeData, setStoreData] = useContext(StoreContext);
@@ -30,16 +31,16 @@ export default function NavigationBar() {
   return (
     <nav className="navbar">
       <ul >
-        <li onMouseEnter={TogglePickStoreDropdown} onMouseLeave={TogglePickStoreDropdown} onClick={() => setStoreData([-1, storeData[1]])}>
-          { storeData[0] === -1
-          ? <Link to={"/"}>PICK A STORE</Link>
-        : <Link to = {"/"} >HOME</Link> }
-        {isPickStoresOpen && storeData[0] == -1 &&
+        <li onMouseEnter={TogglePickStoreDropdown} onMouseLeave={TogglePickStoreDropdown} onClick={() => fetchStores(-1)}>
+          <Link to={"/"}>PICK A STORE</Link>
+        {isPickStoresOpen  &&
               <ul className="nav-dropdown-menu">
-                {storeData[1].map((store, index) => {
+                {storeData[1] &&
+                storeData[1].map((store, index) => {
                   console.log(store);
-                  return <li key={index} onClick={(e)=>{setStoreData([store.store_id, store]); e.stopPropagation()}}><Link to={'/about-us/'}>{store.store_name}</Link></li>
-                })}
+                  return <li key={index} onClick={(e)=>{fetchStores(store.store_id); e.stopPropagation()}}><Link to={'/about-us/'}>{store.store_name}</Link></li>
+                })
+                }
                 
                 
               </ul>
@@ -53,7 +54,7 @@ export default function NavigationBar() {
            
             {isBrowseOpen && 
               <ul className="nav-dropdown-menu">
-                {storeData[1].primary_categories.map((category, index) => {
+                {storeData[1][storeData[2]].primary_categories.map((category, index) => {
                   console.log(category);
                   return <li key={index} onClick={(e)=>{setActiveCategory(category); e.stopPropagation()}}><Link to={'/products/'}>{category}</Link></li>
                 })}
@@ -69,7 +70,7 @@ export default function NavigationBar() {
           <Link to="/best-sellers">BEST SELLERS</Link>
         </li>
         <li id="about-us">
-          <Link to="/about-us/">ABOUT US</Link>
+          <Link to="/about-us/">{storeData[0] !== -1 ? storeData[1][storeData[2]].store_name : "[Commerce]"}</Link>
         </li>
         <li
           className="nav-cart"

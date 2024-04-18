@@ -13,7 +13,7 @@ export default function Home() {
   useEffect( () => {
     // if store selected in storeData[0] then fetch that store
      fetchStores(storeData[0])
-  }, [storeData[0]]);
+  }, []);
   
   return (<div className="home-page-container">
     {storeData[0] === -1 ? ( // check if store not yet selected
