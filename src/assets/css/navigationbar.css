@@ -60,7 +60,7 @@ a:hover{
 
 
 
-.nav-dropdown-menu{
+/* .nav-dropdown-menu{
     background-color: rgba(120,100,255,0.3);
     
     height: auto;
@@ -69,7 +69,7 @@ a:hover{
     top: 38px;
     flex-direction: column; 
     list-style-type:none;
-}
+} */
 
 
  #about-us{
@@ -78,13 +78,40 @@ a:hover{
 }
 
 
-.displayed {
-    opacity: 1;
-    transition: 0.5s ease;
-}
 
-.hidden {
+
+.nav-dropdown-menu{
+    background-color: rgba(120,100,255,0.3);
+    
+    /* height: auto; */
+    /* display: flex; */
+    position: absolute;
+    top: 38px;
+    /* flex-direction: column;  */
+    /* list-style-type:none; */
+}
+.nav-dropdown-menu {
+    position: fixed;
+    z-index: -1;
+    top: 38px;
+    overflow: hidden;
+    position:absolute;
+    width: 200px;
+    background-color: rgba(120,100,255,0.3);
+    /* box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.4); */
+    border-radius: 0 0 20px 20px;
+    padding: 10px;
+    backdrop-filter: blur(15px);
+    display:flex;
+    flex-direction: column;
+    transition: 1s;
     opacity: 0;
-    height: 0;
-    transition: 0.5s ease;
+    visibility:hidden;
+    max-height: 0vh;
+  }
+  .nav-pick-a-store:hover .nav-dropdown-menu,.nav-categories:hover  .nav-dropdown-menu{
+    transition: .2s;
+    opacity: 1;
+    visibility: visible;
+    max-height: 20vh;
 }
