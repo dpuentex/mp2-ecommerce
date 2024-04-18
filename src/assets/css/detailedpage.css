@@ -10,3 +10,34 @@
     margin: 10px;
     float: none;
 }
+
+.store-image-container {
+    margin:auto;
+    height: 50vh;
+    width: 80vw;
+    border-radius: 30px;
+    overflow:hidden;
+    /* filter */
+    filter: grayscale(50%);
+}
+
+.store-image-container:hover {
+    
+    filter: grayscale(0%);
+}
+
+.store-image {
+    height: 50vh;
+    object-fit: cover;
+    transition:.3s;
+    /* center */
+    display: block;
+    margin-left: auto;
+    margin-right: auto
+     
+}
+
+.store-image:hover{
+    transform: scale(1.1);
+    transition:.3s;
+}

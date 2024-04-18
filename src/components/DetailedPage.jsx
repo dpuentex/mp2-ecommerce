@@ -15,13 +15,22 @@ export default function DetailedPage() {
         fetchStores(storeData[0])
     }, [])
     console.log(storeData)
+
+    function toBase64(arr) {
+        //arr = new Uint8Array(arr) if it's an ArrayBuffer
+        return btoa(
+           arr.reduce((data, byte) => data + String.fromCharCode(byte), '')
+        );
+     }
+     console.log(storeData[1][storeIndex].image["data"])
+     //`data:image/png;base64,${toBase64( selected[0].image2.data)}` from stack overflow
     return (
         <div className="detailed-page-container">
 
             <h2>{storeData[1][storeIndex].store_name}</h2>
             <p>{storeData[1][storeIndex].about_us}</p>
-            {storeData[1][storeIndex].images ? (                // check if images exist in storeData
-                <p>IMAGES.. There would be a map image function here or something..</p>
+            {storeData[1][storeIndex].image ? (                // check if images exist in storeData
+                <div className="store-image-container"><img src={`data:image/png;base64,${toBase64(storeData[1][storeIndex].image["data"])}`} alt="" className="store-image" /></div>
             ) : null}
             <div className="category-button-container">
                 
