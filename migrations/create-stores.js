@@ -18,8 +18,8 @@ module.exports = {
         type: Sequelize.BLOB,
       },
 
-      images: {
-        type: Sequelize.ARRAY(Sequelize.BLOB),
+      image: {
+        type: Sequelize.BLOB,
       },
       about_us: {
         type: Sequelize.TEXT,

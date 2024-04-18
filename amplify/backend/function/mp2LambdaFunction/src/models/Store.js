@@ -26,8 +26,8 @@ module.exports = (sequelize, DataTypes) => {
     icon: {
       type: DataTypes.BLOB
     },
-    images: {
-      type: DataTypes.ARRAY(DataTypes.BLOB)
+    image: {
+      type: DataTypes.BLOB
     },
     
     about_us: {
