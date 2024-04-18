@@ -57,6 +57,8 @@ A beautiful ecommerce website with basic functionality.
 
 ### cart page
 - display items in cart
+- remove all of one item from cart
+- remove all items from cart (require 2x verification)
 
 ### item page
 - ratings 
@@ -69,6 +71,7 @@ A beautiful ecommerce website with basic functionality.
 - add style column to store and render different style from database depending on store 
 - glow in the back following mouse
 - implement bcrypt
+- maxing out stock moves cart button to left of given product panel
 #### nav bar
 - make animation for navbar
 - improve favicon.ico

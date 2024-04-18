@@ -3,15 +3,13 @@
 }
 
 
-.cart-item-container {
-  display: flex;
-  flex-direction: column; 
-}
-
 .cart-item-container{
     border: 1px;
     padding: 10px;
     margin-bottom: 10px;
+    width: 50%;
+    display:grid;
+    grid-template-columns: repeat(2, 1fr);
 }
 
 
@@ -32,3 +30,9 @@
 .cart-item-div p {
     margin-bottom: 0;
   }
+
+  @media screen and (max-width: 1000px) {
+    .cart-item-container {
+      grid-template-columns: repeat(1, 1fr);
+  }
+}
