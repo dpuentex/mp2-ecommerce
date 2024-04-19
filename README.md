@@ -26,41 +26,30 @@ A beautiful ecommerce website with basic functionality.
 
 ## Dev Notes
 - config folder containing sequelize config has not been included in git ignore purposely for now.
-## Ultra priority:
-- Cart model
-- Hosting
-- cart controller
-- better search api
-- best seller page when loading with store selected does not show store names and doesnt set data properly see console app.jsx:38
+## Todo:
+- best seller page
+- - custom card theme for each store?
+- cart page
+- - ability to remove all items from cart
+- - all item subtotal
+- - show source store name in cart
+- - custom card theme for each store?
+- home page
+- - preview best sellers?
+- cart panel
+- - ability to remove items from cart in panel?
 
 
-### [Models](https://docs.google.com/spreadsheets/d/1QfpH7j5gNQoXloyshFjNvAq97LzJzVPM_XfwJFtSe18/edit#gid=0) for SQL database
+### [Model Sheets](https://docs.google.com/spreadsheets/d/1QfpH7j5gNQoXloyshFjNvAq97LzJzVPM_XfwJFtSe18/edit#gid=0) for SQL database
 - spreadsheet
 - migrations
 - models
 
-### All Pages
-- nav bar 
 
-### home page
-
-- search component (with submit) 
-- hot items component 
-
-### store page
+### stretch
+- custom page for each item
 - avg rate for each item 
 - image for item 
-
-### cart page
-- display items in cart
-- remove all of one item from cart
-- remove all items from cart (require 2x verification)
-
-### item page
-- ratings 
-- avg ratings 
-- image collection 
-
 
 
 ## Low priority:
@@ -68,13 +57,11 @@ A beautiful ecommerce website with basic functionality.
 - add style column to store and render different style from database depending on store 
 - glow in the back following mouse
 - implement bcrypt
-
-#### nav bar
 - blur won't apply to dropdowns 
 - improve favicon.ico
-- optional navbar items 
 
 # Changelog / Completed
+- updated readme
 - removed test buttons
 - updated seeder
 - changed store model and product model in backend
