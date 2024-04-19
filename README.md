@@ -75,6 +75,7 @@ A beautiful ecommerce website with basic functionality.
 - optional navbar items 
 
 # Changelog / Completed
+- fixed filters not updating results AND the soft loop that caused
 - fixed filters not updating results
 - refined search / filter functionality 
 - removed fetch product function from product page in favor of fetching once on page load
