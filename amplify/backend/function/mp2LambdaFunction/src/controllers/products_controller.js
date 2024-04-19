@@ -19,32 +19,7 @@ products.get('/all', async (req,res) =>{
     res.send(JSON.stringify(productsData)) // running a fetch here will get us our data back as json
 })
 
-//backend response to GET products by store and serve json on /products/store/:store
-// IE
-// http://127.0.0.1:3000/products/store/3
-
-products.get('/store/:storeid', async (req,res) =>{ // req is the request address, req.params is what is after a :
-    let storeData = await Product.findAll({ // findAll method again.. but with a parameter
-        where: { // where there is a store_id that matches the :storeid parameter in the request
-            store_id: req.params.storeid
-        }
-    })
-    res.status(200).json(storeData) // send result 
-})
-
-//backend response to GET products by category and serve json on /products/category/:category
-products.get('/category/:category', async (req,res) =>{
-    console.log(req.query.length)
-    let categoryData = await Product.findAll({
-        where: {
-            category: { // % is wildcard then the category and then the %
-                [Op.like]: '%' + req.params.category + '%' // utilize helper method to see for somewhat matches
-            }
-        }
-    })
-    res.status(200).json(categoryData)
-})
-
+ 
 //backend response to GET best sellers and serve json on /products/bestsellers
 products.get('/bestsellers/', async (req,res) =>{ 
     let bestSellersData = await Product.findAll({
@@ -57,45 +32,7 @@ products.get('/bestsellers/', async (req,res) =>{
     // res.send(bestSellersData)
 })
 
-//backend response to get all that match array of ids and serve on /products/productbyarray/:array
-//accepts string of numbers seperated by ,
 
-// ie
-// http://127.0.0.1:3000/products/productbyarray/1,2,3
-products.get('/productbyarray/:array', async (req,res) =>{
-    console.log(req.params.array)
-    if (req.params.array == null) { // check if param null and then stop
-        res.status(400).send('Missing array')
-        return 
-    }
-
-    array = req.params.array.split(",") // generate array splitting by each comma
-    console.log(array)
-
-  
-    // adds items to array if they aren't already
-    let arrayWithNoRepeats = []
-    for(let i = 0; i < array.length; i++){
-        if(!arrayWithNoRepeats.includes(array[i])){
-            arrayWithNoRepeats.push(array[i])
-        }
-    }
-    // let arrayWithNoRepeats = array.filter((id, index) => {!array.includes(id)})
-    
-    console.log(arrayWithNoRepeats)
-
-
-    let productsData = await Product.findAll({
-        where: {
-            product_id: {
-                [Op.in]: arrayWithNoRepeats
-
-            }
-        }
-    })
-    console.log(productsData)
-    res.send(JSON.stringify(productsData))
-})
 
 //backend response to GET single and serve json on /products/id/:product_id
 products.get('/id/:id', async (req,res) =>{
@@ -103,19 +40,6 @@ products.get('/id/:id', async (req,res) =>{
     res.send(JSON.stringify(productData))
 })
 
-
-//backend response to GET to search and serve json on /products/search/:product_nameQuery
-products.get('/search/:query', async (req,res) =>{
-    console.log(req.query.length)
-    let searchData = await Product.findAll({
-        where: {
-            product_name: {
-                [Op.like]: '%' + req.params.query + '%'
-            }
-        }
-    })
-    res.status(200).json(searchData)
-})
 
 
 

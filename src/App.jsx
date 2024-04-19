@@ -18,7 +18,7 @@ import BestSellers from "./components/BestSellers";
 import {
   CartItemDataContext,
   StoreContext,
-  CategoryContext,
+  DetectedCategoriesContext,
   FetchStoresContext,
   FetchProductsContext,
   SelectStoreContext,
@@ -32,7 +32,7 @@ function App() {
   // search section
   //category: activeCategory, searchTerm: "", minPrice: 0, maxPrice: 0, detailFilters: {}}
   const [searchTerm, setSearchTerm] = useState("");
-  const [category, setCategory] = useState("All");
+  const [category, setCategory] = useState("");
   const [minPrice, setMinPrice] = useState(0);
   const [maxPrice, setMaxPrice] = useState(0);
   const [detailFilters, setDetailFilters] = useState({});
@@ -41,7 +41,7 @@ function App() {
   // [store_id, store_table] -1 for none selected
   const [cartItemData, setCartItemData] = useState([]);
   const [storeData, setStoreData] = useState([-1, [], -1]);
-  const [activeCategory, setActiveCategory] = useState("All");
+  const [detectedCategories, setDetectedCategories] = useState("All");
 
   const [productData, setProductData] = useState([]);
   const navigate = useNavigate();
@@ -52,6 +52,15 @@ function App() {
     getStores();
     getProducts();
   }, []);
+
+  // once productData loads, calculate and set detectedCategories
+  useEffect(() => {
+    setDetectedCategories(calculateCategories(productData))
+  }, [productData]);
+
+  useEffect(() => {
+    console.log(detectedCategories)
+  }, [detectedCategories]);
 
   // setCartContents(localStorage.getItem('CartLocalStorage').split(","))
   async function getStores() {
@@ -120,6 +129,18 @@ function App() {
       setCartItemData([[], []]);}
   }
 
+  function calculateCategories(productDataParam) {
+    console.log(productDataParam)
+    let categories = {};
+    productDataParam.forEach((product) => {
+      if (!categories[product.store_id]?.includes(product.details_object.category)) {
+        if(!categories[product.store_id]) {categories[product.store_id] = []}
+        categories[product.store_id]?.push(product.details_object.category)
+      }
+    });
+    return categories;
+  }
+
   // <BrowserRouter/> hiding in main.jsx.. encases app.jsx Remember that.
   // <NavigationBar/> has <CartPanel/> in it.
   // Assigning values to Contexts and wrapping everything in them.
@@ -127,7 +148,7 @@ function App() {
   return (
     <CartItemDataContext.Provider value={[cartItemData, setCartItemData]}>
       <StoreContext.Provider value={[storeData, setStoreData]}>
-        <CategoryContext.Provider value={[activeCategory, setActiveCategory]}>
+        <DetectedCategoriesContext.Provider value={[detectedCategories, setDetectedCategories]}>
           <FetchStoresContext.Provider value={getStores}>
             <FetchProductsContext.Provider value={getProducts}>
               <SelectStoreContext.Provider value={setStore}>
@@ -173,7 +194,7 @@ function App() {
               </SelectStoreContext.Provider>
             </FetchProductsContext.Provider>
           </FetchStoresContext.Provider>
-        </CategoryContext.Provider>
+        </DetectedCategoriesContext.Provider>
       </StoreContext.Provider>
     </CartItemDataContext.Provider>
   );

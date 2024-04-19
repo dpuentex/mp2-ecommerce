@@ -75,6 +75,9 @@ A beautiful ecommerce website with basic functionality.
 - optional navbar items 
 
 # Changelog / Completed
+- changed store model and product model in backend
+- renamed CategoryContext to DetectedCategoryContext and added logic to detect categories based on what items have instead of retrieving from storedata based on store table
+- added logic to require one of each category 
 - fixed filters not updating results AND the soft loop that caused
 - fixed filters not updating results
 - refined search / filter functionality 

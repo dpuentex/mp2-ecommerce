@@ -7,14 +7,12 @@ import "../assets/css/navigationbar.css";
 import {
   CartItemDataContext,
   StoreContext,
-  CategoryContext,
   FetchStoresContext,
   SelectStoreContext,
   SearchContext
 } from "../ContextList";
 export default function NavigationBar() {
   const fetchStores = useContext(FetchStoresContext);
-  const [activeCategory, setActiveCategory] = useContext(CategoryContext);
   const [cartItemData, setCartItemData] = useContext(CartItemDataContext);
   const [storeData, setStoreData] = useContext(StoreContext);
   const setStore = useContext(SelectStoreContext);
@@ -59,7 +57,7 @@ export default function NavigationBar() {
             }}
           >
             <Link to="/products/">ALL CATEGORIES</Link>
-            <ul className="nav-dropdown-menu">
+            {/* <ul className="nav-dropdown-menu">
               {storeData[1][storeData[2]].primary_categories.map(
                 (category, index) => {
                   // console.log(category);
@@ -77,7 +75,7 @@ export default function NavigationBar() {
                   );
                 }
               )}
-            </ul>
+            </ul> */}
           </li>
         )}
         <li>

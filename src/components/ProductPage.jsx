@@ -8,7 +8,6 @@ import { useNavigate } from "react-router-dom";
 import {
   CartItemDataContext,
   StoreContext,
-  CategoryContext,
   SearchContext,
   RetrieveCartItemData,
   ProductContext
@@ -21,8 +20,7 @@ export default function BrowsePage() {
   const [storeData, useStoreData] = useContext(StoreContext);
   const [productData, setProductData] = useContext(ProductContext);
   const [cartItemData, setCartItemData] = useContext(CartItemDataContext);
-  const [useCategoryContext, setUseCategoryContext] =
-    useContext(CategoryContext);
+  
   const navigate = useNavigate();
 
   const retrieveCartItemData = useContext(RetrieveCartItemData);
@@ -55,10 +53,17 @@ export default function BrowsePage() {
   console.log(Object.values(detailFilters))
   let noFilters = false
   if(((Object.values(detailFilters).every((value) => value = []))) || detailFilters == {}){noFilters = true}
- 
-    
+  let nonEmptyDetailFilterKeyMatches = {}
+
+  console.log(nonEmptyDetailFilterKeyMatches)
   // filtered products be declared first because using setstate doesnt doesnt alter value for immediate use.. state is for dom to "react" to, not normal js
   let localFilteredProducts = productData.filter((product) => {
+    nonEmptyDetailFilterKeyMatches = {}
+    Object.keys(detailFilters).forEach((key) => {
+      if (detailFilters[key]?.length > 0) {
+        nonEmptyDetailFilterKeyMatches[key] = false
+      }
+    })
     let filterMatch = false
     
     //   filterMatch = true
@@ -69,18 +74,27 @@ export default function BrowsePage() {
       if (detailFilters[key]?.length > 0) {
         // and if it does, check if any of the values in that key in the product details object are present in detailfilters with that key
         detailFilters[key].forEach((value) => {
+          // console.log(key)
           if (product.details_object[key].includes(value)) {
-            console.log(product.product_id + product.product_name + key + " " + value);
+            // console.log(product.product_id + product.product_name + key + " " + value);
+            nonEmptyDetailFilterKeyMatches[key] = true
             filterMatch = true
             noFilters = false
          } 
         })
         
       }
+
     })
     // if((filterMatch = false) && ((Object.values(detailFilters).every((value) => value = []))) || detailFilters == {}){filterMatch = true}
+    console.log(Object.values(nonEmptyDetailFilterKeyMatches))
+    let outputBoolean = 
+    stringMatch(product.product_name, searchTerm) && 
+    (filterMatch || noFilters) && 
+    (Object.values(nonEmptyDetailFilterKeyMatches).every((value) => value == true))
+
     return (
-      stringMatch(product.product_name, searchTerm) && (filterMatch || noFilters)
+      outputBoolean
     );
   })
   console.log(localFilteredProducts)
@@ -88,16 +102,10 @@ export default function BrowsePage() {
   console.log("useeffect triggered by accessSearch change or productData change. resulted filtered products below");
   console.log(filteredProducts);
   let newDetails = calculateDetails(localFilteredProducts);
-  console.log(newDetails, details);
-  
-  console.log(JSON.stringify(details) != JSON.stringify(newDetails));
-  
-  console.log(JSON.stringify(details),JSON.stringify(newDetails));
 
   // why do i have to do tostring
   if (JSON.stringify(details) != JSON.stringify(newDetails)){
-    console.log(details.toString() != newDetails.toString());
-    console.log(details.toString(), newDetails.toString());
+
     setDetails(newDetails)
     console.log("executing 93")
   }

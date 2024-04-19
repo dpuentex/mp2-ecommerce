@@ -1,6 +1,6 @@
 import "../assets/css/checkbox.css";
 import { useContext, useEffect, useRef } from "react";
-import { CategoryContext, SearchContext } from "../ContextList";
+import {  SearchContext } from "../ContextList";
 
 
 export default function Checkbox(props) {

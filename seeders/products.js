@@ -124,7 +124,7 @@ const descriptions = {
   
   const generateBooleanUnlikely = () => Math.random() >= 0.9
   //detail keys value pair generator
-  const generateDetailsObject = () => {
+  const generateDetailsObject = (storetype) => {
     let details = {};
     if (generateBoolean()) {
     details.color = selectRandom(["rainbow","black", "white", "red", "blue", "green", "yellow", "purple"]);
@@ -135,6 +135,7 @@ const descriptions = {
     if (generateBoolean()) {
     details.size = selectRandom(["tiny","small", "medium", "large","massive"]);
     }
+    details.category = selectRandom(categories[storetype]);
     return details
   }
 /** @type {import('sequelize-cli').Migration} */
@@ -153,8 +154,7 @@ module.exports = {
           price: randomPriceWithDollarsString(),
           description: selectRandom(descriptions.electronics),
           stock: generateStock(),
-          details_object: JSON.stringify(generateDetailsObject()),
-          category: selectRandom(categories.electronics),
+          details_object: JSON.stringify(generateDetailsObject("electronics")),
           store_id: 2,
           best_seller: generateBooleanUnlikely()
         },
@@ -165,8 +165,7 @@ module.exports = {
           price: randomPriceWithDollarsString(),
           description: selectRandom(descriptions.clothing),
           stock: generateStock(),
-          details_object: JSON.stringify(generateDetailsObject()),
-          category: selectRandom(categories.clothing),
+          details_object: JSON.stringify(generateDetailsObject("clothing")),
           store_id: 3,
           best_seller: generateBooleanUnlikely()
         },
@@ -177,8 +176,7 @@ module.exports = {
           price:  randomPriceWithDollarsString(),
           description: selectRandom(descriptions.knobs),
           stock: generateStock(),
-          details_object: JSON.stringify(generateDetailsObject()),
-          category: selectRandom(categories.knobs),
+          details_object: JSON.stringify(generateDetailsObject("knobs")),
           store_id: 1,
           best_seller: generateBooleanUnlikely()
         }

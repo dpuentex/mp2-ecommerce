@@ -1,18 +1,18 @@
 import { useContext,useEffect } from "react"
 import { useNavigate } from "react-router-dom"
-import { StoreContext, FetchStoresContext, CategoryContext, FetchProductsContext } from "../ContextList"
+import { StoreContext, FetchStoresContext, DetectedCategoriesContext, FetchProductsContext, ProductContext } from "../ContextList"
 import "../assets/css/detailedpage.css"
 
 export default function DetailedPage() {
     const [storeData, setStoreData] = useContext(StoreContext)
-    const [categoryContext, setCategoryContext] = useContext(CategoryContext)
+    const [detectedCategories, setDetectedCategories] = useContext(DetectedCategoriesContext)
+    const [productData, setProductData] = useContext(ProductContext)
     const fetchStores = useContext(FetchStoresContext)
     const navigate = useNavigate();
     let storeIndex = storeData[2]
+    console.log()
     
-    useEffect(() => {
-        // fetchStores(storeData[0])
-    }, [])
+
     // console.log(storeData)
 
     function toBase64(arr) {
@@ -21,8 +21,9 @@ export default function DetailedPage() {
            arr.reduce((data, byte) => data + String.fromCharCode(byte), '')
         );
      }
-    //  console.log(storeData[1][storeIndex].image["data"])
-     //`data:image/png;base64,${toBase64( selected[0].image2.data)}` from stack overflow
+    
+     console.log(detectedCategories[storeData[1][storeIndex].store_id])
+     console.log(storeData[1][storeIndex].store_id)
     return (
         <div className="detailed-page-container">
 
@@ -33,9 +34,17 @@ export default function DetailedPage() {
             ) : null}
             <div className="category-button-container">
                 
-                {storeData[1][storeIndex].primary_categories ? 
+                {/* {storeData[1][storeIndex].primary_categories ? 
                 // <h3>Categories</h3>
                 storeData[1][storeIndex].primary_categories.map((category, index) => 
+                <h3 className="glow-squish-button categories-button" key={index} onClick={() => {
+                    setCategoryContext(category)
+                    navigate('/products/')
+                }}>{category}</h3>)
+                : null} */}
+                {detectedCategories[storeData[1][storeIndex].store_id] ? 
+                // <h3>Categories</h3>
+                detectedCategories[storeData[1][storeIndex].store_id].map((category, index) => 
                 <h3 className="glow-squish-button categories-button" key={index} onClick={() => {
                     setCategoryContext(category)
                     navigate('/products/')

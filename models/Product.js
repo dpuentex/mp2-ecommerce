@@ -38,9 +38,6 @@ module.exports = (sequelize, DataTypes) => {
     details_object: {
       type: DataTypes.JSON
     },
-    category: {
-      type: DataTypes.STRING
-    },
     best_seller: {
       type: DataTypes.BOOLEAN
     },

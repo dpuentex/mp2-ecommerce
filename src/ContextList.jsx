@@ -5,7 +5,7 @@ export const CartItemDataContext = createContext([])
 
 export const StoreContext = createContext([])
 
-export const CategoryContext = createContext([])
+export const DetectedCategoriesContext = createContext([])
 
 export const FetchStoresContext = createContext([])
 
