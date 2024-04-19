@@ -94,11 +94,12 @@ export default function BrowsePage() {
 
     })
     // if((filterMatch = false) && ((Object.values(detailFilters).every((value) => value = []))) || detailFilters == {}){filterMatch = true}
-    console.log(Object.values(nonEmptyDetailFilterKeyMatches))
+    // console.log(Object.values(nonEmptyDetailFilterKeyMatches))
     let outputBoolean = 
     stringMatch(product.product_name, searchTerm) && 
     (filterMatch || noFilters) && 
-    (Object.values(nonEmptyDetailFilterKeyMatches).every((value) => value == true))
+    (Object.values(nonEmptyDetailFilterKeyMatches).every((value) => value == true)) &&
+    (product.store_id == storeData[0] || storeData[0] == -1)
 
     return (
       outputBoolean
@@ -106,15 +107,15 @@ export default function BrowsePage() {
   })
   console.log(localFilteredProducts)
   setFilteredProducts(localFilteredProducts);
-  console.log("useeffect triggered by accessSearch change or productData change. resulted filtered products below");
-  console.log(filteredProducts);
+  // console.log("useeffect triggered by accessSearch change or productData change. resulted filtered products below");
+  // console.log(filteredProducts);
   let newDetails = calculateDetails(localFilteredProducts);
 
   // why do i have to do tostring
   if (JSON.stringify(details) != JSON.stringify(newDetails)){
 
     setDetails(newDetails)
-    console.log("executing 93")
+    // console.log("executing 93")
   }
   // setDetails with new details means potentially new checkboxes.. now update search context
   Object.keys(detailFilters).forEach((key) => {
@@ -134,15 +135,6 @@ export default function BrowsePage() {
   updateSearch()
   }, [detailFilters, details, accessSearch, productData, null]);
 
-  // useEffect(() => {
-    
-  // console.log(updateCheckboxes)
-  // updateCheckboxes()
-  // }, [updateCheckboxes])
-  // useEffect(() => {
-  //   fetchProducts()
-  //   updateSearch()
-  // }, []);
 
   // // finish insane search section
  
