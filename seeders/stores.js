@@ -14,7 +14,7 @@ module.exports = {
         store_name: 'Door Knobs "N"Locks',
         icon: Buffer.from(fs.readFileSync(path.resolve(__dirname, './gear-no-attribution.ico'))),
         image: Buffer.from(fs.readFileSync(path.resolve(__dirname, './harrison-knob.jpg'))),
-        about_us: 'Founded in 1994 we have been selling random stuff for over 30 years.',
+        about_us: "Founded in 1994 we have been selling random stuff for over 30 years. We're proud to be the only ones who store a photo in our database. ",
         primary_categories: [
           "Straight",
           "Crooked",

@@ -181,7 +181,7 @@ export default function BrowsePage() {
 
   return (
     <>
-      <div className="button-test-div">
+      {/* <div className="button-test-div">
         <button
           className="glow-squish-button dev-button"
           onClick={() => console.log("this used to be fetch products")}
@@ -216,7 +216,7 @@ export default function BrowsePage() {
         >
           console search access details
         </button>
-      </div>
+      </div> */}
       <div className="search-container">
         <input className="search-input" type="text" onChange={(e) => {setSearchTerm(e.target.value); console.log(e.target.value)}}/>
         <div className="filter-container">
