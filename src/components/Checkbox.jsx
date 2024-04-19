@@ -1,27 +1,83 @@
 import "../assets/css/checkbox.css";
-import { useContext } from "react";
-import { CategoryContext } from "../ContextList";
+import { useContext, useEffect, useRef } from "react";
+import { CategoryContext, SearchContext } from "../ContextList";
 
 
 export default function Checkbox(props) {
-    const [category, setCategory] = useContext(CategoryContext)
-    const { value } = props
-    // console.log(value)
+  const elementRef=useRef(null)
 
-    function handleCheckboxChange() {
-        if (category === "All") {
-        } else if (category === value) {
-        } else {
-        }
+  const {
+    accessSearch: { 
+      category, 
+      searchTerm, 
+      minPrice, 
+      maxPrice, 
+      detailFilters },
+    setSearch: {
+      setCategory,
+      setSearchTerm,
+      setMinPrice,
+      setMaxPrice,
+      setDetailFilters,
+    },
+  } = useContext(SearchContext);
+
+    const {detailKey, detailValue} = props
+
+    let detailPair = {[detailKey]:detailValue}
+
+    function handleCheckboxChange(detailKey, detailValue, checked) {
+      console.log(detailKey,detailValue,checked)
+      console.log(detailFilters)
+      if (checked) {
+        let newDetailCollection = detailFilters
+        if (!newDetailCollection[detailKey]){newDetailCollection[detailKey] = []}
+        console.log(newDetailCollection[detailKey])
+        newDetailCollection[detailKey].push(detailValue)
+        console.log(newDetailCollection[detailKey])
+        setDetailFilters(newDetailCollection)
+        // setDetailFilters(newDetailCollection)
+      } else {
+        let newDetailCollection = detailFilters
+        if (!newDetailCollection[detailKey]){newDetailCollection[detailKey] = []}
+        console.log(newDetailCollection[detailKey])
+        newDetailCollection[detailKey].splice(newDetailCollection[detailKey].indexOf(detailValue), 1)
+        console.log(newDetailCollection[detailKey])
+        setDetailFilters(newDetailCollection)
+        // let preRemovalTest = {...detailFilters}[detailKey]
+        // console.log({...detailFilters}[detailKey])
+        // setDetailFilters({...detailFilters}[detailKey] = detailValue)
+      }
+      
+        console.log(detailFilters)
     }
+
+
+    // useEffect(() => {
+    //   console.log(elementRef.current)
+    //   return () => {
+    //     if (!elementRef.current?.checked) {
+    //       console.log(elementRef, "not found")
+    //       handleCheckboxChange(detailKey, detailValue, false)
+    //     }else{console.log("still exists")}
+    //   }
+    // }, [])
+
+    if(elementRef.current)
+   { if(detailFilters[detailKey] && detailFilters[detailKey].includes(detailValue)) {
+      elementRef.current.checked = true
+    } else {
+      elementRef.current.checked = false
+    }}
+
     return (
       <div className="checkbox-wrapper-4">
-      <input className="inp-cbx" id={value} type="checkbox"
-      onClick={() => console.log(value)}/>
-      <label className="cbx" htmlFor={value}><span>
+      <input  ref={elementRef} className="inp-cbx" id={detailKey + "-sssplit-" + detailValue} type="checkbox"
+      onClick={(e) => {handleCheckboxChange(detailKey, detailValue, e.target.checked)}}/>
+      <label className="cbx" htmlFor={detailKey + "-sssplit-" + detailValue}><span>
       <svg width="12px" height="10px">
         <use href="#check-4"></use>
-      </svg></span><span>{value}</span></label>
+      </svg></span><span>{detailValue}</span></label>
       <svg className="inline-svg">
         <symbol id="check-4" viewBox="0 0 12 10">
           <polyline points="1.5 6 4.5 9 10.5 1"></polyline>

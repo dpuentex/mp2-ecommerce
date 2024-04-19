@@ -16,3 +16,5 @@ export const FetchProductsContext = createContext([])
 export const ProductContext = createContext([])
 
 export const RetrieveCartItemData = createContext([]) 
+
+export const SearchContext = createContext([])

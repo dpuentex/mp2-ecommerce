@@ -31,7 +31,6 @@ A beautiful ecommerce website with basic functionality.
 - Hosting
 - cart controller
 - better search api
-- read binary image from db
 - best seller page when loading with store selected does not show store names and doesnt set data properly see console app.jsx:38
 
 
@@ -69,13 +68,15 @@ A beautiful ecommerce website with basic functionality.
 - add style column to store and render different style from database depending on store 
 - glow in the back following mouse
 - implement bcrypt
-- maxing out stock moves cart button to left of given product panel
+
 #### nav bar
-- make animation for navbar
+- blur won't apply to dropdowns 
 - improve favicon.ico
 - optional navbar items 
 
 # Changelog / Completed
+- refined search / filter functionality
+- removed fetch product function from product page in favor of fetching once on page load
 - reformatted dropdowns to no longer use states but rather css hover selectors
 - updated all files to use CartItemDataContext instead of CartContext and addressed all the horrible consequences of that. Within this update, the cart and cart panel were updated to no longer make fetches on each render and instead base their data on the context which was set by a single initial fetch of products. Not dissimilar at all to fetching the store
 - updated backend to include /products/all route and updated front end to fetch on that path

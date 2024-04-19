@@ -24,10 +24,19 @@ import {
   SelectStoreContext,
   ProductContext,
   RetrieveCartItemData,
+  SearchContext,
 } from "./ContextList";
 import "./assets/css/style1.css";
 
 function App() {
+  // search section
+  //category: activeCategory, searchTerm: "", minPrice: 0, maxPrice: 0, detailFilters: {}}
+  const [searchTerm, setSearchTerm] = useState("");
+  const [category, setCategory] = useState("All");
+  const [minPrice, setMinPrice] = useState(0);
+  const [maxPrice, setMaxPrice] = useState(0);
+  const [detailFilters, setDetailFilters] = useState({});
+
   // storeData stores an array of store information
   // [store_id, store_table] -1 for none selected
   const [cartItemData, setCartItemData] = useState([]);
@@ -55,6 +64,7 @@ function App() {
     // console.log(storeData);
     setStoreData([storeData[0], json, storeData[2]]);
     console.log(storeData);
+    console.log("Fetched stores in app.jsx");
   }
 
   async function getProducts() {
@@ -63,6 +73,7 @@ function App() {
     );
     let json = await res.json();
     console.log(json);
+    console.log("Fetched products in app.jsx");
     setProductData(json);
   }
 
@@ -83,7 +94,7 @@ function App() {
 
   function retrieveCartItemData() {
     console.log(productData);
-    if (productData.length > 0) {
+    if (productData.length > 0 && localStorage.getItem("CartLocalStorage")) {
       let detailedData = [];
       localStorage
         .getItem("CartLocalStorage")
@@ -93,10 +104,6 @@ function App() {
             productData.filter((product) => product.product_id == product_id)[0]
           );
         });
-
-      console.log(detailedData);
-      // cartdatatemp = detailedData
-
       let arrayWithNoRepeats = [];
       for (let i = 0; i < detailedData.length; i++) {
         if (!arrayWithNoRepeats.includes(detailedData[i])) {
@@ -104,7 +111,13 @@ function App() {
         }
       }
       setCartItemData([detailedData, arrayWithNoRepeats]);
-    }
+
+      console.log(cartItemData);
+      console.log(
+        "calculated cart data [with repeats, without repeats] in app.jsx"
+      );
+    } else {
+      setCartItemData([[], []]);}
   }
 
   // <BrowserRouter/> hiding in main.jsx.. encases app.jsx Remember that.
@@ -120,19 +133,41 @@ function App() {
               <SelectStoreContext.Provider value={setStore}>
                 <ProductContext.Provider value={[productData, setProductData]}>
                   <RetrieveCartItemData.Provider value={retrieveCartItemData}>
-                    <header>
-                      <NavigationBar />
-                    </header>
-                    <main>
-                      <Routes>
-                        <Route path="/" element={<Home />} />
-                        <Route path="/products" element={<BrowsePage />} />
-                        <Route path="/best-sellers" element={<BestSellers />} />
-                        <Route path="/about-us" element={<AboutUs />} />
-                        <Route path="/cart" element={<Cart />} />
-                        <Route path="/admin" element={null} />
-                      </Routes>
-                    </main>
+                    <SearchContext.Provider
+                      value={{
+                        accessSearch: {
+                          category: category,
+                          searchTerm: searchTerm,
+                          minPrice: minPrice,
+                          maxPrice: maxPrice,
+                          detailFilters: detailFilters,
+                        },
+                        setSearch: {
+                          setCategory: setCategory,
+                          setSearchTerm: setSearchTerm,
+                          setMinPrice: setMinPrice,
+                          setMaxPrice: setMaxPrice,
+                          setDetailFilters: setDetailFilters,
+                        },
+                      }}
+                    >
+                      <header>
+                        <NavigationBar />
+                      </header>
+                      <main>
+                        <Routes>
+                          <Route path="/" element={<Home />} />
+                          <Route path="/products" element={<BrowsePage />} />
+                          <Route
+                            path="/best-sellers"
+                            element={<BestSellers />}
+                          />
+                          <Route path="/about-us" element={<AboutUs />} />
+                          <Route path="/cart" element={<Cart />} />
+                          <Route path="/admin" element={null} />
+                        </Routes>
+                      </main>
+                    </SearchContext.Provider>
                   </RetrieveCartItemData.Provider>
                 </ProductContext.Provider>
               </SelectStoreContext.Provider>

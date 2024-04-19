@@ -5,53 +5,111 @@ import Checkbox from "./Checkbox";
 import ProductCard from "./ProductCard";
 import { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { CartItemDataContext, StoreContext, CategoryContext } from "../ContextList";
+import {
+  CartItemDataContext,
+  StoreContext,
+  CategoryContext,
+  SearchContext,
+  RetrieveCartItemData,
+  ProductContext
+} from "../ContextList";
 import { createContext } from "react";
 
 export default function BrowsePage() {
   let [data, setData] = React.useState({});
   let [details, setDetails] = React.useState([]);
   const [storeData, useStoreData] = useContext(StoreContext);
+  const [productData, setProductData] = useContext(ProductContext);
   const [cartItemData, setCartItemData] = useContext(CartItemDataContext);
   const [useCategoryContext, setUseCategoryContext] =
     useContext(CategoryContext);
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-  async function fetchProducts() {
-    if(storeData[0] == -1){ // if no store selected
-      navigate("/");
-      return
-    }
-    console.log(useCategoryContext);
+  const retrieveCartItemData = useContext(RetrieveCartItemData);
 
-    let fetchData 
-    if (useCategoryContext === "All") {
-      const response = await fetch(`https://7rwcnp46mg.execute-api.us-west-2.amazonaws.com/staging/products/store/${storeData[0]}`);
-      fetchData = await response.json();
-      // setData(fetchData);
-      // console.log(fetchData);
-    } else if (useCategoryContext !== "All") {
-      const response = await fetch(
-        `https://7rwcnp46mg.execute-api.us-west-2.amazonaws.com/staging/products/category/${useCategoryContext}`
-      );
-      fetchData = await response.json();
-      // setData(fetchData);
-      // setDetails(calculateDetails(fetchData));
-      // console.log(details);
-      // console.log(fetchData);
-    }
-    setData(fetchData);
-    setDetails(calculateDetails(fetchData));
+
+  // begin insane search section
+  
+  function stringMatch(string1, string2) {
+    return string1.toLowerCase().replace(/\s+/g, '').includes(string2.toLowerCase().replace(/\s+/g, ''));
   }
+  const {accessSearch,
+    accessSearch: { 
+      category, 
+      searchTerm, 
+      minPrice, 
+      maxPrice, 
+      detailFilters },
+    setSearch: {
+      setCategory,
+      setSearchTerm,
+      setMinPrice,
+      setMaxPrice,
+      setDetailFilters,
+    },
+  } = useContext(SearchContext);
 
-  // returns object with keys as detail keys and values as an array of collected values
+ const [filteredProducts, setFilteredProducts] = useState([]);
+
+ 
+ useEffect(() => {
+  let noFilters = false
+  if(((Object.values(detailFilters).every((value) => value = []))) || detailFilters == {}){noFilters = true}
+ 
+    
+  // filtered products be declared first because using setstate doesnt doesnt alter value for immediate use.. state is for dom to "react" to, not normal js
+  let localFilteredProducts = productData.filter((product) => {
+    let filterMatch = false
+    
+    //   filterMatch = true
+    // }
+    // for each detail key in product
+    Object.keys(product.details_object).forEach((key) => {
+      // check if product key has data in detailFilters
+      if (detailFilters[key]?.length > 0) {
+        // and if it does, check if any of the values in that key in the product details object are present in detailfilters with that key
+        detailFilters[key].forEach((value) => {
+          if (product.details_object[key].includes(value)) {
+            console.log(product.product_id + product.product_name + key + " " + value);
+            filterMatch = true
+            noFilters = false
+         } 
+        })
+        
+      }
+    })
+    // if((filterMatch = false) && ((Object.values(detailFilters).every((value) => value = []))) || detailFilters == {}){filterMatch = true}
+    return (
+      stringMatch(product.product_name, searchTerm) && (filterMatch || noFilters)
+    );
+  })
+  console.log(localFilteredProducts)
+  setFilteredProducts(localFilteredProducts);
+  console.log("useeffect triggered by accessSearch change or productData change. resulted filtered products below");
+  console.log(filteredProducts);
+  let newDetails = calculateDetails(localFilteredProducts);
+  setDetails(newDetails);
+  // setDetails with new details means potentially new checkboxes.. now update search context
+  Object.keys(detailFilters).forEach((key) => {
+    detailFilters[key].forEach((value) => {
+      console.log(key, value);
+      if (!newDetails[key] || !newDetails[key].includes(value)) {
+        setDetailFilters({ ...detailFilters, [key]: detailFilters[key].filter((filter) => filter !== value) });
+      }
+    });
+  })
+  }, [detailFilters, accessSearch, productData, null]);
+
+
+  // // finish insane search section
+ 
   function calculateDetails(data) {
     let details = [];
     // console.log(data.length);
-
-    for (let productCount = 0; productCount < data.length; productCount++) {
+    console.log(data)
+    for (let productIndex = 0; productIndex < data.length; productIndex++) {
       // for each product
-      let detailList = data[productCount].details_object;
+      let detailList = data[productIndex].details_object;
       let detailListKeys = Object.keys(detailList);
       // console.log(detailListKeys);
 
@@ -75,42 +133,22 @@ export default function BrowsePage() {
         }
       }
     }
+
     return details;
   }
 
-  useEffect(() => {
-    fetchProducts();
-  }, [useCategoryContext]);
 
-  function consoleUseContext() {
-    console.log(cartItemData);
-  }
-  function clearLocalStorage() {
-    localStorage.clear();
-    setCartItemData([[], []]);
-  }
+  function consoleUseContext() {console.log(cartItemData);}
+  function clearLocalStorage() {localStorage.clear();retrieveCartItemData();}
+  function consoleLocalStorage() {console.log(localStorage.getItem("CartLocalStorage")?.split(","));}
+  function consoleSearchAccessDetails() {console.log(detailFilters);}
 
-  function consoleLocalStorage() {
-    console.log(localStorage);
-    console.log(localStorage.getItem("CartLocalStorage"));
-    console.log(localStorage.getItem("CartLocalStorage").split(","));
-
-    console.log(localStorage.getItem("CartLocalStorage"));
-  }
-
-  // array[x].product_id
-  // array[x].product_name
-  // array[x].images
-  // array[x].price
-  // array[x].description
-  // array[x].stock
-  // array[x].details_array
   return (
     <>
       <div className="button-test-div">
         <button
           className="glow-squish-button dev-button"
-          onClick={fetchProducts}
+          onClick={() => console.log("this used to be fetch products")}
         >
           Fetch Products
         </button>
@@ -135,24 +173,35 @@ export default function BrowsePage() {
         >
           console log cart contents from useeffect
         </button>
+        <br />
+        <button
+          className="glow-squish-button dev-button"
+          onClick={consoleSearchAccessDetails}
+        >
+          console search access details
+        </button>
       </div>
-      <div className="filter-container">
-        {Object.keys(details).length > 0 &&
-          Object.keys(details).map((detailKey, index) => {
-            return (
-              <div className="filter-checkboxes-collection" key={index}>
-                <p className="checkbox-collection-label">{detailKey}</p>
-                {details[detailKey].map((detailValue, index) => {
-                  return <Checkbox key={index} value={detailValue} />;
-                })}
-              </div>
-            );
-          })}
+      <div className="search-container">
+        <input className="search-input" type="text" onChange={(e) => {setSearchTerm(e.target.value); console.log(e.target.value)}}/>
+        <div className="filter-container">
+          {Object.keys(details).length > 0 &&
+            Object.keys(details).map((detailKey, index) => {
+              return (
+                <div className="filter-checkboxes-collection" key={index}>
+                  <p className="checkbox-collection-label">{detailKey}</p>
+                  {details[detailKey].map((detailValue, index) => {
+                    return <Checkbox key={index} detailKey={detailKey} detailValue={detailValue} />;
+                  })}
+                </div>
+              );
+            })}
+        </div>
       </div>
 
-      {data.length > 0 ? (
+      {filteredProducts.length > 0 ? (
         <div className="product-container">
-          {data.map((product, index) => {
+          {filteredProducts
+          .map((product, index) => {
             return <ProductCard key={index} product={product} />;
           })}
         </div>
@@ -160,3 +209,10 @@ export default function BrowsePage() {
     </>
   );
 }
+  // array[x].product_id
+  // array[x].product_name
+  // array[x].images
+  // array[x].price
+  // array[x].description
+  // array[x].stock
+  // array[x].details_object

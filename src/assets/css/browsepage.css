@@ -1,7 +1,54 @@
-.filter-container{
-    position:absolute;
+.search-container{
+    position:relative;
     height:100px;
-    top:80px;
+    top:50px;
+    align-items: stretch;
+    justify-content: space-evenly;
+    background-color: rgba(100,120,255,.3);
+    overflow: hidden;
+    transition:.3s;
+    left: 50%;
+    border-radius: 40px;
+    transform: translate(-50%, 0);
+}
+.search-container:hover{
+    height: 300px;
+    backdrop-filter: blur(15px);
+    transition:.3s;
+}
+
+.search-input{
+    width: 46%;
+    height: 50px;
+    margin: auto;
+    position:absolute;
+    left: 48%;
+    transform: translate(-46%, 0);
+    border-radius: 40px;
+    border: none;
+    outline: none;
+    background-color: rgba(255, 255, 255, .25);
+    color: white;
+    padding: 0 2%;
+    font-size: 1rem;
+    transition:.3s;
+}
+.search-input:hover{
+    width: 60%;
+    text-shadow: 0 0 10px rgba(255,255,255,.3);
+}
+.search-input:focus{
+    
+    font-size: 1.3rem;
+    text-shadow: 0 0 10px rgba(255,255,255,1);
+}
+
+
+.filter-container{
+    position:relative;
+    height:100px;
+    width: 50%;
+    top:50px;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -17,7 +64,8 @@
 
 .filter-container:hover{
     height: 300px;
-    backdrop-filter: blur(15px);
+    width: 100%;
+    border-radius: 0;
     transition:.3s;
 }
 
@@ -80,7 +128,7 @@
     .product-container {
         grid-template-columns: repeat(1, 1fr);
     }
-    .product-container, .filter-container {
+    .product-container, .search-container {
         width: 100%;
     }
 
@@ -89,7 +137,7 @@
     .product-container {
         grid-template-columns: repeat(1, 1fr);
     }
-    .product-container, .filter-container {
+    .product-container, .search-container {
         width: 100%;
     }
 }
@@ -97,7 +145,7 @@
     .product-container {
         grid-template-columns: repeat(2, 1fr);
     }
-    .product-container, .filter-container {
+    .product-container, .search-container {
         width: 100%;
     }
 }
@@ -105,7 +153,7 @@
     .product-container {
         grid-template-columns: repeat(3, 1fr);
     }
-    .product-container, .filter-container {
+    .product-container, .search-container {
         width: 100%;
     }
 }
@@ -113,7 +161,7 @@
     .product-container {
         grid-template-columns: repeat(4, 1fr);
     }
-    .product-container, .filter-container {
+    .product-container, .search-container {
         width: 100%;
     }
 }
@@ -121,7 +169,13 @@
     .product-container {
         grid-template-columns: repeat(5, 1fr)
     }
-    .product-container, .filter-container {
+    .product-container, .search-container {
+        width: 80%;
+    }
+    .search-container {
+        width: 60%;
+    }
+    .search-container:hover{
         width: 80%;
     }
 }   

@@ -10,6 +10,7 @@ import {
   CategoryContext,
   FetchStoresContext,
   SelectStoreContext,
+  SearchContext
 } from "../ContextList";
 export default function NavigationBar() {
   const fetchStores = useContext(FetchStoresContext);
@@ -17,6 +18,8 @@ export default function NavigationBar() {
   const [cartItemData, setCartItemData] = useContext(CartItemDataContext);
   const [storeData, setStoreData] = useContext(StoreContext);
   const setStore = useContext(SelectStoreContext);
+
+  const {accessSearch, setSearch} = useContext(SearchContext)
 
   return (
     <nav className="navbar">
@@ -50,7 +53,8 @@ export default function NavigationBar() {
           <li
             className="nav-categories"
             onClick={(e) => {
-              setActiveCategory("All");
+              // setActiveCategory("All");
+              setSearch.setCategory("")
               e.stopPropagation();
             }}
           >
@@ -58,12 +62,13 @@ export default function NavigationBar() {
             <ul className="nav-dropdown-menu">
               {storeData[1][storeData[2]].primary_categories.map(
                 (category, index) => {
-                  console.log(category);
+                  // console.log(category);
                   return (
                     <li
                       key={index}
                       onClick={(e) => {
-                        setActiveCategory(category);
+                        // setActiveCategory(category);
+                        setSearch.setCategory(category)
                         e.stopPropagation();
                       }}
                     >

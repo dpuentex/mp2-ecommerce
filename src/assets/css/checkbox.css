@@ -120,6 +120,12 @@ label span {
     border-color: #07f;
     animation: wave-4 0.4s ease;
   }
+
+  .checkbox-wrapper-4 .inp-cbx:checked + .cbx span:last-child {
+    color: aqua;
+    text-shadow: 0 0 10px rgba(255,255,255,1);
+  }
+
   .checkbox-wrapper-4 .inp-cbx:checked + .cbx span:first-child svg {
     stroke-dashoffset: 0;
   }

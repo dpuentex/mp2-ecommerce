@@ -1,11 +1,12 @@
 import { useContext, useState } from "react"
 
-import { CartItemDataContext, StoreContext, FetchStoresContext} from "../ContextList"
+import { CartItemDataContext, StoreContext, FetchStoresContext, RetrieveCartItemData} from "../ContextList"
 
 export default function ProductCard({ product, bestseller}) {
     const [cartItemData, setCartItemData] = useContext(CartItemDataContext)
     const [storeData, setStoreData] = useContext(StoreContext)
     const fetchStores = useContext(FetchStoresContext)
+    const retrieveCartItemData = useContext(RetrieveCartItemData)
     function addToCart(event) {
         // console.log(event)
         // console.log(event.target)
@@ -16,8 +17,9 @@ export default function ProductCard({ product, bestseller}) {
             localStorage.setItem('CartLocalStorage', [localStorage.getItem('CartLocalStorage'), event.target.getAttribute('product_id')])
         }
         
-        cartItemData[0](localStorage.getItem('CartLocalStorage').split(","))
+        // cartItemData[0](localStorage.getItem('CartLocalStorage').split(","))
         // console.log(useCartContext[0])
+        retrieveCartItemData()
         console.log(localStorage.getItem('CartLocalStorage').split(","))
     }
     function removeFromCart(event) {
@@ -26,7 +28,8 @@ export default function ProductCard({ product, bestseller}) {
                 let oldcart = localStorage.getItem('CartLocalStorage').split(",")
                 oldcart.splice(localStorage.getItem('CartLocalStorage').split(",").indexOf(event.target.getAttribute('product_id')), 1)
                 localStorage.setItem('CartLocalStorage', oldcart)
-                cartItemData[0](localStorage.getItem('CartLocalStorage').split(","))
+                // cartItemData[0](localStorage.getItem('CartLocalStorage').split(","))
+                retrieveCartItemData()
             }
             
             console.log(localStorage.getItem('CartLocalStorage').split(","))
