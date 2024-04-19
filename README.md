@@ -75,7 +75,8 @@ A beautiful ecommerce website with basic functionality.
 - optional navbar items 
 
 # Changelog / Completed
-- refined search / filter functionality
+- fixed filters not updating results
+- refined search / filter functionality 
 - removed fetch product function from product page in favor of fetching once on page load
 - reformatted dropdowns to no longer use states but rather css hover selectors
 - updated all files to use CartItemDataContext instead of CartContext and addressed all the horrible consequences of that. Within this update, the cart and cart panel were updated to no longer make fetches on each render and instead base their data on the context which was set by a single initial fetch of products. Not dissimilar at all to fetching the store

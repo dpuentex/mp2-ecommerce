@@ -98,7 +98,7 @@ export default function BrowsePage() {
       }
     });
   })
-  }, [detailFilters, accessSearch, productData, null]);
+  }, [Object.values(detailFilters), accessSearch, productData, null]);
 
 
   // // finish insane search section
