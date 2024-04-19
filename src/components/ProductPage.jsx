@@ -10,9 +10,10 @@ import {
   StoreContext,
   SearchContext,
   RetrieveCartItemData,
-  ProductContext
+  ProductContext,
+  FetchProductsContext,
+  DetectedCategoriesContext
 } from "../ContextList";
-import { createContext } from "react";
 
 export default function BrowsePage() {
   let [data, setData] = React.useState({});
@@ -20,8 +21,13 @@ export default function BrowsePage() {
   const [storeData, useStoreData] = useContext(StoreContext);
   const [productData, setProductData] = useContext(ProductContext);
   const [cartItemData, setCartItemData] = useContext(CartItemDataContext);
-  
+  const fetchProducts = useContext(FetchProductsContext);
+  const [detectedCategories, setDetectedCategories] = useContext(DetectedCategoriesContext);
+
   const navigate = useNavigate();
+  if(storeData[0] == -1){
+    navigate('/');
+  }
 
   const retrieveCartItemData = useContext(RetrieveCartItemData);
 
@@ -50,6 +56,7 @@ export default function BrowsePage() {
  const [filteredProducts, setFilteredProducts] = useState([]);
 
  function updateSearch() {
+  console.log(category)
   console.log(Object.values(detailFilters))
   let noFilters = false
   if(((Object.values(detailFilters).every((value) => value = []))) || detailFilters == {}){noFilters = true}
@@ -122,12 +129,20 @@ export default function BrowsePage() {
   })
   console.log(details)}
 
-
  useEffect(() => {
   // why did i have to invoke update search in Checkbox.jsx instead of only here? I'm really upset
   updateSearch()
   }, [detailFilters, details, accessSearch, productData, null]);
 
+  // useEffect(() => {
+    
+  // console.log(updateCheckboxes)
+  // updateCheckboxes()
+  // }, [updateCheckboxes])
+  // useEffect(() => {
+  //   fetchProducts()
+  //   updateSearch()
+  // }, []);
 
   // // finish insane search section
  
@@ -165,7 +180,7 @@ export default function BrowsePage() {
 
     return details;
   }
-
+  
 
   function consoleUseContext() {console.log(cartItemData);}
   function clearLocalStorage() {localStorage.clear();retrieveCartItemData();}

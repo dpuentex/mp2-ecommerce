@@ -56,7 +56,7 @@ export default function NavigationBar() {
               e.stopPropagation();
             }}
           >
-            <Link to="/products/">ALL CATEGORIES</Link>
+            <Link to="/products/">SHOP</Link>
             {/* <ul className="nav-dropdown-menu">
               {storeData[1][storeData[2]].primary_categories.map(
                 (category, index) => {

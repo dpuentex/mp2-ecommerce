@@ -6,7 +6,7 @@ import {  SearchContext } from "../ContextList";
 export default function Checkbox(props) {
   const elementRef=useRef(null)
 
-  const {
+  const { accessSearch,
     accessSearch: { 
       category, 
       searchTerm, 
@@ -41,6 +41,7 @@ export default function Checkbox(props) {
         let newDetailCollection = detailFilters
         if (!newDetailCollection[detailKey]){newDetailCollection[detailKey] = []}
         console.log(newDetailCollection[detailKey])
+        newDetailCollection[detailKey].splice(newDetailCollection[detailKey].indexOf(detailValue), 1)
         newDetailCollection[detailKey].splice(newDetailCollection[detailKey].indexOf(detailValue), 1)
         console.log(newDetailCollection[detailKey])
         if(detailFilters!=newDetailCollection){console.log ("updating");setDetailFilters(newDetailCollection)}

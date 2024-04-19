@@ -1,6 +1,6 @@
 import { useContext,useEffect } from "react"
 import { useNavigate } from "react-router-dom"
-import { StoreContext, FetchStoresContext, DetectedCategoriesContext, FetchProductsContext, ProductContext } from "../ContextList"
+import { StoreContext, FetchStoresContext, DetectedCategoriesContext, FetchProductsContext, ProductContext, SearchContext } from "../ContextList"
 import "../assets/css/detailedpage.css"
 
 export default function DetailedPage() {
@@ -10,7 +10,7 @@ export default function DetailedPage() {
     const fetchStores = useContext(FetchStoresContext)
     const navigate = useNavigate();
     let storeIndex = storeData[2]
-    console.log()
+    const {setSearch : {setCategory}} = useContext(SearchContext)
     
 
     // console.log(storeData)
@@ -46,7 +46,7 @@ export default function DetailedPage() {
                 // <h3>Categories</h3>
                 detectedCategories[storeData[1][storeIndex].store_id].map((category, index) => 
                 <h3 className="glow-squish-button categories-button" key={index} onClick={() => {
-                    setCategoryContext(category)
+                    // setCategory(category)
                     navigate('/products/')
                 }}>{category}</h3>)
                 : null}
