@@ -51,8 +51,8 @@ export default function BrowsePage() {
 
  const [filteredProducts, setFilteredProducts] = useState([]);
 
- 
- useEffect(() => {
+ function updateSearch() {
+  console.log(Object.values(detailFilters))
   let noFilters = false
   if(((Object.values(detailFilters).every((value) => value = []))) || detailFilters == {}){noFilters = true}
  
@@ -88,23 +88,44 @@ export default function BrowsePage() {
   console.log("useeffect triggered by accessSearch change or productData change. resulted filtered products below");
   console.log(filteredProducts);
   let newDetails = calculateDetails(localFilteredProducts);
-  setDetails(newDetails);
+  console.log(newDetails, details);
+  
+  console.log(JSON.stringify(details) != JSON.stringify(newDetails));
+  
+  console.log(JSON.stringify(details),JSON.stringify(newDetails));
+
+  // why do i have to do tostring
+  if (JSON.stringify(details) != JSON.stringify(newDetails)){
+    console.log(details.toString() != newDetails.toString());
+    console.log(details.toString(), newDetails.toString());
+    setDetails(newDetails)
+    console.log("executing 93")
+  }
   // setDetails with new details means potentially new checkboxes.. now update search context
   Object.keys(detailFilters).forEach((key) => {
     detailFilters[key].forEach((value) => {
       console.log(key, value);
       if (!newDetails[key] || !newDetails[key].includes(value)) {
-        setDetailFilters({ ...detailFilters, [key]: detailFilters[key].filter((filter) => filter !== value) });
+        console.log("executing 98")
+        let newDetailFilters = { ...detailFilters, [key]: detailFilters[key].filter((filter) => filter !== value) }
+        if(detailFilters != newDetailFilters){console.log ("updating");setDetailFilters(newDetailFilters);}
       }
     });
   })
-  }, [Object.values(detailFilters), accessSearch, productData, null]);
+  console.log(details)}
+
+
+ useEffect(() => {
+  // why did i have to invoke update search in Checkbox.jsx instead of only here? I'm really upset
+  updateSearch()
+  }, [detailFilters, details, accessSearch, productData, null]);
 
 
   // // finish insane search section
  
   function calculateDetails(data) {
-    let details = [];
+    console.log("hi")
+    let details = {};
     // console.log(data.length);
     console.log(data)
     for (let productIndex = 0; productIndex < data.length; productIndex++) {
@@ -190,7 +211,7 @@ export default function BrowsePage() {
                 <div className="filter-checkboxes-collection" key={index}>
                   <p className="checkbox-collection-label">{detailKey}</p>
                   {details[detailKey].map((detailValue, index) => {
-                    return <Checkbox key={index} detailKey={detailKey} detailValue={detailValue} />;
+                    return <Checkbox updateSearch={updateSearch} key={index} detailKey={detailKey} detailValue={detailValue} />;
                   })}
                 </div>
               );

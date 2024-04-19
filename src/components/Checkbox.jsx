@@ -22,7 +22,7 @@ export default function Checkbox(props) {
     },
   } = useContext(SearchContext);
 
-    const {detailKey, detailValue} = props
+    const {detailKey, detailValue, updateSearch} = props
 
     let detailPair = {[detailKey]:detailValue}
 
@@ -35,7 +35,7 @@ export default function Checkbox(props) {
         console.log(newDetailCollection[detailKey])
         newDetailCollection[detailKey].push(detailValue)
         console.log(newDetailCollection[detailKey])
-        setDetailFilters(newDetailCollection)
+        if(detailFilters!=newDetailCollection){console.log ("updating");setDetailFilters(newDetailCollection)}
         // setDetailFilters(newDetailCollection)
       } else {
         let newDetailCollection = detailFilters
@@ -43,25 +43,15 @@ export default function Checkbox(props) {
         console.log(newDetailCollection[detailKey])
         newDetailCollection[detailKey].splice(newDetailCollection[detailKey].indexOf(detailValue), 1)
         console.log(newDetailCollection[detailKey])
-        setDetailFilters(newDetailCollection)
+        if(detailFilters!=newDetailCollection){console.log ("updating");setDetailFilters(newDetailCollection)}
         // let preRemovalTest = {...detailFilters}[detailKey]
         // console.log({...detailFilters}[detailKey])
         // setDetailFilters({...detailFilters}[detailKey] = detailValue)
       }
-      
+        updateSearch()
         console.log(detailFilters)
     }
 
-
-    // useEffect(() => {
-    //   console.log(elementRef.current)
-    //   return () => {
-    //     if (!elementRef.current?.checked) {
-    //       console.log(elementRef, "not found")
-    //       handleCheckboxChange(detailKey, detailValue, false)
-    //     }else{console.log("still exists")}
-    //   }
-    // }, [])
 
     if(elementRef.current)
    { if(detailFilters[detailKey] && detailFilters[detailKey].includes(detailValue)) {
