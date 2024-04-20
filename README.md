@@ -27,8 +27,6 @@ Involuntary Collaborator: \
 ## Todo:
 - home page
 - - preview best sellers?
-- admin page
-- checkbox behavior options
 
 ### [Model Sheets](https://docs.google.com/spreadsheets/d/1QfpH7j5gNQoXloyshFjNvAq97LzJzVPM_XfwJFtSe18/edit#gid=0) for SQL database
 - spreadsheet
@@ -40,6 +38,7 @@ Involuntary Collaborator: \
 - custom page for each item
 - avg rate for each item 
 - image for item 
+- checkbox behavior options
 
 
 ## Low priority:
@@ -52,9 +51,10 @@ Involuntary Collaborator: \
 - optimize unused columns in models and create proper associations.. haven't really found a need though
 
 # active 
-conditionally render product card elements to be either normal elements or inputs based on if on admin page or not by passing admin=true prop and checking condition on render
+
 
 # Changelog / Completed
+- fixed issue with deleting db item causing broken cart
 - pushed delete route to amplify
 - imported bodyparser into local server
 - added put functionality to update products

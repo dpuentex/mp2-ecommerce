@@ -53,6 +53,9 @@ function App() {
     getStores();
     getProducts();
   }, []);
+  
+  // this is called a dependecy array. Anything changing in this array will cause the effect to run again.
+  //unless it's blank in which case it will only run once on render
 
   // once productData loads, calculate and set detectedCategories
   useEffect(() => {
@@ -61,7 +64,7 @@ function App() {
 
   useEffect(() => {
     console.log(detectedCategories)
-  }, [detectedCategories]);
+  }, [detectedCategories]); // when the value of detectedCategories changes, run this function
 
   // setCartContents(localStorage.getItem('CartLocalStorage').split(","))
   async function getStores() {
@@ -144,9 +147,13 @@ function App() {
   function calculateCategories(productDataParam) {
     console.log(productDataParam)
     let categories = {};
+    //for each product in the array
     productDataParam.forEach((product) => {
+      // if {categories: storeid} doesnt include the category in the given object  categories[storeid].category = null
       if (!categories[product.store_id]?.includes(product.details_object.category)) {
+        // and if the storeid doesnt exist in the category already then create an empty array for that store using the storeid
         if(!categories[product.store_id]) {categories[product.store_id] = []}
+        // then push the detected category to the array
         categories[product.store_id]?.push(product.details_object.category)
       }
     });

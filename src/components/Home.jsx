@@ -50,7 +50,7 @@ export default function Home() {
         </h1>
       )}
 
-      {storeData[0] === -1 && 
+      {storeData[1].length > 0 && 
         <ListStoresPage />
       }
     </div>

@@ -34,7 +34,7 @@ export default function NavigationBar() {
                 calculatedSubtotal = (calculatedSubtotal - -(product?.price)).toFixed(2)
             })
         )
-                setSubtotal(calculatedSubtotal)
+         setSubtotal(calculatedSubtotal)
     }
   return (
     <nav className="navbar">
