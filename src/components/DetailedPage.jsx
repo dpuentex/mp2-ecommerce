@@ -50,12 +50,14 @@ export default function DetailedPage() {
                 {detectedCategories[storeData[1][storeIndex].store_id] ? 
                 // <h3>Categories</h3>
                 detectedCategories[storeData[1][storeIndex].store_id].map((category, index) => 
-                <h3 className="glow-squish-button categories-button" key={index} onClick={() => {
+                <h3 className="glow-squish-button categories-button" key={index}>{category}</h3>)
+                : null}
+                
+            </div>
+            <h3 className="glow-squish-button shop-now" onClick={() => {
                     // setCategory(category)
                     navigate('/products/')
-                }}>{category}</h3>)
-                : null}
-            </div>
+                }}>Shop Now!</h3>
         </div>
     )
 

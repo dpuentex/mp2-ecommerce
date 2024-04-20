@@ -1,3 +1,15 @@
+.detailed-page-container > h2, .detailed-page-container > p {
+    transition: 1s;
+    width: fit-content;
+    margin: auto;
+}
+
+.detailed-page-container > h2:hover, .detailed-page-container > p:hover {
+    text-shadow: 0 0 10px rgba(255,255,255,1);    
+    transition: .3s;
+}
+
+
 .category-button-container {
     display: flex;
     justify-content: space-between;
@@ -11,6 +23,33 @@
     height: auto;
     margin: 10px;
     float: none;
+    cursor:default;
+}
+
+.categories-button.glow-squish-button:active{
+    
+  background-color: rgb(100,200,200);
+  cursor:default;
+  border-radius: 10px;
+  box-shadow: none;
+  
+}
+
+.categories-button.glow-squish-button:hover {
+  
+  transition: .4s;
+}
+
+.shop-now.glow-squish-button{
+    width: 20vh;
+    margin:auto;
+    float:none;
+    box-shadow: 0 0 10px 1px rgba(255, 0, 255, 0.7);
+}
+
+.shop-now.glow-squish-button:hover{
+      transition: .3s;
+  box-shadow: 0 0 10px 1px rgba(255, 255, 255, 0.7);
 }
 
 .store-image-container {
