@@ -62,6 +62,7 @@ products.put('/update/:id', async (req, res) => {
 
 //backend response to POST on /products/data/product_id
 products.post('/data', async (req,res) =>{
+    
     // console.log(JSON.stringify(req.body))
     console.log(req.body)
     try {

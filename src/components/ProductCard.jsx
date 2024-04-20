@@ -19,7 +19,7 @@ export default function ProductCard({ product, showStore, bestsellerData, admin,
     function updateProduct(product_id, putObject){
         console.log(putObject)
         fetch(`https://7rwcnp46mg.execute-api.us-west-2.amazonaws.com/staging/products/update/${product_id}`, {
-            method: "put",
+            method: "PUT",
             headers: {
               'Accept': 'application/json',
               'Content-Type': 'application/json'
@@ -41,12 +41,11 @@ export default function ProductCard({ product, showStore, bestsellerData, admin,
         }
         console.log(putObject)
         fetch(`https://7rwcnp46mg.execute-api.us-west-2.amazonaws.com/staging/products/data`, {
-            method: "post",
+            method: "POST",
             headers: {
               'Accept': 'application/json',
               'Content-Type': 'application/json'
             },
-            mode: 'cors',
             
             //make sure to serialize your JSON body
             body: JSON.stringify(putObject)
@@ -59,7 +58,7 @@ export default function ProductCard({ product, showStore, bestsellerData, admin,
     function deleteProduct(product_id) {
         console.log(product_id)
         fetch(`https://7rwcnp46mg.execute-api.us-west-2.amazonaws.com/staging/products/delete/${product_id}`, {
-            method: "delete",
+            method: "DELETE",
           })
           .then( (response) => { 
              console.log(response)

@@ -15,7 +15,7 @@
       "function": {
         "mp2LambdaFunction": {
           "deploymentBucketName": "amplify-amplifyce79ceffb5d14-staging-9db72-deployment",
-          "s3Key": "amplify-builds/mp2LambdaFunction-3165592b77485558764f-build.zip"
+          "s3Key": "amplify-builds/mp2LambdaFunction-77482b7845564c535a54-build.zip"
         }
       },
       "api": {
