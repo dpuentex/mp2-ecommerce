@@ -17,6 +17,7 @@ export default function ProductCard({ product, showStore, bestsellerData, admin,
 
     const [responseData, setResponseData] = useState("")
     function updateProduct(product_id, putObject){
+        console.log(putObject)
         fetch(`https://7rwcnp46mg.execute-api.us-west-2.amazonaws.com/staging/products/update/${product_id}`, {
             method: "put",
             headers: {
@@ -38,6 +39,7 @@ export default function ProductCard({ product, showStore, bestsellerData, admin,
             putObject.product_id = null
             
         }
+        console.log(putObject)
         fetch(`https://7rwcnp46mg.execute-api.us-west-2.amazonaws.com/staging/products/data`, {
             method: "post",
             headers: {
@@ -55,6 +57,7 @@ export default function ProductCard({ product, showStore, bestsellerData, admin,
           });
     }
     function deleteProduct(product_id) {
+        console.log(product_id)
         fetch(`https://7rwcnp46mg.execute-api.us-west-2.amazonaws.com/staging/products/delete/${product_id}`, {
             method: "delete",
           })
