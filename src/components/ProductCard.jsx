@@ -4,7 +4,7 @@ import { CartItemDataContext, StoreContext, FetchStoresContext, RetrieveCartItem
 
 import {jss} from "../assets/js/jss.js"
 
-export default function ProductCard({ product, cardType}) {
+export default function ProductCard({ product, cardType, bestsellerData}) {
     const [cartItemData, setCartItemData] = useContext(CartItemDataContext)
     const [storeData, setStoreData] = useContext(StoreContext)
     const fetchStores = useContext(FetchStoresContext)
@@ -65,16 +65,20 @@ export default function ProductCard({ product, cardType}) {
    
 
     useEffect(() => {
-        if(storeData[1].length > 0 && storeData[2] != -1) {
+        console.log(storeData)
+        if(storeData[1].length > 0) {
+            storeData[1].forEach((store) => {
+                console.log(store)
+                jss.set(`.card-store-${store.store_id}`, {
+                'background-color': store.style.cardStyle["background-color"],
+                });
+                jss.set(`.card-store-${store.store_id}:hover`, {
+                    'background-color': store.style.cardStyleHover["background-color"],
+                });
+            })
             
-            jss.set(`.card-store-${storeData[0]}`, {
-                'background-color': storeData[1][storeData[2]].style.cardStyle["background-color"],
-            });
-            jss.set(`.card-store-${storeData[0]}:hover`, {
-                'background-color': storeData[1][storeData[2]].style.cardStyleHover["background-color"],
-            });
         }
-    }, [storeData])
+    }, [storeData, bestsellerData, null])
     return (
         <div className={`product-card card-store-${product.store_id}`}>
             {cardType == "best-seller" ? <p>{getStoreNameForStoreID(product.store_id).storeName}</p> : null}

@@ -38,7 +38,7 @@ export default function BestSellers() {
       {bestsellerData.length > 0 && storeData[1].length > 0 ? (
         <div className="best-sellers-container">
           {bestsellerData.map((product, index) => {
-            return <ProductCard key={index} product={product} cardType={"best-seller"}/>;
+            return <ProductCard key={index} product={product} cardType={"best-seller"} bestSellerData={bestsellerData}/>;
           })}
         </div>
       ) : null}

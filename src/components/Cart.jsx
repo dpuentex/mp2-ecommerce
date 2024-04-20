@@ -17,10 +17,10 @@ export default  function Cart() {
   
 
   useEffect(() => {
-    retrieveCartItemData()
+    // retrieveCartItemData()
 }, [])
 
-
+  console.log("cartjsx")
   return (
     <div className="cart-item-div">
       {cartItemData[0]?.length > 0 ? (

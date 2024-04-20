@@ -31,7 +31,6 @@ Involuntary Collaborator: \
 - - ability to remove all items from cart
 - - all item subtotal
 - - show source store name in cart
-- - custom card theme for each store?
 - home page
 - - preview best sellers?
 - cart panel

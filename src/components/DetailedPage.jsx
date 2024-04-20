@@ -32,7 +32,7 @@ export default function DetailedPage() {
     //  console.log(detectedCategories[storeData[1][storeIndex].store_id])
     //  console.log(storeData[1][storeIndex].store_id)
     return (
-        (storeData[1].length > 0 )&& (<div className="detailed-page">
+        (storeData[1].length > 0 && storeData[0] != -1)&& (<div className="detailed-page">
 
             <h2>{storeData[1][storeIndex].store_name}</h2>
             <p>{storeData[1][storeIndex].about_us}</p>
