@@ -188,7 +188,7 @@ export default function BrowsePage() {
 
 
   useEffect(() => {
-    if(storeData[1].length > 0) {
+    if(storeData[1].length > 0 && storeData[2] != -1) {
         
               // set background color for particular store browse page
       document.documentElement.style.setProperty('--col1', storeData[1][storeData[2]].style.triColorBack[1]);
