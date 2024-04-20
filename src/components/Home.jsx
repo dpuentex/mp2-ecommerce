@@ -50,11 +50,9 @@ export default function Home() {
       )}
 
       <AboutUsFull />
-      {storeData[0] === -1 ? ( // check if store not yet selected
+      {storeData[0] === -1 && 
         <ListStoresPage />
-      ) : (
-        <DetailedPage />
-      )}
+      }
     </div>
   );
 }

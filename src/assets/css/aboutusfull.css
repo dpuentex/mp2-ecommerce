@@ -5,6 +5,7 @@
     transition: .3s;
     margin: 10px auto;
     width: fit-content;
+    animation: pulse 3s ease infinite;
 }
 
 .part-of-speech {
@@ -48,4 +49,17 @@
 
 .title:hover, .syllables:hover, .phonetic:hover, .part-of-speech:hover, .definition:hover {
     text-shadow: 0 0 10px rgba(255,255,255,1);
+}
+
+
+@keyframes pulse {
+    0% {
+        text-shadow: 0 0 10px rgba(255,0,0,1);
+    }
+    50% {
+        text-shadow: 0 0 10px rgba(255,255,255,1);
+    }
+    100% {
+        text-shadow: 0 0 10px rgba(255,255,255,0);
+    }
 }
