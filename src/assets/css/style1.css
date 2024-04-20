@@ -71,10 +71,10 @@ html {
   margin: 10px 0 0 0;
   float: right;
   align-self: flex-end;
-  width: 30%;
+  width: fit-content;
   border-radius: 20px;
   font-size: 1.5rem;
-  padding : 5px 5px;
+  padding: .2rem .3rem;
   color: blue;
   background-color: rgb(200,200,200);
   transition: .5s;
@@ -108,17 +108,25 @@ html {
   cursor: default;
 }
 
-.button-test-div {
-  display: flex;
-  position:fixed;
-  top : 40px;
+.glow-squish-button.remove-one:hover .glow-squish-button.glow-squish-button.remove-all{
+  visibility: visible;
+  opacity: .3;
+  right:.6rem;
+  transition: .3s;
 }
-.glow-squish-button.dev-button {
-  font-size: x-small;
-  width: fit-content;
-  margin:0;
-  float: none;
 
+.glow-squish-button.remove-all{
+  position:fixed;
+  right: -5rem;
+  bottom: 3rem;
+  color: red;
+  visibility: hidden;
+  opacity: 0;
+  transition: 1s;
+}
+.glow-squish-button.remove-one:hover .glow-squish-button.remove-all:hover{
+  box-shadow: 0 0 1rem rgba(255,80,80,1);
+  opacity: 1;
 }
 
 @keyframes background-anim {

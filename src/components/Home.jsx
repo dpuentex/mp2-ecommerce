@@ -38,18 +38,18 @@ export default function Home() {
   }
   return (
     <div className="home-page-container">
+      <AboutUsFull />
       {storeData[1].length == 0 && (
-        <div className="loading">
+        <h1 className="loading">
           Please wait... Fetching stores. {randomFace()}
-        </div>
+        </h1>
       )}
       {productData.length == 0 && (
-        <div className="loading">
+        <h1 className="loading">
           Please wait... Fetching products. {randomFace()}
-        </div>
+        </h1>
       )}
 
-      <AboutUsFull />
       {storeData[0] === -1 && 
         <ListStoresPage />
       }

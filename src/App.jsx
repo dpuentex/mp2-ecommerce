@@ -15,6 +15,7 @@ import AboutUs from "./components/AboutUs";
 import NavigationBar from "./components/NavigationBar";
 import Cart from "./components/Cart";
 import BestSellers from "./components/BestSellers";
+import Admin from "./components/Admin";
 import {
   CartItemDataContext,
   StoreContext,
@@ -185,7 +186,7 @@ function App() {
                           />
                           <Route path="/about-us" element={<AboutUs />} />
                           <Route path="/cart" element={<Cart />} />
-                          <Route path="/admin" element={null} />
+                          <Route path="/admin" element={<Admin />} />
                         </Routes>
                       </main>
                     </SearchContext.Provider>

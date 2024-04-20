@@ -202,7 +202,7 @@ export default function BrowsePage() {
       <div className="detailed-page-container"><DetailedPage /></div>
       
       <div className="search-container">
-        <input className="search-input" type="text" onChange={(e) => {setSearchTerm(e.target.value); console.log(e.target.value)}}/>
+        <input placeholder="Search..." className="search-input" type="text" onChange={(e) => {setSearchTerm(e.target.value); console.log(e.target.value)}}/>
         <div className="filter-container">
           {Object.keys(details).length > 0 &&
             Object.keys(details).map((detailKey, index) => {

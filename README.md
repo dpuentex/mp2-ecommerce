@@ -25,16 +25,8 @@ Involuntary Collaborator: \
 
 
 ## Todo:
-- best seller page
-- - custom card theme for each store?
-- cart page
-- - ability to remove all items from cart
-- - all item subtotal
-- - show source store name in cart
 - home page
 - - preview best sellers?
-- cart panel
-- - ability to remove items from cart in panel?
 - admin page
 - checkbox behavior options
 
@@ -53,7 +45,6 @@ Involuntary Collaborator: \
 ## Low priority:
 - remove unused imports
 - Clicking quickly between pick a store and then a store produces the about us page for main site..
-- add style column to store and render different style from database depending on store 
 - glow in the back following mouse
 - implement bcrypt
 - blur won't apply to dropdowns 
@@ -61,9 +52,16 @@ Involuntary Collaborator: \
 - optimize unused columns in models and create proper associations.. haven't really found a need though
 
 # active 
-- render style from store model per product
+conditionally render product card elements to be either normal elements or inputs based on if on admin page or not by passing admin=true prop and checking condition on render
 
 # Changelog / Completed
+- add ability for further manipulation in cart including removal and confirmation
+- add ability to remove all of any one item from product card
+- loading screen on best sellers and cart
+- preserve cart item if all are removed until navigating away
+- fixed loading page on homejsx
+- altered product card adding and removing items to use product_id instead of sending in an attribute from event.target
+- added input placeholder and formatted it on search
 - about any store lives on shopping page for that store
 - about us now lives on main page
 - removed about us 

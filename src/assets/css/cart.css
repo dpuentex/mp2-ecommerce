@@ -2,14 +2,48 @@
 
 }
 
+.cart-page {
+  position: relative;
+  top: 40px;
+
+}
 
 .cart-item-container{
     border: 1px;
-    padding: 10px;
-    margin-bottom: 10px;
-    width: 50%;
     display:grid;
     grid-template-columns: repeat(2, 1fr);
+}
+
+.left-panel{
+width: 50vw;
+}
+.right-panel{
+  position: fixed;
+  right: 0;
+  top: 40px;
+  margin-top: .6rem;
+  margin-left: .6rem;
+  width: 30vw;
+  height:20vh;
+  background-color: rgba(100,120,255,.3);
+  border-radius: 1.3rem;
+  left: 50vw;
+  transition: 1s;
+}
+
+.right-panel:hover{
+  width:48vw;
+  height:40vh;
+  transition: .3s;
+}
+.right-panel > * {
+  float:left;
+}
+
+.danger-buttons-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
 }
 
 
@@ -22,15 +56,42 @@
     justify-content: center;
 }
 
-.cart-item-div {
-  height: 100px;
-  position: relative;
-  top: 40px;
+
+.right-panel > button.glow-squish-button{
+    
+    height: fit-content;
+    width: fit-content;
+    margin: .6rem;
+    padding: .4rem .3em;
+    align-self: none;
 }
 
-.cart-item-div p {
-    margin-bottom: 0;
-  }
+.glow-squish-button.cart-button.danger-button{
+  background-color: rgba(255, 150, 255, 1);
+  color: darkred;
+  transition: 1s;
+  align-self: flex-start;
+  margin: 1rem
+}
+.glow-squish-button.cart-button.danger-button:hover{
+  text-shadow: 0 0 10px rgba(255,0,0,1);
+  transition: .3s;
+}
+.glow-squish-button.cart-button.danger-button:active{
+  background-color: red;
+}
+
+.no-items-in-cart{
+  margin:1rem;
+  font-size: 1.5rem;
+  color:white;
+  text-shadow: 0 0 10px rgba(255,0,0,1);
+  transition: 1s;
+}
+.no-items-in-cart:hover{
+  text-shadow: 0 0 25px rgba(255,255,255,1);
+  transition: .3s;
+}
 
   @media screen and (max-width: 1000px) {
     .cart-item-container {

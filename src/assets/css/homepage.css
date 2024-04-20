@@ -24,8 +24,12 @@
 }
 /* pulse loading */
 .loading {
-    font-size: 1.5rem;
-    animation: pulse .2s ease infinite
+    width: fit-content;
+    margin: auto;
+    font-size: 2rem;
+    animation: pulse .2s ease infinite;
+    color:white;
+    font-weight: 400;
 }
 
 @keyframes pulse {

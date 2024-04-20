@@ -4,19 +4,20 @@ import { CartItemDataContext, StoreContext, FetchStoresContext, RetrieveCartItem
 
 import {jss} from "../assets/js/jss.js"
 
-export default function ProductCard({ product, cardType, bestsellerData}) {
+export default function ProductCard({ product, showStore, bestsellerData, admin}) {
     const [cartItemData, setCartItemData] = useContext(CartItemDataContext)
     const [storeData, setStoreData] = useContext(StoreContext)
     const fetchStores = useContext(FetchStoresContext)
     const retrieveCartItemData = useContext(RetrieveCartItemData)
+    const [confirmDelete, setConfirmDelete] = useState(false)
     function addToCart(event) {
         // console.log(event)
         // console.log(event.target)
         // console.log("You clicked " + event.target.getAttribute('product_id'))
         if (!localStorage.getItem('CartLocalStorage')) {
-            localStorage.setItem('CartLocalStorage', [event.target.getAttribute('product_id')])
+            localStorage.setItem('CartLocalStorage', [product.product_id])
         } else if (localStorage.getItem('CartLocalStorage').length > 0) {
-            localStorage.setItem('CartLocalStorage', [localStorage.getItem('CartLocalStorage'), event.target.getAttribute('product_id')])
+            localStorage.setItem('CartLocalStorage', [localStorage.getItem('CartLocalStorage'), product.product_id])
         }
         
         // cartItemData[0](localStorage.getItem('CartLocalStorage').split(","))
@@ -26,9 +27,9 @@ export default function ProductCard({ product, cardType, bestsellerData}) {
     }
     function removeFromCart(event) {
         if (localStorage.getItem('CartLocalStorage') != null) {
-            if (localStorage.getItem('CartLocalStorage').split(",").includes(event.target.getAttribute('product_id'))) {
+            if (localStorage.getItem('CartLocalStorage').split(",").includes(product.product_id)) {
                 let oldcart = localStorage.getItem('CartLocalStorage').split(",")
-                oldcart.splice(localStorage.getItem('CartLocalStorage').split(",").indexOf(event.target.getAttribute('product_id')), 1)
+                oldcart.splice(localStorage.getItem('CartLocalStorage').split(",").indexOf(product.product_id), 1)
                 localStorage.setItem('CartLocalStorage', oldcart)
                 // cartItemData[0](localStorage.getItem('CartLocalStorage').split(","))
                 retrieveCartItemData()
@@ -38,6 +39,21 @@ export default function ProductCard({ product, cardType, bestsellerData}) {
         }
     }
 
+    function removeAllOneItemFromCart(event) {
+        if (localStorage.getItem('CartLocalStorage') != null) {
+            if (localStorage.getItem('CartLocalStorage').split(",").includes(product.product_id)) {
+                let oldcart = localStorage.getItem('CartLocalStorage').split(",")
+                while (oldcart.includes(product.product_id)) {
+                    oldcart.splice(localStorage.getItem('CartLocalStorage').split(",").indexOf(product.product_id), 1)
+                }
+                localStorage.setItem('CartLocalStorage', oldcart)
+                // cartItemData[0](localStorage.getItem('CartLocalStorage').split(","))
+                retrieveCartItemData()
+            }
+            
+            console.log(localStorage.getItem('CartLocalStorage').split(","))
+        }
+    }
 
     function checkHowManyInCart(product) {
         if (localStorage.getItem('CartLocalStorage') != null) {
@@ -54,7 +70,7 @@ export default function ProductCard({ product, cardType, bestsellerData}) {
     function getStoreNameForStoreID(storeID) {
         for (let i = 0; i < storeData[1].length; i++) {
             if (storeData[1][i].store_id == storeID) {
-                console.log({storeName: storeData[1][i].store_name, i})
+                // console.log({storeName: storeData[1][i].store_name, i})
                 return {
                     storeName: storeData[1][i].store_name,  
                     index : i
@@ -65,10 +81,10 @@ export default function ProductCard({ product, cardType, bestsellerData}) {
    
 
     useEffect(() => {
-        console.log(storeData)
+        // console.log(storeData)
         if(storeData[1].length > 0) {
             storeData[1].forEach((store) => {
-                console.log(store)
+                // console.log(store)
                 jss.set(`.card-store-${store.store_id}`, {
                 'background-color': store.style.cardStyle["background-color"],
                 });
@@ -81,7 +97,7 @@ export default function ProductCard({ product, cardType, bestsellerData}) {
     }, [storeData, bestsellerData, null])
     return (
         <div className={`product-card card-store-${product.store_id}`}>
-            {cardType == "best-seller" ? <p>{getStoreNameForStoreID(product.store_id).storeName}</p> : null}
+            {showStore == true ? <p className="product-store-name">{getStoreNameForStoreID(product.store_id).storeName}</p> : null}
             {product.product_name ? <h1>{product.product_name}</h1> : null}
             {product.price ? <h2>{product.price}</h2> : null}
             {product.description ? <h3>{product.description}</h3> : null}
@@ -111,12 +127,33 @@ export default function ProductCard({ product, cardType, bestsellerData}) {
                     ? `In Stock (${checkProductStockLeft(product)})` 
                     : "Out of Stock"} 
             </span>
-            <span className="add-to-cart-button-container">{checkProductStockLeft(product) > 0 && <button onClick={addToCart} className="glow-squish-button" product_id={Number(product.product_id)}>{localStorage.getItem('CartLocalStorage') != null  ?   (   
+            <span className="add-to-cart-button-container">{checkProductStockLeft(product) > 0 &&
+            
+            <button onClick={addToCart} className="glow-squish-button" >{localStorage.getItem('CartLocalStorage') != null  ?   (   
                 localStorage.getItem('CartLocalStorage').split(",")?.includes(product.product_id) ? "➕" : "🛒➕"
             ): "🛒➕"}</button>}
             
-            {checkHowManyInCart(product) > 0 && <button className="how-many-of-product-in-cart glow-squish-button">🛒{checkHowManyInCart(product)}</button>}
-            {checkHowManyInCart(product) > 0 && <button onClick={removeFromCart} className="glow-squish-button" product_id={Number(product.product_id)}>➖</button>}
+            {checkHowManyInCart(product) > 0 &&
+            
+            <button className="how-many-of-product-in-cart glow-squish-button">🛒{checkHowManyInCart(product)}</button>}
+            {checkHowManyInCart(product) > 0 &&
+            
+            <button onClick={(e)=>{removeFromCart(); e.stopPropagation()} } className="glow-squish-button remove-one" >➖
+            <div className="glow-squish-button remove-all" 
+            onClick={(e) => {
+                if (confirmDelete){
+                    removeAllOneItemFromCart();
+                    setConfirmDelete(false)
+                } else if (!confirmDelete) {
+                  setConfirmDelete(true)
+                }
+                e.stopPropagation()
+              }}
+              onMouseLeave={() => setConfirmDelete(false)}
+            >{confirmDelete 
+                ? "actually?" 
+                : "remove all"}</div>
+            </button>}
             </span>
         </div>
     )

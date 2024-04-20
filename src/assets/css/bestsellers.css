@@ -1,19 +1,36 @@
+.best-sellers-page{
+    
+    position: relative;
+    top:40px;
+}
+
+
 .best-sellers-page > h1 {
     position: relative;
-    top: 40px;
     padding: 0;
     margin: 0;
     text-align: center;
     font-size: 40px;
     color: white;
-    text-shadow: 0 0 15px rgba(255,0,0,1);
+    text-shadow: 0 0 10px rgba(255,0,0,1);
+    transition: 1s;
+    width: fit-content;
+    margin:auto;
+}
+
+.best-sellers-page > h1:hover {
+    text-shadow: 0 0 25px rgba(255,80,80,1);
+    transition: .3s;
 }
 
 .best-sellers-container {
-    position: relative;
-    top:40px;
     width: 100%;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 20px;
+}
+
+div.best-sellers-container > div.product-card {
+    overflow: hidden;
+
 }
