@@ -2,7 +2,7 @@
     position: relative;
     top: 40px;
     height: 2rem;
-    width: 30vw;
+    width: 30rem;
     margin: auto;
     background-color: rgba(100,120,255,.3);
     overflow:hidden;
@@ -13,7 +13,7 @@
 .detailed-page-container:hover{
     width: 80vw;
     height: 60vh;
-    transition: .3s;
+    transition: .5s;
 }
 
 
@@ -206,6 +206,9 @@
     .product-container {
         width: 100%;
     }
+    .detailed-page-container {
+        width: 100%;
+    }
     .search-container {
         width: 100%;
     }
@@ -230,6 +233,9 @@
         grid-template-columns: repeat(1, 1fr);
     }
     .product-container {
+        width: 100%;
+    }
+    .detailed-page-container {
         width: 100%;
     }
     .search-container {

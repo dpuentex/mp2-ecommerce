@@ -65,6 +65,9 @@ Involuntary Collaborator: \
 - render style from store model per product
 
 # Changelog / Completed
+- about any store lives on shopping page for that store
+- about us now lives on main page
+- removed about us 
 - partial formatting of bestseller page
 - added style column to store model as json mode/migration/seeder
 - renamed images column to image in product model/migration/seeder
