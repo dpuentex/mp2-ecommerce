@@ -24,11 +24,13 @@
     margin: 10px;
     float: none;
     cursor:default;
+    background-color: rgba(255,255,255,.4);
+    color: rgb(100,255,255)
 }
 
 .categories-button.glow-squish-button:active{
     
-  background-color: rgb(100,200,200);
+    background-color: rgba(255,255,255,.2);
   cursor:default;
   border-radius: 10px;
   box-shadow: none;
@@ -36,6 +38,7 @@
 }
 
 .categories-button.glow-squish-button:hover {
+    background-color: rgba(255,255,255,.3);
   
   transition: .4s;
 }
