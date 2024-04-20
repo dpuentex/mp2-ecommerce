@@ -2,6 +2,8 @@ import { useContext,useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import { StoreContext, FetchStoresContext, DetectedCategoriesContext, FetchProductsContext, ProductContext, SearchContext } from "../ContextList"
 import "../assets/css/detailedpage.css"
+import '../assets/css/homepage.css'
+import '../assets/css/aboutusfull.css'
 
 export default function DetailedPage() {
     // set background color for store about us
@@ -27,38 +29,19 @@ export default function DetailedPage() {
         );
      }
     
-     console.log(detectedCategories[storeData[1][storeIndex].store_id])
-     console.log(storeData[1][storeIndex].store_id)
+    //  console.log(detectedCategories[storeData[1][storeIndex].store_id])
+    //  console.log(storeData[1][storeIndex].store_id)
     return (
-        <div className="detailed-page-container">
+        (storeData[1].length > 0 )&& (<div className="detailed-page">
 
             <h2>{storeData[1][storeIndex].store_name}</h2>
             <p>{storeData[1][storeIndex].about_us}</p>
             {storeData[1][storeIndex].image ? (                // check if images exist in storeData
                 <div className="store-image-container"><img src={`data:image/png;base64,${toBase64(storeData[1][storeIndex].image["data"])}`} alt="" className="store-image" /></div>
             ) : null}
-            <div className="category-button-container">
-                
-                {/* {storeData[1][storeIndex].primary_categories ? 
-                // <h3>Categories</h3>
-                storeData[1][storeIndex].primary_categories.map((category, index) => 
-                <h3 className="glow-squish-button categories-button" key={index} onClick={() => {
-                    setCategoryContext(category)
-                    navigate('/products/')
-                }}>{category}</h3>)
-                : null} */}
-                {detectedCategories[storeData[1][storeIndex].store_id] ? 
-                // <h3>Categories</h3>
-                detectedCategories[storeData[1][storeIndex].store_id].map((category, index) => 
-                <h3 className="glow-squish-button categories-button" key={index}>{category}</h3>)
-                : null}
-                
-            </div>
-            <h3 className="glow-squish-button shop-now" onClick={() => {
-                    // setCategory(category)
-                    navigate('/products/')
-                }}>Shop Now!</h3>
-        </div>
+            
+            
+        </div>)
     )
 
 }

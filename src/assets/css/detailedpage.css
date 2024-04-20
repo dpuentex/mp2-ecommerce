@@ -1,10 +1,13 @@
-.detailed-page-container > h2, .detailed-page-container > p {
+
+
+.detailed-page > h2, .detailed-page > p {
     transition: 1s;
     width: fit-content;
     margin: auto;
+    color: white;
 }
 
-.detailed-page-container > h2:hover, .detailed-page-container > p:hover {
+.detailed-page > h2:hover, .detailed-page > p:hover {
     text-shadow: 0 0 10px rgba(255,255,255,1);    
     transition: .3s;
 }
@@ -24,7 +27,7 @@
     margin: 10px;
     float: none;
     cursor:default;
-    background-color: rgba(255,255,255,.4);
+    background-color: rgba(255,255,255,.3);
     color: rgb(100,255,255)
 }
 
@@ -32,14 +35,14 @@
     
     background-color: rgba(255,255,255,.2);
   cursor:default;
-  border-radius: 10px;
+  border-radius: 15px;
   box-shadow: none;
   
 }
 
 .categories-button.glow-squish-button:hover {
     background-color: rgba(255,255,255,.3);
-  
+    opacity: .3;
   transition: .4s;
 }
 

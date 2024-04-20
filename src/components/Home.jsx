@@ -4,13 +4,16 @@ import React, { useState, useEffect, useContext } from "react";
 // import components and assets
 import ListStoresPage from "./ListStoresPage";
 import DetailedPage from "./DetailedPage";
+import AboutUsFull from "./AboutUsFull";
 import {
   StoreContext,
   FetchStoresContext,
   FetchProductsContext,
   ProductContext
+  
 } from "../ContextList";
 import "../assets/css/homepage.css";
+import "../assets/css/detailedpage.css"
 export default function Home() {
   // reset background color for pick a store
   document.documentElement.style.setProperty('--col1', 'rgba(10,0,20,0.8');
@@ -45,6 +48,8 @@ export default function Home() {
           Please wait... Fetching products. {randomFace()}
         </div>
       )}
+
+      <AboutUsFull />
       {storeData[0] === -1 ? ( // check if store not yet selected
         <ListStoresPage />
       ) : (

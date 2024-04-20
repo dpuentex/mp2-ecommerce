@@ -16,6 +16,8 @@ import {
 } from "../ContextList";
 
 import {jss} from "../assets/js/jss.js"
+import DetailedPage from "./DetailedPage.jsx"
+import "../assets/css/detailedpage.css"
 
 export default function BrowsePage() {
 
@@ -35,9 +37,7 @@ export default function BrowsePage() {
   const [detectedCategories, setDetectedCategories] = useContext(DetectedCategoriesContext);
 
   const navigate = useNavigate();
-  if(storeData[0] == -1){
-    navigate('/');
-  }
+ 
 
   const retrieveCartItemData = useContext(RetrieveCartItemData);
 
@@ -143,6 +143,10 @@ export default function BrowsePage() {
  useEffect(() => {
   // why did i have to invoke update search in Checkbox.jsx instead of only here? I'm really upset
   updateSearch()
+  if(storeData[0] == -1){
+    navigate('/');
+  }
+
   }, [detailFilters, details, accessSearch, productData, null]);
 
 
@@ -186,6 +190,7 @@ export default function BrowsePage() {
 
   return (
     <>
+      <div className="detailed-page-container"><DetailedPage /></div>
       
       <div className="search-container">
         <input className="search-input" type="text" onChange={(e) => {setSearchTerm(e.target.value); console.log(e.target.value)}}/>

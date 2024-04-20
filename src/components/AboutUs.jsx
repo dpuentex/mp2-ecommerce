@@ -21,7 +21,8 @@ const fetchData = useContext(FetchStoresContext);
     
     return (
         <div className="home-page-container">
-          {storeData[0] === -1 ? <AboutUsFull /> : <DetailedPage />}
+          {/* {storeData[0] === -1 ? <AboutUsFull /> : <DetailedPage />} */}
+          {<AboutUsFull />}
         </div>
     )
 }

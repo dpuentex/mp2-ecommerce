@@ -41,7 +41,7 @@ export default function NavigationBar() {
                       e.stopPropagation();
                     }}
                   >
-                    <Link to={"/about-us/"}>{store.store_name}</Link>
+                    <Link to={"/products/"}>{store.store_name}</Link>
                   </li>
                 );
               })}
@@ -57,37 +57,13 @@ export default function NavigationBar() {
             }}
           >
             <Link to="/products/">SHOP</Link>
-            {/* <ul className="nav-dropdown-menu">
-              {storeData[1][storeData[2]].primary_categories.map(
-                (category, index) => {
-                  // console.log(category);
-                  return (
-                    <li
-                      key={index}
-                      onClick={(e) => {
-                        // setActiveCategory(category);
-                        setSearch.setCategory(category)
-                        e.stopPropagation();
-                      }}
-                    >
-                      <Link to={"/products/"}>{category}</Link>
-                    </li>
-                  );
-                }
-              )}
-            </ul> */}
+            
           </li>
         )}
         <li>
           <Link to="/best-sellers">BEST SELLERS</Link>
         </li>
-        <li id="about-us">
-          <Link to="/about-us/">
-            {storeData[0] !== -1
-              ? storeData[1][storeData[2]].store_name
-              : "[Commerce]"}
-          </Link>
-        </li>
+        
         <li className="nav-cart">
           <Link to="/cart" className="nav-cart-link">
             CART🛒(

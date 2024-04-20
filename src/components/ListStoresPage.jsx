@@ -22,7 +22,7 @@ export default function ListStoresPage() {
             key={index}
             store={store}
             onClick={() => setStore(store.store_id)}
-          ><Link to="/about-us">{store.store_name}</Link>
+          ><Link to="/products/">{store.store_name}</Link>
             
           </h1>
         );

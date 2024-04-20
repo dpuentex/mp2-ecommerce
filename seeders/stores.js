@@ -35,7 +35,7 @@ module.exports = {
           "Refurbished",
         ],
         best_sellers: [2,5,8,11],
-        style: JSON.stringify({exampleKey: 'exampleValue'})
+        style: JSON.stringify({card: {WORK HERE }})
       },
       {
         store_id: 3,
