@@ -1,3 +1,5 @@
+
+
 .detailed-page-container{
     position: relative;
     top: 40px;
@@ -197,6 +199,31 @@ div.product-container > div.product-card {
     margin-left:20px;
     text-shadow: 0 0 10px rgba(255,255,255,1);
     transition:.3s
+}
+
+.current-filter-behavior {
+    text-shadow: 0 0 10px rgba(255,255,255,.3);
+    transition:1s;
+    font-size: 1.4rem;;
+    color: rgba(200,255,255,1);
+    width:fit-content;
+    margin:auto;
+}
+.current-filter-behavior:hover{
+    text-shadow: 0 0 10px rgba(255,255,255,.6);
+    transition:.3s;
+    
+}
+
+.current-filter-behavior span{
+    text-shadow: 0 0 10px rgba(255,255,255,.4);
+    transition:1s;
+    cursor: pointer;
+}
+.current-filter-behavior span:hover{
+    text-shadow: 0 0 10px rgba(255,255,255,1);
+    transition:.3s;
+    color: rgba(255,255,255,1)
 }
 
 

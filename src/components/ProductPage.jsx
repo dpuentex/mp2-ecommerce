@@ -25,7 +25,7 @@ export default function BrowsePage() {
   
 
 
-
+  const [admin, setAdmin] = useState(false);
 
   let [data, setData] = React.useState({});
   let [details, setDetails] = React.useState([]);
@@ -34,6 +34,7 @@ export default function BrowsePage() {
   const [cartItemData, setCartItemData] = useContext(CartItemDataContext);
   const fetchProducts = useContext(FetchProductsContext);
   const [detectedCategories, setDetectedCategories] = useContext(DetectedCategoriesContext);
+  const [modernFilters, setModernFilters] = useState(true);
 
   const navigate = useNavigate();
  
@@ -120,12 +121,21 @@ export default function BrowsePage() {
   // console.log(filteredProducts);
   let newDetails = calculateDetails(localFilteredProducts);
 
+  // // why do i have to do tostring
+  // if (JSON.stringify(details) != JSON.stringify(newDetails)){
+  //   if(!modernFilters){newDetails = calculateDetails(productData)}
+  //   setDetails(newDetails) // here is the magic 
+  //   // console.log("executing 93")
+  // }
+
   // why do i have to do tostring
   if (JSON.stringify(details) != JSON.stringify(newDetails)){
-
-    setDetails(newDetails)
+    setDetails(calculateDetails(productData)) // here is the magic 
     // console.log("executing 93")
   }
+
+
+  
   // setDetails with new details means potentially new checkboxes.. now update search context
   Object.keys(detailFilters).forEach((key) => {
     detailFilters[key].forEach((value) => {
@@ -146,7 +156,7 @@ export default function BrowsePage() {
     navigate('/');
   }
 
-  }, [detailFilters, details, accessSearch, productData, null]);
+  }, [modernFilters, accessSearch, productData, null]);
 
 
   // // finish insane search section
@@ -201,9 +211,9 @@ export default function BrowsePage() {
     <>
       <div className="detailed-page-container"><DetailedPage /></div>
       
-      <div className="search-container">
+      <div className="search-container" onMouseLeave={(e) => e.target.scrollTop = 0}>
         <input placeholder="Search..." className="search-input" type="text" onChange={(e) => {setSearchTerm(e.target.value); console.log(e.target.value)}}/>
-        <div className="filter-container">
+        <div className="filter-container" onMouseLeave={(e) => e.target.scrollTop = 0}>
           {Object.keys(details).length > 0 &&
             Object.keys(details).map((detailKey, index) => {
               return (
@@ -216,16 +226,19 @@ export default function BrowsePage() {
               );
             })}
         </div>
+
+        {/* <div className="current-filter-behavior">Current Filter Behavior: <span onClick={() => setModernFilters(!modernFilters)}>{modernFilters? "Modern" : "Classic"}</span></div> */}
       </div>
 
       {filteredProducts.length > 0 ? (
         <div className="product-container">
           {filteredProducts
           .map((product, index) => {
-            return <ProductCard key={index} product={product} />;
+            return <ProductCard key={index} product={product} admin={admin} />;
           })}
         </div>
       ) : null}
+      <button className={`admin-button ${admin ? "shown" : ""}`} onClick={()=>{setAdmin(!admin)}}>ADMIN ACTIVE</button>
     </>
   );
 }

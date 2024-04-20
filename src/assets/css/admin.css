@@ -1,0 +1,28 @@
+.admin-button {
+    width: 1vw;
+    height: 1vw;
+    border-radius: 0;
+    position: fixed;
+    top:40px;
+    right:0px;
+    cursor:alias;
+    opacity: 0;
+    transition: 1s;
+}
+
+.admin-button.shown {
+    opacity: 1;
+    width:5vw;
+    height:5vh;
+    background-color:green;
+}
+
+textarea.admin-input {
+    width:100%;
+    resize: vertical;
+}
+
+.admin-input {
+    border-radius: .3rem;
+    border: none;
+}

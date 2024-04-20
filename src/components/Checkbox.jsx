@@ -52,18 +52,34 @@ export default function Checkbox(props) {
         updateSearch()
         console.log(detailFilters)
     }
+    // function handleCheckboxChange(detailKey, detailValue, checked) {
+    //   let newDetailCollection = {}
+    //   Object.keys(document.getElementsByClassName("inp-cbx")).forEach((key) => {
+    //     let element = document.getElementsByClassName("inp-cbx")[key]
+    //     if(element.checked){
+    //       let currentDetailKey = element.getAttribute("detailkey")
+    //       let currentDetailValue = element.getAttribute("detailvalue")
+    //       console.log(currentDetailKey, currentDetailValue)
+    //       if(!newDetailCollection[currentDetailKey]){newDetailCollection[currentDetailKey] = []}
+    //       newDetailCollection[currentDetailKey].push(currentDetailValue)
+    //     }
+    //   })
+    //   console.log(newDetailCollection)
+    //   setDetailFilters(newDetailCollection)
+    // }
 
 
-    if(elementRef.current)
-   { if(detailFilters[detailKey] && detailFilters[detailKey].includes(detailValue)) {
-      elementRef.current.checked = true
-    } else {
-      elementRef.current.checked = false
-    }}
+  //   if(elementRef.current)
+  //  { if(detailFilters[detailKey] && detailFilters[detailKey].includes(detailValue)) {
+  //     elementRef.current.checked = true
+  //   } else {
+  //     if(elementRef.current.checked){elementRef.current.checked = false;console.log("unchecking something for you")}
+      
+  //   }}
 
     return (
       <div className="checkbox-wrapper-4">
-      <input  ref={elementRef} className="inp-cbx" id={detailKey + "-sssplit-" + detailValue} type="checkbox"
+      <input  ref={elementRef} className="inp-cbx" id={detailKey + "-sssplit-" + detailValue} detailkey={detailKey} detailvalue={detailValue} type="checkbox"
       onClick={(e) => {handleCheckboxChange(detailKey, detailValue, e.target.checked)}}/>
       <label className="cbx" htmlFor={detailKey + "-sssplit-" + detailValue}><span>
       <svg width="12px" height="10px">

@@ -3,8 +3,6 @@
 // initialize router
 const products = require('express').Router()
 
-const bodyParser = require('body-parser')
-
 // import sequelize models
 const db = require('../models')
 
@@ -14,22 +12,12 @@ const { Product } = db
 // helper functions
 const { Op } = require('sequelize')
 
-// create application/json parser
-const jsonParser = bodyParser.json()
- 
-// create application/x-www-form-urlencoded parser
-const urlencodedParser = bodyParser.urlencoded({ extended: false })
-
-products.use(bodyParser.json())
-
-
 
 //backend response to GET all and serve json on /products/data
 products.get('/all', async (req,res) =>{
     let productsData = await Product.findAll() // Product is the sequelize model.. findAll is the method
     res.send(JSON.stringify(productsData)) // running a fetch here will get us our data back as json
 })
-
 
  
 //backend response to GET best sellers and serve json on /products/bestsellers
@@ -55,33 +43,25 @@ products.get('/id/:id', async (req,res) =>{
 
 
 
-//backend response to put on /products/data
-products.put('/update/:id', async (req, res) => {
-    console.log(req.body)
+//backend response to POST on /products/data
+products.post('/data', async (req,res) =>{
     try {
-        const updatedProduct = await Product.update(req.body, {
+        let productData = await Product.create(req.body)
+        res.send(JSON.stringify(productData))
+    } catch (error) {
+        res.status(500).json("failed to post /products/data " + error)
+    }
+})
+
+//backend response to PUT on /products/data/product_id
+products.put('/data/:id', async (req,res) =>{
+    try {
+        let productData = await Product.update(req.body, {
             where: {
                 product_id: req.params.id
             }
         })
-        res.status(200).json({
-            message: `Successfully updated product with id ${req.params.id}`
-        })
-    } catch(error) {
-        res.status(500).json("failed to PUT /products/:id " + error)
-    }
-})
-
-//backend response to post on /products/data/product_id
-products.post('/data', async (req,res) =>{
-    // console.log(JSON.stringify(req.body))
-    console.log(req.body)
-    try {
-        let newProduct = await Product.create(req.body) 
-        res.status(201).json({
-            message: "Successfully created new product",
-            data: newProduct    
-        })
+        res.send(JSON.stringify(productData))
     } catch (error) {
         res.status(500).json("failed to put /products/data " + error)
     }

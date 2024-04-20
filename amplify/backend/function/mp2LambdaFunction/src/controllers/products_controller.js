@@ -43,25 +43,33 @@ products.get('/id/:id', async (req,res) =>{
 
 
 
-//backend response to POST on /products/data
-products.post('/data', async (req,res) =>{
+//backend response to put on /products/data
+products.put('/update/:id', async (req, res) => {
+    console.log(req.body)
     try {
-        let productData = await Product.create(req.body)
-        res.send(JSON.stringify(productData))
-    } catch (error) {
-        res.status(500).json("failed to post /products/data " + error)
-    }
-})
-
-//backend response to PUT on /products/data/product_id
-products.put('/data/:id', async (req,res) =>{
-    try {
-        let productData = await Product.update(req.body, {
+        const updatedProduct = await Product.update(req.body, {
             where: {
                 product_id: req.params.id
             }
         })
-        res.send(JSON.stringify(productData))
+        res.status(200).json({
+            message: `Successfully updated product with id ${req.params.id}`
+        })
+    } catch(error) {
+        res.status(500).json("failed to PUT /products/:id " + error)
+    }
+})
+
+//backend response to POST on /products/data/product_id
+products.post('/data', async (req,res) =>{
+    // console.log(JSON.stringify(req.body))
+    console.log(req.body)
+    try {
+        let newProduct = await Product.create(req.body) 
+        res.status(201).json({
+            message: "Successfully created new product",
+            data: newProduct
+        })
     } catch (error) {
         res.status(500).json("failed to put /products/data " + error)
     }
