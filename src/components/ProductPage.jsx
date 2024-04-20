@@ -21,10 +21,9 @@ import "../assets/css/detailedpage.css"
 
 export default function BrowsePage() {
 
-  // set background color for particular store browse page
-  document.documentElement.style.setProperty('--col1', 'rgba(10,0,20,0.8');
-  document.documentElement.style.setProperty('--col2', 'rgba(0,20,10,0.8');
-  document.documentElement.style.setProperty('--col3', 'rgba(20,10,0,0.8');
+
+  
+
 
 
 
@@ -187,6 +186,16 @@ export default function BrowsePage() {
     return details;
   }
 
+
+  useEffect(() => {
+    if(storeData[1].length > 0) {
+        
+              // set background color for particular store browse page
+      document.documentElement.style.setProperty('--col1', storeData[1][storeData[2]].style.triColorBack[1]);
+      document.documentElement.style.setProperty('--col2', storeData[1][storeData[2]].style.triColorBack[2]);
+      document.documentElement.style.setProperty('--col3', storeData[1][storeData[2]].style.triColorBack[3]);
+    }
+}, [storeData])
 
   return (
     <>

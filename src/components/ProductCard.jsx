@@ -1,4 +1,4 @@
-import { useContext, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 
 import { CartItemDataContext, StoreContext, FetchStoresContext, RetrieveCartItemData} from "../ContextList"
 
@@ -62,25 +62,19 @@ export default function ProductCard({ product, cardType}) {
             }
         }
     }
-    jss.set(`.card-store-${1}`, {
-        'background-color': 'rgba(200, 200, 100, .4)',
-    });
-    jss.set(`.card-store-${1}:hover`, {
-        'background-color': 'rgba(170, 170, 80, .7)',
-    });
-    jss.set(`.card-store-${2}`, {
-        'background-color': 'rgba(200, 200, 255, .4)',
-    });
-    jss.set(`.card-store-${2}:hover`, {
-        'background-color': 'rgba(170, 170, 255, .7)',
-    });
-    jss.set(`.card-store-${3}`, {
-        'background-color': 'rgba(255, 170, 170, .4)',
-    });
-    jss.set(`.card-store-${3}:hover`, {
-        'background-color': 'rgba(255, 170, 170, .7)',
-    });
-    // console.log(jss.get(``))
+   
+
+    useEffect(() => {
+        if(storeData[1].length > 0 && storeData[2] != -1) {
+            
+            jss.set(`.card-store-${storeData[0]}`, {
+                'background-color': storeData[1][storeData[2]].style.cardStyle["background-color"],
+            });
+            jss.set(`.card-store-${storeData[0]}:hover`, {
+                'background-color': storeData[1][storeData[2]].style.cardStyleHover["background-color"],
+            });
+        }
+    }, [storeData])
     return (
         <div className={`product-card card-store-${product.store_id}`}>
             {cardType == "best-seller" ? <p>{getStoreNameForStoreID(product.store_id).storeName}</p> : null}

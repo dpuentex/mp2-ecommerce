@@ -21,7 +21,19 @@ module.exports = {
           "Curved",
         ],
         best_sellers: [1,4,7,10],
-        style: JSON.stringify({exampleKey: 'exampleValue'})
+        style: JSON.stringify({
+          triColorBack: [
+            'rgba(10,30,0,0.8',
+            'rgba(0,0,10,0.8',
+            'rgba(40,0,0,0.8'
+          ], 
+          cardStyle: {
+            'background-color': 'rgba(200, 200, 100, .4)'
+          },
+          cardStyleHover: {
+            'background-color': 'rgba(170, 170, 80, .7)'
+          }
+        })
       },
       {
         store_id: 2,
@@ -35,7 +47,19 @@ module.exports = {
           "Refurbished",
         ],
         best_sellers: [2,5,8,11],
-        style: JSON.stringify({card: {WORK HERE }})
+        style: JSON.stringify({
+          triColorBack: [
+            'rgba(10,0,30,0.8',
+            'rgba(0,30,0,0.8',
+            'rgba(0,20,20,0.8'
+          ], 
+          cardStyle: {
+            'background-color': 'rgba(200, 200, 255, .4)'
+          },
+          cardStyleHover: {
+            'background-color': 'rgba(170, 170, 255, .7)'
+          }
+        })
       },
       {
         store_id: 3,
@@ -49,7 +73,19 @@ module.exports = {
           "Alien",
         ],
         best_sellers: [3,6,9,12],
-        style: JSON.stringify({exampleKey: 'exampleValue'})
+        style: JSON.stringify({
+          triColorBack: [
+            'rgba(40,00,0,0.8',
+            'rgba(0,0,10,0.8',
+            'rgba(30,20,00,0.8'
+          ], 
+          cardStyle: {
+            'background-color': 'rgba(255, 170, 170, .4)'
+          },
+          cardStyleHover: {
+            'background-color': 'rgba(255, 170, 170, .7)'
+          }
+        })
       },
     ])
   },
