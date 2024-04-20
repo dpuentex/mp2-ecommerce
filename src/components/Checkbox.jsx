@@ -26,47 +26,46 @@ export default function Checkbox(props) {
 
     let detailPair = {[detailKey]:detailValue}
 
-    function handleCheckboxChange(detailKey, detailValue, checked) {
-      console.log(detailKey,detailValue,checked)
-      console.log(detailFilters)
-      if (checked) {
-        let newDetailCollection = detailFilters
-        if (!newDetailCollection[detailKey]){newDetailCollection[detailKey] = []}
-        console.log(newDetailCollection[detailKey])
-        newDetailCollection[detailKey].push(detailValue)
-        console.log(newDetailCollection[detailKey])
-        if(detailFilters!=newDetailCollection){console.log ("updating");setDetailFilters(newDetailCollection)}
-        // setDetailFilters(newDetailCollection)
-      } else {
-        let newDetailCollection = detailFilters
-        if (!newDetailCollection[detailKey]){newDetailCollection[detailKey] = []}
-        console.log(newDetailCollection[detailKey])
-        newDetailCollection[detailKey].splice(newDetailCollection[detailKey].indexOf(detailValue), 1)
-        newDetailCollection[detailKey].splice(newDetailCollection[detailKey].indexOf(detailValue), 1)
-        console.log(newDetailCollection[detailKey])
-        if(detailFilters!=newDetailCollection){console.log ("updating");setDetailFilters(newDetailCollection)}
-        // let preRemovalTest = {...detailFilters}[detailKey]
-        // console.log({...detailFilters}[detailKey])
-        // setDetailFilters({...detailFilters}[detailKey] = detailValue)
-      }
-        updateSearch()
-        console.log(detailFilters)
-    }
     // function handleCheckboxChange(detailKey, detailValue, checked) {
-    //   let newDetailCollection = {}
-    //   Object.keys(document.getElementsByClassName("inp-cbx")).forEach((key) => {
-    //     let element = document.getElementsByClassName("inp-cbx")[key]
-    //     if(element.checked){
-    //       let currentDetailKey = element.getAttribute("detailkey")
-    //       let currentDetailValue = element.getAttribute("detailvalue")
-    //       console.log(currentDetailKey, currentDetailValue)
-    //       if(!newDetailCollection[currentDetailKey]){newDetailCollection[currentDetailKey] = []}
-    //       newDetailCollection[currentDetailKey].push(currentDetailValue)
-    //     }
-    //   })
-    //   console.log(newDetailCollection)
-    //   setDetailFilters(newDetailCollection)
+    //   console.log(detailKey,detailValue,checked)
+    //   console.log(detailFilters)
+    //     let newDetailCollection = detailFilters
+    //   if (checked) {
+    //     if (!newDetailCollection[detailKey]){newDetailCollection[detailKey] = []}
+    //     console.log(newDetailCollection[detailKey])
+    //     newDetailCollection[detailKey].push(detailValue)
+    //     console.log(newDetailCollection[detailKey])
+    //     if(detailFilters!=newDetailCollection){console.log ("updating");setDetailFilters(newDetailCollection)}
+    //     // setDetailFilters(newDetailCollection)
+    //   } else {
+    //     if (!newDetailCollection[detailKey]){newDetailCollection[detailKey] = []}
+    //     console.log(newDetailCollection[detailKey])
+    //     newDetailCollection[detailKey].splice(newDetailCollection[detailKey].indexOf(detailValue), 1)
+    //     newDetailCollection[detailKey].splice(newDetailCollection[detailKey].indexOf(detailValue), 1)
+    //     console.log(newDetailCollection[detailKey])
+    //     if(detailFilters!=newDetailCollection){console.log ("updating");setDetailFilters(newDetailCollection)}
+    //     // let preRemovalTest = {...detailFilters}[detailKey]
+    //     // console.log({...detailFilters}[detailKey])
+    //     // setDetailFilters({...detailFilters}[detailKey] = detailValue)
+    //   }
+    //     updateSearch()
+    //     console.log(detailFilters)
     // }
+    function handleCheckboxChange(detailKey, detailValue, checked) {
+      let newDetailCollection = {}
+      Object.keys(document.getElementsByClassName("inp-cbx")).forEach((key) => {
+        let element = document.getElementsByClassName("inp-cbx")[key]
+        if(element.checked){
+          let currentDetailKey = element.getAttribute("detailkey")
+          let currentDetailValue = element.getAttribute("detailvalue")
+          console.log(currentDetailKey, currentDetailValue)
+          if(!newDetailCollection[currentDetailKey]){newDetailCollection[currentDetailKey] = []}
+          newDetailCollection[currentDetailKey].push(currentDetailValue)
+        }
+      })
+      console.log(newDetailCollection)
+      setDetailFilters(newDetailCollection)
+    }
 
 
   //   if(elementRef.current)

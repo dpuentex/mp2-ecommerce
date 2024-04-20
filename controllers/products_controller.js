@@ -80,12 +80,13 @@ products.post('/data', async (req,res) =>{
         let newProduct = await Product.create(req.body) 
         res.status(201).json({
             message: "Successfully created new product",
-            data: newProduct    
+            data: newProduct
         })
     } catch (error) {
         res.status(500).json("failed to put /products/data " + error)
     }
 })
+
 
 //backend response to DELETE on /products/data/product_id
 products.delete('/data/:id', async (req,res) =>{

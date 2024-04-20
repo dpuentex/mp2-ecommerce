@@ -1,4 +1,4 @@
-.admin-button {
+.admin-button, .create-item-button {
     width: 1vw;
     height: 1vw;
     border-radius: 0;
@@ -10,7 +10,11 @@
     transition: 1s;
 }
 
-.admin-button.shown {
+.create-item-button {
+    top:80px;
+}
+
+.admin-button.shown, .create-item-button.shown {
     opacity: 1;
     width:5vw;
     height:5vh;

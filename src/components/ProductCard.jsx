@@ -6,7 +6,7 @@ import {jss} from "../assets/js/jss.js"
 
 import "../assets/css/admin.css"
 
-export default function ProductCard({ product, showStore, bestsellerData, admin}) {
+export default function ProductCard({ product, showStore, bestsellerData, admin, editableID}) {
 
     const [POSTObject, setPOSTObject] = useState({})
     const [putObject, setPutObject] = useState({})
@@ -18,12 +18,34 @@ export default function ProductCard({ product, showStore, bestsellerData, admin}
     const [responseData, setResponseData] = useState("")
     function updateProduct(product_id, putObject){
         fetch(`https://7rwcnp46mg.execute-api.us-west-2.amazonaws.com/staging/products/update/${product_id}`, {
-            method: "post",
+            method: "put",
             headers: {
               'Accept': 'application/json',
               'Content-Type': 'application/json'
             },
           
+            //make sure to serialize your JSON body
+            body: JSON.stringify(putObject)
+          })
+          .then( (response) => { 
+             console.log(response)
+             setResponseData(response)
+          });
+    }
+
+    function createProduct(product_id, putObject){
+        if(putObject.product_id =="") {
+            putObject.product_id = null
+            
+        }
+        fetch(`https://7rwcnp46mg.execute-api.us-west-2.amazonaws.com/staging/products/data`, {
+            method: "post",
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            },
+            mode: 'cors',
+            
             //make sure to serialize your JSON body
             body: JSON.stringify(putObject)
           })
@@ -74,6 +96,7 @@ export default function ProductCard({ product, showStore, bestsellerData, admin}
     const [confirmUpdate, setConfirmUpdate] = useState(false)
     const [confirmDelete, setConfirmDelete] = useState(false)
     const [confirmRevert, setConfirmRevert] = useState(false)
+    const [confirmCreate, setConfirmCreate] = useState(false)
     
 
     function addToCart(event) {
@@ -167,7 +190,8 @@ export default function ProductCard({ product, showStore, bestsellerData, admin}
     return (
         <div className={`product-card card-store-${product.store_id}`}>
             {showStore == true && <p className="product-store-name">{getStoreNameForStoreID(product.store_id).storeName}</p>}
-            {admin && <span>product_id:<input type="number" onChange={(e) => setPutObject({...putObject, product_id: e.target.value})} className="product-id admin-input" defaultValue={product.product_id} disabled={true}/></span>}
+            {editableID && <p>Leave blank to generate ID</p>}
+            {admin && <span>product_id:<input type="number" onChange={(e) => setPutObject({...putObject, product_id: e.target.value})} className="product-id admin-input" defaultValue={product.product_id} disabled={!editableID}/></span>}
             {admin && <span>store_id:<input type="number" onChange={(e) => setPutObject({...putObject, store_id: e.target.value})} className="store-id admin-input" defaultValue={product.store_id}/></span>}
             {admin && <span>best_seller:<input type="checkbox" onChange={(e) => setPutObject({...putObject, best_seller: e.target.checked})} className="product-bestseller admin-input" defaultValue={product.best_seller}/></span>}
             {product.product_name && (!admin 
@@ -204,8 +228,22 @@ export default function ProductCard({ product, showStore, bestsellerData, admin}
                     ? `In Stock (${checkProductStockLeft(product)})` 
                     : "Out of Stock"} 
             </span> : <span className="product-stock-label">stock:<input type="number" onChange={(e) => setPutObject({...putObject, stock: e.target.value})} className="product-stock admin-input" defaultValue={(checkProductStockLeft(product))}/></span>}
-
-            {admin && <div className="admin-buttons">
+            {admin && editableID && <button
+            className="glow-squish-button admin-buttons admin-button-delete"
+            onClick={(e) => {
+                if (confirmCreate){
+                    createProduct(putObject, product.product_id);
+                    setConfirmCreate(false)
+                } else if (!confirmCreate) {
+                  setConfirmCreate(true)
+                }
+                e.stopPropagation()
+              }}
+              onMouseLeave={() => setConfirmCreate(false)}
+            >{confirmCreate 
+                ? "actually?" 
+                : "Post"}</button>} 
+            {admin && !editableID && <div className="admin-buttons">
             <button
             className="glow-squish-button admin-buttons admin-button-delete"
             onClick={(e) => {

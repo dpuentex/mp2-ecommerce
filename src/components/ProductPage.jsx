@@ -35,6 +35,7 @@ export default function BrowsePage() {
   const fetchProducts = useContext(FetchProductsContext);
   const [detectedCategories, setDetectedCategories] = useContext(DetectedCategoriesContext);
   const [modernFilters, setModernFilters] = useState(true);
+  const [createItem, setCreateItem] = useState(false);
 
   const navigate = useNavigate();
  
@@ -70,7 +71,7 @@ export default function BrowsePage() {
   if(productData?.length > 0){console.log(category)
   console.log(Object.values(detailFilters))
   let noFilters = false
-  if(((Object.values(detailFilters).every((value) => value = []))) || detailFilters == {}){noFilters = true}
+  if(((Object.values(detailFilters).every((value) => value = []))) || detailFilters == {}){noFilters = true; console.log("no filters")}
   let nonEmptyDetailFilterKeyMatches = {}
 
   console.log(nonEmptyDetailFilterKeyMatches)
@@ -133,7 +134,7 @@ export default function BrowsePage() {
   if (JSON.stringify(details) != JSON.stringify(newDetails)){
     setDetails(calculateDetails(productData)) // here is the magic 
     // console.log("executing 93")
-  }
+  
 
 
   
@@ -147,7 +148,7 @@ export default function BrowsePage() {
         if(detailFilters != newDetailFilters){console.log ("updating");setDetailFilters(newDetailFilters);}
       }
     });
-  })
+  })}
   console.log(details)
 }
 }
@@ -235,6 +236,8 @@ export default function BrowsePage() {
 
       {filteredProducts.length > 0 ? (
         <div className="product-container">
+          
+          {createItem && <ProductCard product ={{product_id: "", product_name: "Product Name", images: null, price: 12.34, description: "description", stock: 10, details_object: {key: "value", key2: "value2"}}} admin={admin} editableID={true}/>}
           {filteredProducts
           .map((product, index) => {
             return <ProductCard key={index} product={product} admin={admin} />;
@@ -242,6 +245,7 @@ export default function BrowsePage() {
         </div>
       ) : null}
       <button className={`admin-button ${admin ? "shown" : ""}`} onClick={()=>{setAdmin(!admin)}}>ADMIN ACTIVE</button>
+      <button className={`create-item-button ${admin ? "shown" : ""}`} onClick={() => {setCreateItem(!createItem)}}>CREATE ITEM</button>
     </>
   );
 }
