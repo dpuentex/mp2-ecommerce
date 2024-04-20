@@ -18,8 +18,8 @@ export default function CartPanel() {
 
         let calculatedSubtotal = 0
         cartItemData[0]?.length > 0 && (
-            cartItemData[0].forEach((product) => {
-                calculatedSubtotal = (calculatedSubtotal - -(product.price)).toFixed(2)
+            cartItemData[0]?.forEach((product) => {
+                calculatedSubtotal = (calculatedSubtotal - -(product?.price)).toFixed(2)
             })
         )
                 setSubtotal(calculatedSubtotal)
@@ -43,9 +43,9 @@ export default function CartPanel() {
             
             {cartItemData[0]?.length > 0 && cartItemData[1].map((product, index) => {
                     return <div className="product-card cart-panel-item" key={index}>
-                    {product.product_name ? <h1><span>{localStorage.getItem('CartLocalStorage').split(",").filter(x => x==product.product_id).length}x </span>{product.product_name}</h1> : null}
-                    {product.price ? <span className="cart-panel-item-product-price-container"><h2>{product.price}</h2><h2>{(product.price * localStorage.getItem('CartLocalStorage').split(",").filter(x => x==product.product_id).length).toFixed(2)}</h2></span> : null}
-                    {product.images ? (
+                    {product?.product_name ? <h1><span>{localStorage.getItem('CartLocalStorage').split(",").filter(x => x==product.product_id).length}x </span>{product.product_name}</h1> : null}
+                    {product?.price ? <span className="cart-panel-item-product-price-container"><h2>{product.price}</h2><h2>{(product.price * localStorage.getItem('CartLocalStorage').split(",").filter(x => x==product.product_id).length).toFixed(2)}</h2></span> : null}
+                    {product?.images ? (
                       <p className="cart-panel-item-product-images">IMAGES.. There would be a map function here or something..</p>
                     ) : null} 
                     </div>

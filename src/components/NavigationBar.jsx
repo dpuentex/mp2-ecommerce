@@ -31,7 +31,7 @@ export default function NavigationBar() {
         let calculatedSubtotal = 0
         cartItemData[0]?.length > 0 && (
             cartItemData[0].forEach((product) => {
-                calculatedSubtotal = (calculatedSubtotal - -(product.price)).toFixed(2)
+                calculatedSubtotal = (calculatedSubtotal - -(product?.price)).toFixed(2)
             })
         )
                 setSubtotal(calculatedSubtotal)

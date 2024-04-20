@@ -76,7 +76,7 @@ products.post('/data', async (req,res) =>{
 })
 
 //backend response to DELETE on /products/data/product_id
-products.delete('/data/:id', async (req,res) =>{
+products.delete('/delete/:id', async (req,res) =>{
     try {
         let deletedProduct = await Product.destroy({
             where: {

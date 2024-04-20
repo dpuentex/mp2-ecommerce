@@ -56,7 +56,7 @@ function App() {
 
   // once productData loads, calculate and set detectedCategories
   useEffect(() => {
-    setDetectedCategories(calculateCategories(productData))
+    if(productData.length > 0) {setDetectedCategories(calculateCategories(productData))}
   }, [productData]);
 
   useEffect(() => {
@@ -85,6 +85,7 @@ function App() {
     console.log(json);
     console.log("Fetched products in app.jsx");
     setProductData(json);
+    return json;
   }
 
   async function setStore(store_id) {
@@ -103,17 +104,27 @@ function App() {
   }
 
   function retrieveCartItemData() {
-    console.log(productData);
+    console.log(productData)
+    console.log(cartItemData)
     if (productData.length > 0 && localStorage.getItem("CartLocalStorage")) {
       let detailedData = [];
+      let productInCartIdArray = [];
+      console.log(localStorage.getItem("CartLocalStorage").split(","))
       localStorage
         .getItem("CartLocalStorage")
         .split(",")
-        .forEach((product_id) => {
-          detailedData.push(
-            productData.filter((product) => product.product_id == product_id)[0]
-          );
-        });
+        .forEach((localStorageID) => {
+          console.log(Object.keys(localStorageID))
+          productData.forEach((product, index) => {
+            if (product.product_id == localStorageID) {
+              detailedData.push(product);
+              productInCartIdArray.push(Number(product.product_id));
+          }
+          // if(productData.includes(productData[product_id])){detailedData.push(
+          //   productData.filter((product) => product.product_id == product_id)[0]
+          // );}
+        })})
+      localStorage.setItem("CartLocalStorage", productInCartIdArray);
       let arrayWithNoRepeats = [];
       for (let i = 0; i < detailedData.length; i++) {
         if (!arrayWithNoRepeats.includes(detailedData[i])) {

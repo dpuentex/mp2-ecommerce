@@ -66,7 +66,8 @@ export default function BrowsePage() {
  const [filteredProducts, setFilteredProducts] = useState([]);
 
  function updateSearch() {
-  console.log(category)
+
+  if(productData?.length > 0){console.log(category)
   console.log(Object.values(detailFilters))
   let noFilters = false
   if(((Object.values(detailFilters).every((value) => value = []))) || detailFilters == {}){noFilters = true}
@@ -147,7 +148,9 @@ export default function BrowsePage() {
       }
     });
   })
-  console.log(details)}
+  console.log(details)
+}
+}
 
  useEffect(() => {
   // why did i have to invoke update search in Checkbox.jsx instead of only here? I'm really upset

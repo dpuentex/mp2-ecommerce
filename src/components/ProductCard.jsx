@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react"
 
-import { CartItemDataContext, StoreContext, FetchStoresContext, RetrieveCartItemData} from "../ContextList"
+import { CartItemDataContext, StoreContext, FetchStoresContext, RetrieveCartItemData, FetchProductsContext, ProductContext} from "../ContextList"
 
 import {jss} from "../assets/js/jss.js"
 
@@ -11,6 +11,11 @@ export default function ProductCard({ product, showStore, bestsellerData, admin}
     const [POSTObject, setPOSTObject] = useState({})
     const [putObject, setPutObject] = useState({})
 
+    const [productData, setProductData] = useContext(ProductContext);
+    const getProducts = useContext(FetchProductsContext)
+    const fetchStores = useContext(FetchStoresContext)
+
+    const [responseData, setResponseData] = useState("")
     function updateProduct(product_id, putObject){
         fetch(`https://7rwcnp46mg.execute-api.us-west-2.amazonaws.com/staging/products/update/${product_id}`, {
             method: "post",
@@ -24,19 +29,53 @@ export default function ProductCard({ product, showStore, bestsellerData, admin}
           })
           .then( (response) => { 
              console.log(response)
+             setResponseData(response)
           });
     }
+    function deleteProduct(product_id) {
+        fetch(`https://7rwcnp46mg.execute-api.us-west-2.amazonaws.com/staging/products/delete/${product_id}`, {
+            method: "delete",
+          })
+          .then( (response) => { 
+             console.log(response)
+             if (response.status === 200) {
+                productData.forEach((product) => {
+                    console.log(product)
+                    if (product.product_id === product_id) {
+                        let newArray = productData
+                        newArray.splice(productData.indexOf(product), 1)
+                        console.log("product.id match")
+                        console.log(productData)
+                        console.log(newArray)
+                        console.log(productData.indexOf(product))
+                        setProductData(newArray)
 
+                    }
+                })
+                
+             }
+          });
+    }
 
     useEffect(() => {
         console.log(putObject)
     }, [putObject])
+
+    // useEffect(() => {
+    //     getProducts()
+    //     // fetchStores()
+    // }, [responseData])
     const [cartItemData, setCartItemData] = useContext(CartItemDataContext)
     const [storeData, setStoreData] = useContext(StoreContext)
-    const fetchStores = useContext(FetchStoresContext)
     const retrieveCartItemData = useContext(RetrieveCartItemData)
-    const [confirmDelete, setConfirmDelete] = useState(false)
+
+
+    const [confirmRemoveFromCart, setConfirmRemoveFromCart] = useState(false)
     const [confirmUpdate, setConfirmUpdate] = useState(false)
+    const [confirmDelete, setConfirmDelete] = useState(false)
+    const [confirmRevert, setConfirmRevert] = useState(false)
+    
+
     function addToCart(event) {
         // console.log(event)
         // console.log(event.target)
@@ -53,10 +92,13 @@ export default function ProductCard({ product, showStore, bestsellerData, admin}
         console.log(localStorage.getItem('CartLocalStorage').split(","))
     }
     function removeFromCart(event) {
+        console.log(product.product_id)
         if (localStorage.getItem('CartLocalStorage') != null) {
-            if (localStorage.getItem('CartLocalStorage').split(",").includes(product.product_id)) {
+            console.log(localStorage.getItem('CartLocalStorage').split(",").includes(product.product_id.toString()))
+            if (localStorage.getItem('CartLocalStorage').split(",").includes(product.product_id.toString())) {
+                console.log("passed includes check")
                 let oldcart = localStorage.getItem('CartLocalStorage').split(",")
-                oldcart.splice(localStorage.getItem('CartLocalStorage').split(",").indexOf(product.product_id), 1)
+                oldcart.splice(localStorage.getItem('CartLocalStorage').split(",").indexOf(product.product_id.toString()), 1)
                 localStorage.setItem('CartLocalStorage', oldcart)
                 // cartItemData[0](localStorage.getItem('CartLocalStorage').split(","))
                 retrieveCartItemData()
@@ -68,10 +110,10 @@ export default function ProductCard({ product, showStore, bestsellerData, admin}
 
     function removeAllOneItemFromCart(event) {
         if (localStorage.getItem('CartLocalStorage') != null) {
-            if (localStorage.getItem('CartLocalStorage').split(",").includes(product.product_id)) {
+            if (localStorage.getItem('CartLocalStorage').split(",").includes(product.product_id.toString())) {
                 let oldcart = localStorage.getItem('CartLocalStorage').split(",")
-                while (oldcart.includes(product.product_id)) {
-                    oldcart.splice(localStorage.getItem('CartLocalStorage').split(",").indexOf(product.product_id), 1)
+                while (oldcart.includes(product.product_id.toString())) {
+                    oldcart.splice(localStorage.getItem('CartLocalStorage').split(",").indexOf(product.product_id.toString()), 1)
                 }
                 localStorage.setItem('CartLocalStorage', oldcart)
                 // cartItemData[0](localStorage.getItem('CartLocalStorage').split(","))
@@ -163,8 +205,39 @@ export default function ProductCard({ product, showStore, bestsellerData, admin}
                     : "Out of Stock"} 
             </span> : <span className="product-stock-label">stock:<input type="number" onChange={(e) => setPutObject({...putObject, stock: e.target.value})} className="product-stock admin-input" defaultValue={(checkProductStockLeft(product))}/></span>}
 
-            {admin && <button
-            className="glow-squish-button"
+            {admin && <div className="admin-buttons">
+            <button
+            className="glow-squish-button admin-buttons admin-button-delete"
+            onClick={(e) => {
+                if (confirmDelete){
+                    deleteProduct(product.product_id);
+                    setConfirmDelete(false)
+                } else if (!confirmDelete) {
+                  setConfirmDelete(true)
+                }
+                e.stopPropagation()
+              }}
+              onMouseLeave={() => setConfirmDelete(false)}
+            >{confirmDelete 
+                ? "actually?" 
+                : "Delete"}</button>
+                
+                <button className="glow-squish-button admin-buttons admin-button-revert"
+            onClick={(e) => {
+                if (confirmRevert){
+                    // updateProduct(product.product_id, putObject);
+                    setConfirmRevert(false)
+                } else if (!confirmRevert) {
+                  setConfirmRevert(true)
+                }
+                e.stopPropagation()
+              }}
+              onMouseLeave={() => setConfirmRevert(false)}
+            >{confirmRevert 
+                ? "actually?" 
+                : "Revert"}</button>
+                
+            <button className="glow-squish-button admin-buttons admin-button-update"
             onClick={(e) => {
                 if (confirmUpdate){
                     updateProduct(product.product_id, putObject);
@@ -177,7 +250,9 @@ export default function ProductCard({ product, showStore, bestsellerData, admin}
               onMouseLeave={() => setConfirmUpdate(false)}
             >{confirmUpdate 
                 ? "actually?" 
-                : "Update"}</button>}
+                : "Update"}</button>
+                
+                </div>}
 
             {!admin && <span className="add-to-cart-button-container">{checkProductStockLeft(product) > 0 &&
             
@@ -193,16 +268,16 @@ export default function ProductCard({ product, showStore, bestsellerData, admin}
             <button onClick={(e)=>{removeFromCart(); e.stopPropagation()} } className="glow-squish-button remove-one" >➖
             <div className="glow-squish-button remove-all" 
             onClick={(e) => {
-                if (confirmDelete){
+                if (confirmRemoveFromCart){
                     removeAllOneItemFromCart();
-                    setConfirmDelete(false)
-                } else if (!confirmDelete) {
-                  setConfirmDelete(true)
+                    setConfirmRemoveFromCart(false)
+                } else if (!confirmRemoveFromCart) {
+                  setConfirmRemoveFromCart(true)
                 }
                 e.stopPropagation()
               }}
-              onMouseLeave={() => setConfirmDelete(false)}
-            >{confirmDelete 
+              onMouseLeave={() => setConfirmRemoveFromCart(false)}
+            >{confirmRemoveFromCart 
                 ? "actually?" 
                 : "remove all"}</div>
             </button>}

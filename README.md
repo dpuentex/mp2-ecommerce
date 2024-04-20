@@ -55,6 +55,7 @@ Involuntary Collaborator: \
 conditionally render product card elements to be either normal elements or inputs based on if on admin page or not by passing admin=true prop and checking condition on render
 
 # Changelog / Completed
+- pushed delete route to amplify
 - imported bodyparser into local server
 - added put functionality to update products
 - added hidden admin functionality
