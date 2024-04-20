@@ -150,7 +150,7 @@ module.exports = {
         {
           product_id: 1 + i * 3,
           product_name: selectRandom(products.electronics),
-          images: null,
+          image: null,
           price: randomPriceWithDollarsString(),
           description: selectRandom(descriptions.electronics),
           stock: generateStock(),
@@ -161,7 +161,7 @@ module.exports = {
         {
           product_id: 2 + i * 3,
           product_name: selectRandom(products.clothing),
-          images: null,
+          image: null,
           price: randomPriceWithDollarsString(),
           description: selectRandom(descriptions.clothing),
           stock: generateStock(),
@@ -172,7 +172,7 @@ module.exports = {
         {
           product_id: 3 + i * 3,
           product_name: selectRandom(products.knobs),
-          images: null,
+          image: null,
           price:  randomPriceWithDollarsString(),
           description: selectRandom(descriptions.knobs),
           stock: generateStock(),

@@ -20,12 +20,10 @@ Collaborators: \
 [Jeffery Grigsby](https://github.com/JefferyG00) \
 A beautiful ecommerce website with basic functionality.
 
-<!-- design -->
-## Prototypes
-![Prototype Home](./_design/Home.png)
+Involuntary Collaborator: \
+[David Tang](https://github.com/dvtng/) for providing  [(jss library 2011 for retrieving and setting css stylesheet rules)](https://github.com/dvtng/jss)
 
-## Dev Notes
-- config folder containing sequelize config has not been included in git ignore purposely for now.
+
 ## Todo:
 - best seller page
 - - custom card theme for each store?
@@ -38,7 +36,8 @@ A beautiful ecommerce website with basic functionality.
 - - preview best sellers?
 - cart panel
 - - ability to remove items from cart in panel?
-
+- admin page
+- checkbox behavior options
 
 ### [Model Sheets](https://docs.google.com/spreadsheets/d/1QfpH7j5gNQoXloyshFjNvAq97LzJzVPM_XfwJFtSe18/edit#gid=0) for SQL database
 - spreadsheet
@@ -53,14 +52,22 @@ A beautiful ecommerce website with basic functionality.
 
 
 ## Low priority:
+- remove unused imports
 - Clicking quickly between pick a store and then a store produces the about us page for main site..
 - add style column to store and render different style from database depending on store 
 - glow in the back following mouse
 - implement bcrypt
 - blur won't apply to dropdowns 
 - improve favicon.ico
+- optimize unused columns in models and create proper associations.. haven't really found a need though
+
+# active 
+- render style from store model per product
 
 # Changelog / Completed
+- partial formatting of bestseller page
+- added style column to store model as json mode/migration/seeder
+- renamed images column to image in product model/migration/seeder
 - updated readme
 - removed test buttons
 - updated seeder

@@ -17,6 +17,25 @@
   inherits: false;
 }
 
+
+@property --col1 {
+  syntax: '<color>';
+  initial-value: rgba(0,10,20, 0.8);
+  inherits: false;
+}
+
+@property --col2 {
+  syntax: '<color>';
+  initial-value: rgba(20,0,10, 0.8);
+  inherits: false;
+}
+
+@property --col3 {
+  syntax: '<color>';
+  initial-value: rgba(10,20,0, 0.8);
+  inherits: false;
+}
+
 @font-face {
   font-family: 'Noto Sans';
   src: url('../fonts/exportNoto/NotoSans-Regular.eot');
@@ -33,9 +52,10 @@
 
 
 html {
-  background: linear-gradient(var(--deg1), rgba(0,0,0,.8), rgba(255,0,0,0) 100%),
-            linear-gradient(var(--deg2), rgba(20,10,0,.8), rgba(0,255,0,0) 100%),
-            linear-gradient(var(--deg3), rgba(10,10,10,.8), rgba(0,0,255,0) 100%);
+  background:
+            linear-gradient(var(--deg1), var(--col1), rgba(255,0,0,0) 100%),
+            linear-gradient(var(--deg2), var(--col2), rgba(0,255,0,0) 100%),
+            linear-gradient(var(--deg3), var(--col3), rgba(0,0,255,0) 100%);
             animation: background-anim 10s linear infinite;
             background-attachment: fixed;
            
@@ -43,7 +63,7 @@ html {
   font-style: normal;
   font-display: swap;
   font-family: Noto Sans;
-    
+  transition: .3s
 }
 
 .glow-squish-button {

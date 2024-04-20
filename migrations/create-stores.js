@@ -17,7 +17,6 @@ module.exports = {
       icon: {
         type: Sequelize.BLOB,
       },
-
       image: {
         type: Sequelize.BLOB,
       },
@@ -30,6 +29,9 @@ module.exports = {
       best_sellers: {
         type: Sequelize.ARRAY(Sequelize.INTEGER),
       },
+      style: {
+        type: Sequelize.JSON
+      }
     });
   },
   async down(queryInterface, Sequelize) {

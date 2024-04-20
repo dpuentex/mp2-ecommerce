@@ -20,7 +20,8 @@ module.exports = {
           "Crooked",
           "Curved",
         ],
-        best_sellers: [1,4,7,10]
+        best_sellers: [1,4,7,10],
+        style: JSON.stringify({exampleKey: 'exampleValue'})
       },
       {
         store_id: 2,
@@ -33,7 +34,8 @@ module.exports = {
           "Used",
           "Refurbished",
         ],
-        best_sellers: [2,5,8,11]
+        best_sellers: [2,5,8,11],
+        style: JSON.stringify({exampleKey: 'exampleValue'})
       },
       {
         store_id: 3,
@@ -46,7 +48,8 @@ module.exports = {
           "African",
           "Alien",
         ],
-        best_sellers: [3,6,9,12]
+        best_sellers: [3,6,9,12],
+        style: JSON.stringify({exampleKey: 'exampleValue'})
       },
     ])
   },

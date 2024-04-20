@@ -4,6 +4,11 @@ import { StoreContext, FetchStoresContext, DetectedCategoriesContext, FetchProdu
 import "../assets/css/detailedpage.css"
 
 export default function DetailedPage() {
+    // set background color for store about us
+    document.documentElement.style.setProperty('--col1', 'rgba(10,0,20,0.8');
+    document.documentElement.style.setProperty('--col2', 'rgba(0,20,10,0.8');
+    document.documentElement.style.setProperty('--col3', 'rgba(20,10,0,0.8');
+
     const [storeData, setStoreData] = useContext(StoreContext)
     const [detectedCategories, setDetectedCategories] = useContext(DetectedCategoriesContext)
     const [productData, setProductData] = useContext(ProductContext)

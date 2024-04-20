@@ -16,16 +16,9 @@ import {
 } from "../ContextList";
 
 import {jss} from "../assets/js/jss.js"
+import { DOUBLE } from "sequelize";
 
 export default function BrowsePage() {
-
-  // set background color for particular store browse page
-  document.documentElement.style.setProperty('--col1', 'rgba(10,0,20,0.8');
-  document.documentElement.style.setProperty('--col2', 'rgba(0,20,10,0.8');
-  document.documentElement.style.setProperty('--col3', 'rgba(20,10,0,0.8');
-
-
-
   let [data, setData] = React.useState({});
   let [details, setDetails] = React.useState([]);
   const [storeData, useStoreData] = useContext(StoreContext);
@@ -182,8 +175,26 @@ export default function BrowsePage() {
 
     return details;
   }
+  
+
+  function consoleUseContext() {console.log(cartItemData);}
+  function clearLocalStorage() {localStorage.clear();retrieveCartItemData();}
+  function consoleLocalStorage() {console.log(localStorage.getItem("CartLocalStorage")?.split(","));}
+  function consoleSearchAccessDetails() {console.log(detailFilters);}
 
 
+//   document.getElementsByTagName("html").style = `  
+//   background: linear-gradient(var(--deg1), rgba(0,0,0,.8), rgba(255,0,0,0) 100%),
+//   linear-gradient(var(--deg2), rgba(20,10,0,.8), rgba(0,255,0,0) 100%),
+//   linear-gradient(var(--deg3), rgba(10,10,10,.8), rgba(0,0,255,0) 100%);
+//   animation: background-anim 10s linear infinite;
+//   background-attachment: fixed;
+ 
+// font-weight: normal;
+// font-style: normal;
+// font-display: swap;
+// font-family: Noto Sans;
+// `
   return (
     <>
       

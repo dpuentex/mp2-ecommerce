@@ -2,7 +2,9 @@ import { useContext, useState } from "react"
 
 import { CartItemDataContext, StoreContext, FetchStoresContext, RetrieveCartItemData} from "../ContextList"
 
-export default function ProductCard({ product, bestseller}) {
+import {jss} from "../assets/js/jss.js"
+
+export default function ProductCard({ product, cardType}) {
     const [cartItemData, setCartItemData] = useContext(CartItemDataContext)
     const [storeData, setStoreData] = useContext(StoreContext)
     const fetchStores = useContext(FetchStoresContext)
@@ -52,17 +54,40 @@ export default function ProductCard({ product, bestseller}) {
     function getStoreNameForStoreID(storeID) {
         for (let i = 0; i < storeData[1].length; i++) {
             if (storeData[1][i].store_id == storeID) {
-                return storeData[1][i].store_name
+                console.log({storeName: storeData[1][i].store_name, i})
+                return {
+                    storeName: storeData[1][i].store_name,  
+                    index : i
+                }
             }
         }
     }
+    jss.set(`.card-store-${1}`, {
+        'background-color': 'rgba(200, 200, 100, .4)',
+    });
+    jss.set(`.card-store-${1}:hover`, {
+        'background-color': 'rgba(170, 170, 80, .7)',
+    });
+    jss.set(`.card-store-${2}`, {
+        'background-color': 'rgba(200, 200, 255, .4)',
+    });
+    jss.set(`.card-store-${2}:hover`, {
+        'background-color': 'rgba(170, 170, 255, .7)',
+    });
+    jss.set(`.card-store-${3}`, {
+        'background-color': 'rgba(255, 170, 170, .4)',
+    });
+    jss.set(`.card-store-${3}:hover`, {
+        'background-color': 'rgba(255, 170, 170, .7)',
+    });
+    // console.log(jss.get(``))
     return (
-        <div className='product-card'>
-            {bestseller ? <p>{getStoreNameForStoreID(product.store_id)}</p> : null}
+        <div className={`product-card card-store-${product.store_id}`}>
+            {cardType == "best-seller" ? <p>{getStoreNameForStoreID(product.store_id).storeName}</p> : null}
             {product.product_name ? <h1>{product.product_name}</h1> : null}
             {product.price ? <h2>{product.price}</h2> : null}
             {product.description ? <h3>{product.description}</h3> : null}
-            {product.images ? <p>IMAGES.. There would be a map function here or something..</p> : null}
+            {product.image ? <p>IMAGES.. There would be a map function here or something..</p> : null}
             {product.details_object
                 ? 
                     <ul className="product-details">

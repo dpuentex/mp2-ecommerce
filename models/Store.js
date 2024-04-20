@@ -29,7 +29,6 @@ module.exports = (sequelize, DataTypes) => {
     image: {
       type: DataTypes.BLOB
     },
-    
     about_us: {
       type: DataTypes.TEXT
     },
@@ -38,6 +37,9 @@ module.exports = (sequelize, DataTypes) => {
     },
     best_sellers: {
       type: DataTypes.ARRAY(DataTypes.INTEGER)
+    },
+    style: {
+      type: DataTypes.JSON
     }
   }, {
     sequelize,

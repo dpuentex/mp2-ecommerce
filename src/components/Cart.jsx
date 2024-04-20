@@ -8,6 +8,10 @@ import { useContext, useEffect } from "react";
 
 // made export within this line below
 export default  function Cart() {
+  // reset background color for cart
+  document.documentElement.style.setProperty('--col1', 'rgba(10,0,20,0.8');
+  document.documentElement.style.setProperty('--col2', 'rgba(0,20,10,0.8');
+  document.documentElement.style.setProperty('--col3', 'rgba(20,10,0,0.8');
   const [cartItemData, setCartItemData] = useContext(CartItemDataContext)
   const retrieveCartItemData = useContext(RetrieveCartItemData)
   

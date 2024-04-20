@@ -12,6 +12,12 @@ import {
 } from "../ContextList";
 import "../assets/css/homepage.css";
 export default function Home() {
+  // reset background color for pick a store
+  document.documentElement.style.setProperty('--col1', 'rgba(10,0,20,0.8');
+  document.documentElement.style.setProperty('--col2', 'rgba(0,20,10,0.8');
+  document.documentElement.style.setProperty('--col3', 'rgba(20,10,0,0.8');
+
+
   const [storeData, setStoreData] = useContext(StoreContext);
   const fetchStores = useContext(FetchStoresContext);
   const fetchProducts = useContext(FetchProductsContext);

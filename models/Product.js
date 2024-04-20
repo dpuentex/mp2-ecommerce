@@ -23,8 +23,8 @@ module.exports = (sequelize, DataTypes) => {
     product_name: {
       type: DataTypes.STRING
     },
-    images: {
-      type: DataTypes.ARRAY(DataTypes.BLOB)
+    image: {
+      type: DataTypes.BLOB
     },
     price: {
       type: DataTypes.DECIMAL(10,2)

@@ -15,6 +15,7 @@ header{
     top: 0px;
     position: fixed;
     z-index: 999;
+    transition: 1s
     
 }
 
@@ -25,11 +26,13 @@ nav > ul {
     justify-content: space-around;
     
     backdrop-filter: blur(15px);
+    /* box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.7); */
 }
 
 .nav-links{
     list-style: none;
     display: flex;
+    transition: 1s
 }
 
 a {
@@ -49,7 +52,8 @@ a {
 /* unfortunately color has to be listed seperately in a tag contained in li */
 a{
     color: rgb(220,220,255);
-    background-color: transparent   
+    background-color: transparent;
+    transition: 1s
 }
 
 a:hover{
@@ -60,21 +64,9 @@ a:hover{
 
 
 
-/* .nav-dropdown-menu{
-    background-color: rgba(120,100,255,0.3);
-    
-    height: auto;
-    display: flex;
-    position: absolute;
-    top: 38px;
-    flex-direction: column; 
-    list-style-type:none;
-} */
-
 
  #about-us{
-    display: flex;
-    flex-direction: column;
+    text-shadow: 0 0 12px rgba(255,255,255,1);
 }
 
 

@@ -17,8 +17,8 @@ module.exports = {
       product_name: {
         type: Sequelize.STRING
       },
-      images: {
-        type: Sequelize.ARRAY(Sequelize.BLOB)
+      image: {
+        type: Sequelize.BLOB
       },
       price: {
         type: Sequelize.DECIMAL(10, 2)
