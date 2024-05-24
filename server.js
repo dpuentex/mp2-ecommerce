@@ -36,9 +36,9 @@ app.use('/store', require('./controllers/store_controller'))
 
 // Handle all other requests and return 
 // http://127.0.0.1:3000/ANYTHINGELSEHERE
-app.get('*', (req,res) =>{
-    res.sendFile(path.join(__dirname+'/dist/index.html'));
-});
+// app.get('*', (req,res) =>{
+//     res.sendFile(path.join(__dirname+'/dist/index.html'));
+// });
 
 // Start the server listening on 3000
 app.listen(process.env.PORT || 3000 , () => {

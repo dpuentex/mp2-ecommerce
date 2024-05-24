@@ -5,6 +5,7 @@ const products = require('express').Router()
 
 // import sequelize models
 const db = require('../models')
+const cors = require('cors')
 
 // pull Product model out of sequelize models folder to allow requests later
 const { Product } = db
@@ -12,6 +13,15 @@ const { Product } = db
 // helper functions
 const { Op } = require('sequelize')
 
+
+products.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*")
+    res.header("Access-Control-Allow-Headers", "*")
+    req.header("Access-Control-Allow-Headers", "*")
+    next()
+  });
+  
+  products.use(cors())
 
 //backend response to GET all and serve json on /products/data
 products.get('/all', async (req,res) =>{
